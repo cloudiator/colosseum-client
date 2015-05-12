@@ -57,13 +57,15 @@ public class ClientController<T extends Entity> {
     }
 
     public T get(long id) {
-        return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value() + "/" + id).get(this.type);
+        return this
+            .getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value() + "/" + id)
+            .get(this.type);
     }
 
     public List<T> getList() {
         ParameterizedType parameterizedGenericType = new ParameterizedType() {
             public Type[] getActualTypeArguments() {
-                return new Type[]{type};
+                return new Type[] {type};
             }
 
             public Type getRawType() {
@@ -74,16 +76,21 @@ public class ClientController<T extends Entity> {
                 return List.class;
             }
         };
-        return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value()).get(new GenericType<List<T>>(parameterizedGenericType) {
-        });
+        return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value())
+            .get(new GenericType<List<T>>(parameterizedGenericType) {
+            });
     }
 
     public T create(T t) {
-        return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value()).post(javax.ws.rs.client.Entity.entity(t, MediaType.APPLICATION_JSON_TYPE)).readEntity(type);
+        return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value())
+            .post(javax.ws.rs.client.Entity.entity(t, MediaType.APPLICATION_JSON_TYPE))
+            .readEntity(type);
     }
 
     public T update(T t) {
-        return this.getRequest(t.getSelfLink()).put(javax.ws.rs.client.Entity.entity(t, MediaType.APPLICATION_JSON_TYPE)).readEntity(type);
+        return this.getRequest(t.getSelfLink())
+            .put(javax.ws.rs.client.Entity.entity(t, MediaType.APPLICATION_JSON_TYPE))
+            .readEntity(type);
     }
 
     public void delete(T t) {

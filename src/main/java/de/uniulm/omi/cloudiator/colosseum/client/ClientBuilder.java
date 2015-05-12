@@ -52,7 +52,10 @@ public class ClientBuilder {
     }
 
     public <T extends Entity> ClientController<T> build(Class<T> clazz) {
-        final Client client = javax.ws.rs.client.ClientBuilder.newBuilder().register(JacksonJsonProvider.class).register(LoggingFilter.class).register(new AuthenticationFilter(this.credentials, this.url)).build();
+        final Client client =
+            javax.ws.rs.client.ClientBuilder.newBuilder().register(JacksonJsonProvider.class)
+                .register(LoggingFilter.class)
+                .register(new AuthenticationFilter(this.credentials, this.url)).build();
         return new ClientController<>(client, this.url, clazz);
     }
 

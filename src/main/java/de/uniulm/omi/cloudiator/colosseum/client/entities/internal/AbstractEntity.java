@@ -31,17 +31,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public abstract class AbstractEntity implements Entity {
 
-    @JsonIgnore
-    @Nullable
-    private List<Link> links;
+    @JsonIgnore @Nullable private List<Link> links;
 
-    @JsonIgnore
-    public List<Link> getLinks() {
+    @JsonIgnore public List<Link> getLinks() {
         return links;
     }
 
-    @JsonProperty
-    public void setLinks(@Nullable List<Link> links) {
+    @JsonProperty public void setLinks(@Nullable List<Link> links) {
         this.links = links;
     }
 
@@ -53,8 +49,7 @@ public abstract class AbstractEntity implements Entity {
 
     }
 
-    @Override
-    public String getSelfLink() {
+    @Override public String getSelfLink() {
         checkNotNull(this.links);
         for (Link link : this.links) {
             if (link.getRel().equals("self")) {

@@ -35,14 +35,13 @@ public class App {
         //An example
 
         //get the controller for the cloud entity
-        final ClientController<Cloud> controller =
-                ClientBuilder.getNew()
-                        // the base url
-                        .url("http://localhost:9000/api")
-                                // the login credentials
-                        .credentials("john.doe@example.com", "admin")
-                                // the entity to get the controller for.
-                        .build(Cloud.class);
+        final ClientController<Cloud> controller = ClientBuilder.getNew()
+            // the base url
+            .url("http://localhost:9000/api")
+                // the login credentials
+            .credentials("john.doe@example.com", "admin")
+                // the entity to get the controller for.
+            .build(Cloud.class);
 
         //fetch all clouds
         List<Cloud> clouds = controller.getList();
@@ -51,10 +50,10 @@ public class App {
         Cloud cloud = clouds.get(0);
 
         //create a new Cloud
-        controller.create(new Cloud("MyCloud-"+random.nextInt(100)));
+        controller.create(new Cloud("MyCloud-" + random.nextInt(100)));
 
         //update a cloud
-        cloud.setName("MyNewName-"+random.nextInt(100));
+        cloud.setName("MyNewName-" + random.nextInt(100));
         controller.update(cloud);
 
         //delete a cloud

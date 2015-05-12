@@ -39,7 +39,7 @@ public class Credential {
     }
 
     protected Credential() {
-        
+
     }
 
     public String getEmail() {

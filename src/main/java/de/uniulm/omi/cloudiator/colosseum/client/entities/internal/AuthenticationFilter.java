@@ -35,8 +35,7 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class AuthenticationFilter implements ClientRequestFilter {
 
-    @Nullable
-    private Token token;
+    @Nullable private Token token;
     private final Credential credential;
     private final String baseUrl;
 
@@ -53,13 +52,15 @@ public class AuthenticationFilter implements ClientRequestFilter {
     }
 
     private void authenticate() {
-        Token token = ClientBuilder.newBuilder().register(JacksonJsonProvider.class).build().target(this.baseUrl + "/login").request(MediaType.APPLICATION_JSON_TYPE).post(javax.ws.rs.client.Entity.entity(this.credential, MediaType.APPLICATION_JSON_TYPE)).readEntity(Token.class);
+        Token token = ClientBuilder.newBuilder().register(JacksonJsonProvider.class).build()
+            .target(this.baseUrl + "/login").request(MediaType.APPLICATION_JSON_TYPE).post(
+                javax.ws.rs.client.Entity.entity(this.credential, MediaType.APPLICATION_JSON_TYPE))
+            .readEntity(Token.class);
         checkState(!checkNotNull(token).isExpired());
         this.token = token;
     }
 
-    @Override
-    public void filter(ClientRequestContext requestContext) throws IOException {
+    @Override public void filter(ClientRequestContext requestContext) throws IOException {
         requestContext.getHeaders().add("X-Auth-Token", this.getToken().getToken());
         requestContext.getHeaders().add("X-Auth-UserId", this.getToken().getUserId());
     }

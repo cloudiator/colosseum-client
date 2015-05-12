@@ -40,7 +40,7 @@ public class Token extends AbstractEntity {
     }
 
     protected Token() {
-        
+
     }
 
     public String getCreatedOn() {
@@ -75,8 +75,7 @@ public class Token extends AbstractEntity {
         this.userId = userId;
     }
 
-    @JsonIgnore
-    boolean isExpired() {
+    @JsonIgnore boolean isExpired() {
         return System.currentTimeMillis() > Long.valueOf(this.expiresAt);
     }
 }
