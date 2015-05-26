@@ -32,16 +32,18 @@ import java.util.List;
 public class Instance extends AbstractEntity {
 
     private Long applicationComponent;
+    private Long applicationInstance;
     private Long virtualMachine;
 
-    public Instance(@Nullable List<Link> links, Long applicationComponent, Long virtualMachine) {
+    public Instance(@Nullable List<Link> links, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
         super(links);
         this.applicationComponent = applicationComponent;
         this.virtualMachine = virtualMachine;
+        this.applicationInstance = applicationInstance;
     }
 
-    public Instance(Long applicationComponent, Long virtualMachine) {
-        this(null, applicationComponent, virtualMachine);
+    public Instance(Long applicationComponent, Long applicationInstance, Long virtualMachine) {
+        this(null, applicationComponent, applicationInstance, virtualMachine);
     }
 
     protected Instance() {
@@ -61,5 +63,13 @@ public class Instance extends AbstractEntity {
 
     public void setVirtualMachine(Long virtualMachine) {
         this.virtualMachine = virtualMachine;
+    }
+
+    public Long getApplicationInstance() {
+        return applicationInstance;
+    }
+
+    public void setApplicationInstance(Long applicationInstance) {
+        this.applicationInstance = applicationInstance;
     }
 }

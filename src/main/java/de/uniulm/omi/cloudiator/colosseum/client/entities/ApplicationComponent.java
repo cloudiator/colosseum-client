@@ -28,20 +28,22 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("applicationComponent")
+@Path("ac")
 public class ApplicationComponent extends AbstractEntity {
 
     private Long application;
     private Long component;
+    private Long virtualMachineTemplate;
 
-    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component) {
+    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component, Long virtualMachineTemplate) {
         super(links);
         this.application = application;
         this.component = component;
+        this.virtualMachineTemplate = virtualMachineTemplate;
     }
 
-    public ApplicationComponent(Long application, Long component) {
-        this(null, application, component);
+    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate) {
+        this(null, application, component, virtualMachineTemplate);
     }
 
     protected ApplicationComponent() {
@@ -61,5 +63,13 @@ public class ApplicationComponent extends AbstractEntity {
 
     public void setComponent(Long component) {
         this.component = component;
+    }
+
+    public Long getVirtualMachineTemplate() {
+        return virtualMachineTemplate;
+    }
+
+    public void setVirtualMachineTemplate(Long virtualMachineTemplate) {
+        this.virtualMachineTemplate = virtualMachineTemplate;
     }
 }

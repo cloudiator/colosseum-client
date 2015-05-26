@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
 
 import java.util.List;
@@ -43,14 +44,27 @@ public class App {
                 // the entity to get the controller for.
             .build(Cloud.class);
 
+        //get the controller for the api entity
+        final ClientController<Api> apiController = ClientBuilder.getNew()
+                // the base url
+                .url("http://localhost:9000/api")
+                        // the login credentials
+                .credentials("john.doe@example.com", "admin")
+                        // the entity to get the controller for.
+                .build(Api.class);
+
+        //create a new API
+        Api api = new Api("ApiName-" + random.nextInt(100), "InternalProviderName-" + random.nextInt(100));
+        apiController.create(api);
+
+        //create a new Cloud
+        controller.create(new Cloud("MyCloud-" + random.nextInt(100), "endpointTest.com", 1l));
+
         //fetch all clouds
         List<Cloud> clouds = controller.getList();
 
         //fetch the first cloud from the list
         Cloud cloud = clouds.get(0);
-
-        //create a new Cloud
-        controller.create(new Cloud("MyCloud-" + random.nextInt(100)));
 
         //update a cloud
         cloud.setName("MyNewName-" + random.nextInt(100));
@@ -58,5 +72,8 @@ public class App {
 
         //delete a cloud
         controller.delete(cloud);
+
+        //create another new Cloud
+        controller.create(new Cloud("MyCloud-" + random.nextInt(100), "endpointTest.com", 1l));
     }
 }

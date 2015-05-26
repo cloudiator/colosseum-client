@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,51 +28,21 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("image")
-public class Image extends NamedEntity {
+@Path("imageOffer")
+public class ImageOffer extends NamedEntity {
 
-    private String cloudUuid;
-    private Long cloud;
-    private List<Long> locations;
     private Long operatingSystem;
 
-    public Image(@Nullable List<Link> links, String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem) {
+    public ImageOffer(@Nullable List<Link> links, String name, Long operatingSystem) {
         super(links, name);
-        this.cloudUuid = cloudUuid;
-        this.cloud = cloud;
-        this.locations = locations;
         this.operatingSystem = operatingSystem;
     }
 
-    public Image(String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem) {
-        this(null, name, cloudUuid, cloud, locations, operatingSystem);
+    public ImageOffer(String name, Long operatingSystem) {
+        this(null, name, operatingSystem);
     }
 
-    protected Image() {
-    }
-
-    public String getCloudUuid() {
-        return cloudUuid;
-    }
-
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
-    }
-
-    public Long getCloud() {
-        return cloud;
-    }
-
-    public void setCloud(Long cloud) {
-        this.cloud = cloud;
-    }
-
-    public List<Long> getLocations() {
-        return locations;
-    }
-
-    public void setLocations(List<Long> locations) {
-        this.locations = locations;
+    protected ImageOffer() {
     }
 
     public Long getOperatingSystem() {

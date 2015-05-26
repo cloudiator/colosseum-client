@@ -28,27 +28,43 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("hardware")
-public class Hardware extends AbstractEntity {
+@Path("cloudCredential")
+public class CloudCredential extends AbstractEntity {
 
+    private String user;
+    private String secret;
     private Long cloud;
-    private Long hardwareOffer;
-    private String cloudUuid;
-    private List<Long> locations;
+    private Long frontendGroup;
 
-    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations) {
+    public CloudCredential(@Nullable List<Link> links, String user, String secret, Long cloud, Long frontendGroup) {
         super(links);
+        this.user = user;
+        this.secret = secret;
         this.cloud = cloud;
-        this.hardwareOffer = hardwareOffer;
-        this.cloudUuid = cloudUuid;
-        this.locations = locations;
+        this.frontendGroup = frontendGroup;
     }
 
-    public Hardware(Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations) {
-        this(null, cloud, hardwareOffer, cloudUuid, locations);
+    public CloudCredential(String user, String secret, Long cloud, Long frontendGroup) {
+        this(null, user, secret, cloud, frontendGroup);
     }
 
-    protected Hardware() {
+    protected CloudCredential() {
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
     public Long getCloud() {
@@ -59,27 +75,11 @@ public class Hardware extends AbstractEntity {
         this.cloud = cloud;
     }
 
-    public Long getHardwareOffer() {
-        return hardwareOffer;
+    public Long getFrontendGroup() {
+        return frontendGroup;
     }
 
-    public void setHardwareOffer(Long hardwareOffer) {
-        this.hardwareOffer = hardwareOffer;
-    }
-
-    public String getCloudUuid() {
-        return cloudUuid;
-    }
-
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
-    }
-
-    public List<Long> getLocations() {
-        return locations;
-    }
-
-    public void setLocations(List<Long> locations) {
-        this.locations = locations;
+    public void setFrontendGroup(Long frontendGroup) {
+        this.frontendGroup = frontendGroup;
     }
 }

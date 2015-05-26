@@ -30,14 +30,36 @@ import java.util.List;
 @Path("cloud")
 public class Cloud extends NamedEntity {
 
-    public Cloud(List<Link> links, String name) {
+    private String endpoint;
+    private Long api;
+
+    public Cloud(List<Link> links, String name, String endpoint, Long api) {
         super(links, name);
+        this.endpoint = endpoint;
+        this.api = api;
     }
 
-    public Cloud(String name) {
-        this(null, name);
+    public Cloud(String name, String endpoint, Long api) {
+        this(null, name, endpoint, api);
     }
 
     protected Cloud() {
     }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    public Long getApi() {
+        return api;
+    }
+
+    public void setApi(Long api) {
+        this.api = api;
+    }
+
 }

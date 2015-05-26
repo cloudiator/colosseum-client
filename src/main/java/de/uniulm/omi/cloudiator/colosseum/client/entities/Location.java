@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,27 +28,31 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("hardware")
-public class Hardware extends AbstractEntity {
+@Path("location")
+public class Location extends AbstractEntity {
 
     private Long cloud;
-    private Long hardwareOffer;
     private String cloudUuid;
-    private List<Long> locations;
+    private Long parent;
+    private String locationScope;
+    private Boolean isAssignable;
+    private Long geoLocation;
 
-    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations) {
+    public Location(@Nullable List<Link> links, Long cloud, String cloudUuid, Long parent, String locationScope, Boolean isAssignable, Long geoLocation) {
         super(links);
         this.cloud = cloud;
-        this.hardwareOffer = hardwareOffer;
         this.cloudUuid = cloudUuid;
-        this.locations = locations;
+        this.parent = parent;
+        this.locationScope = locationScope;
+        this.isAssignable = isAssignable;
+        this.geoLocation = geoLocation;
     }
 
-    public Hardware(Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations) {
-        this(null, cloud, hardwareOffer, cloudUuid, locations);
+    public Location(Long cloud, String cloudUuid, Long parent, String locationScope, Boolean isAssignable, Long geoLocation) {
+        this(null, cloud, cloudUuid, parent, locationScope, isAssignable, geoLocation);
     }
 
-    protected Hardware() {
+    protected Location() {
     }
 
     public Long getCloud() {
@@ -59,14 +63,6 @@ public class Hardware extends AbstractEntity {
         this.cloud = cloud;
     }
 
-    public Long getHardwareOffer() {
-        return hardwareOffer;
-    }
-
-    public void setHardwareOffer(Long hardwareOffer) {
-        this.hardwareOffer = hardwareOffer;
-    }
-
     public String getCloudUuid() {
         return cloudUuid;
     }
@@ -75,11 +71,35 @@ public class Hardware extends AbstractEntity {
         this.cloudUuid = cloudUuid;
     }
 
-    public List<Long> getLocations() {
-        return locations;
+    public Long getParent() {
+        return parent;
     }
 
-    public void setLocations(List<Long> locations) {
-        this.locations = locations;
+    public void setParent(Long parent) {
+        this.parent = parent;
+    }
+
+    public String getLocationScope() {
+        return locationScope;
+    }
+
+    public void setLocationScope(String locationScope) {
+        this.locationScope = locationScope;
+    }
+
+    public Boolean getIsAssignable() {
+        return isAssignable;
+    }
+
+    public void setIsAssignable(Boolean isAssignable) {
+        this.isAssignable = isAssignable;
+    }
+
+    public Long getGeoLocation() {
+        return geoLocation;
+    }
+
+    public void setGeoLocation(Long geoLocation) {
+        this.geoLocation = geoLocation;
     }
 }

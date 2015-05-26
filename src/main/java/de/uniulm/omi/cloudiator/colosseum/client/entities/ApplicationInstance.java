@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,28 +28,28 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("api")
-public class Api extends NamedEntity {
+@Path("applicationInstance")
+public class ApplicationInstance extends AbstractEntity {
 
-    private String internalProviderName;
+    private Long application;
 
-    public Api(@Nullable List<Link> links, String name, String internalProviderName) {
-        super(links, name);
-        this.internalProviderName = internalProviderName;
+    public ApplicationInstance(@Nullable List<Link> links, Long application) {
+        super(links);
+        this.application = application;
     }
 
-    public Api(String name, String internalProviderName) {
-        this(null, name, internalProviderName);
+    public ApplicationInstance(Long application) {
+        this(null, application);
     }
 
-    protected Api() {
+    protected ApplicationInstance() {
     }
 
-    public String getInternalProviderName() {
-        return internalProviderName;
+    public Long getApplication() {
+        return application;
     }
 
-    public void setInternalProviderName(String internalProviderName) {
-        this.internalProviderName = internalProviderName;
+    public void setApplication(Long application) {
+        this.application = application;
     }
 }

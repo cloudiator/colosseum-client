@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,48 +28,48 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("communication")
-public class Communication extends AbstractEntity {
+@Path("hardwareOffer")
+public class HardwareOffer extends AbstractEntity {
 
-    private Long provider;
-    private Long consumer;
-    private Integer port;
+    private Integer numberOfCpu;
+    private Long mbOfRam;
+    private Long localDiskSpace;
 
-    public Communication(@Nullable List<Link> links, Long provider, Long consumer, Integer port) {
+    public HardwareOffer(@Nullable List<Link> links, Integer numberOfCpu, Long mbOfRam, Long localDiskSpace) {
         super(links);
-        this.provider = provider;
-        this.consumer = consumer;
-        this.port = port;
+        this.numberOfCpu = numberOfCpu;
+        this.mbOfRam = mbOfRam;
+        this.localDiskSpace = localDiskSpace;
     }
 
-    public Communication(Long provider, Long consumer, Integer port) {
-        this(null, provider, consumer, port);
+    public HardwareOffer(Integer numberOfCpu, Long mbOfRam, Long localDiskSpace) {
+        this(null, numberOfCpu, mbOfRam, localDiskSpace);
     }
 
-    protected Communication() {
+    protected HardwareOffer() {
     }
 
-    public Long getProvider() {
-        return provider;
+    public Integer getNumberOfCpu() {
+        return numberOfCpu;
     }
 
-    public void setProvider(Long provider) {
-        this.provider = provider;
+    public void setNumberOfCpu(Integer numberOfCpu) {
+        this.numberOfCpu = numberOfCpu;
     }
 
-    public Long getConsumer() {
-        return consumer;
+    public Long getMbOfRam() {
+        return mbOfRam;
     }
 
-    public void setConsumer(Long consumer) {
-        this.consumer = consumer;
+    public void setMbOfRam(Long mbOfRam) {
+        this.mbOfRam = mbOfRam;
     }
 
-    public Integer getPort() {
-        return port;
+    public Long getLocalDiskSpace() {
+        return localDiskSpace;
     }
 
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setLocalDiskSpace(Long localDiskSpace) {
+        this.localDiskSpace = localDiskSpace;
     }
 }

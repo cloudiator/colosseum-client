@@ -22,34 +22,33 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("api")
-public class Api extends NamedEntity {
+@Path("fg")
+public class FrontendGroup extends NamedEntity {
 
-    private String internalProviderName;
+    private List<Long> frontendUsers;
 
-    public Api(@Nullable List<Link> links, String name, String internalProviderName) {
+    public FrontendGroup(List<Link> links, String name, List<Long> frontendUsers) {
         super(links, name);
-        this.internalProviderName = internalProviderName;
+        this.frontendUsers = frontendUsers;
     }
 
-    public Api(String name, String internalProviderName) {
-        this(null, name, internalProviderName);
+    public FrontendGroup(String name, List<Long> frontendUsers) {
+        this(null, name, frontendUsers);
     }
 
-    protected Api() {
+    protected FrontendGroup() {
     }
 
-    public String getInternalProviderName() {
-        return internalProviderName;
+    public List<Long> getFrontendUsers() {
+        return frontendUsers;
     }
 
-    public void setInternalProviderName(String internalProviderName) {
-        this.internalProviderName = internalProviderName;
+    public void setFrontendUsers(List<Long> frontendUsers) {
+        this.frontendUsers = frontendUsers;
     }
 }

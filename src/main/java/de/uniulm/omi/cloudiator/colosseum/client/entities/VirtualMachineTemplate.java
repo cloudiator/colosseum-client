@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,35 +28,27 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("image")
-public class Image extends NamedEntity {
+@Path("vmt")
+public class VirtualMachineTemplate extends AbstractEntity {
 
-    private String cloudUuid;
     private Long cloud;
-    private List<Long> locations;
-    private Long operatingSystem;
+    private Long image;
+    private Long location;
+    private Long hardware;
 
-    public Image(@Nullable List<Link> links, String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem) {
-        super(links, name);
-        this.cloudUuid = cloudUuid;
+    public VirtualMachineTemplate(@Nullable List<Link> links, Long cloud, Long image, Long location, Long hardware) {
+        super(links);
         this.cloud = cloud;
-        this.locations = locations;
-        this.operatingSystem = operatingSystem;
+        this.image = image;
+        this.location = location;
+        this.hardware = hardware;
     }
 
-    public Image(String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem) {
-        this(null, name, cloudUuid, cloud, locations, operatingSystem);
+    public VirtualMachineTemplate(Long cloud, Long image, Long location, Long hardware) {
+        this(null, cloud, image, location, hardware);
     }
 
-    protected Image() {
-    }
-
-    public String getCloudUuid() {
-        return cloudUuid;
-    }
-
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
+    protected VirtualMachineTemplate() {
     }
 
     public Long getCloud() {
@@ -67,19 +59,27 @@ public class Image extends NamedEntity {
         this.cloud = cloud;
     }
 
-    public List<Long> getLocations() {
-        return locations;
+    public Long getImage() {
+        return image;
     }
 
-    public void setLocations(List<Long> locations) {
-        this.locations = locations;
+    public void setImage(Long image) {
+        this.image = image;
     }
 
-    public Long getOperatingSystem() {
-        return operatingSystem;
+    public Long getLocation() {
+        return location;
     }
 
-    public void setOperatingSystem(Long operatingSystem) {
-        this.operatingSystem = operatingSystem;
+    public void setLocation(Long location) {
+        this.location = location;
+    }
+
+    public Long getHardware() {
+        return hardware;
+    }
+
+    public void setHardware(Long hardware) {
+        this.hardware = hardware;
     }
 }

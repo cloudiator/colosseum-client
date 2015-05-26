@@ -28,28 +28,28 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("api")
-public class Api extends NamedEntity {
+@Path("osVendor")
+public class OperatingSystemVendor extends NamedEntity {
 
-    private String internalProviderName;
+    private Long operatingSystemVendorType;
 
-    public Api(@Nullable List<Link> links, String name, String internalProviderName) {
+    public OperatingSystemVendor(@Nullable List<Link> links, String name, Long operatingSystemVendorType) {
         super(links, name);
-        this.internalProviderName = internalProviderName;
+        this.operatingSystemVendorType = operatingSystemVendorType;
     }
 
-    public Api(String name, String internalProviderName) {
-        this(null, name, internalProviderName);
+    public OperatingSystemVendor(String name, Long operatingSystemVendorType) {
+        this(null, name, operatingSystemVendorType);
     }
 
-    protected Api() {
+    protected OperatingSystemVendor() {
     }
 
-    public String getInternalProviderName() {
-        return internalProviderName;
+    public Long getOperatingSystemVendorType() {
+        return operatingSystemVendorType;
     }
 
-    public void setInternalProviderName(String internalProviderName) {
-        this.internalProviderName = internalProviderName;
+    public void setOperatingSystemVendorType(Long operatingSystemVendorType) {
+        this.operatingSystemVendorType = operatingSystemVendorType;
     }
 }

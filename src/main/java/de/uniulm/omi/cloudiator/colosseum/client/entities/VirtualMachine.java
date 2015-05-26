@@ -35,17 +35,19 @@ public class VirtualMachine extends NamedEntity {
     private Long cloudImage;
     private Long cloudHardware;
     private Long cloudLocation;
+    private String cloudUuid;
 
-    public VirtualMachine(@Nullable List<Link> links, String name, Long cloud, Long cloudImage, Long cloudHardware, Long cloudLocation) {
+    public VirtualMachine(@Nullable List<Link> links, String name, Long cloud, Long cloudImage, Long cloudHardware, Long cloudLocation, String cloudUuid) {
         super(links, name);
         this.cloud = cloud;
         this.cloudImage = cloudImage;
         this.cloudHardware = cloudHardware;
         this.cloudLocation = cloudLocation;
+        this.cloudUuid = cloudUuid;
     }
 
-    public VirtualMachine(String name, Long cloud, Long cloudImage, Long cloudHardware, Long cloudLocation) {
-        this(null, name, cloud, cloudImage, cloudHardware, cloudLocation);
+    public VirtualMachine(String name, Long cloud, Long cloudImage, Long cloudHardware, Long cloudLocation, String cloudUuid) {
+        this(null, name, cloud, cloudImage, cloudHardware, cloudLocation, cloudUuid);
     }
 
     protected VirtualMachine() {
@@ -81,5 +83,13 @@ public class VirtualMachine extends NamedEntity {
 
     public void setCloudLocation(Long cloudLocation) {
         this.cloudLocation = cloudLocation;
+    }
+
+    public String getCloudUuid() {
+        return cloudUuid;
+    }
+
+    public void setCloudUuid(String cloudUuid) {
+        this.cloudUuid = cloudUuid;
     }
 }

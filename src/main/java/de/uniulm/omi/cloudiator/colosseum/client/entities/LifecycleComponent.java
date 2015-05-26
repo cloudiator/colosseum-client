@@ -32,20 +32,38 @@ import java.util.List;
 public class LifecycleComponent extends NamedEntity {
 
     private String download;
+    private String init;
+    private String preInstall;
     private String install;
+    private String postInstall;
     private String start;
+    private String startDetection;
+    private String stopDetection;
+    private String postStart;
+    private String preStop;
     private String stop;
+    private String postStop;
+    private String shutdown;
 
-    public LifecycleComponent(@Nullable List<Link> links, String name, String download, String install, String start, String stop) {
+    public LifecycleComponent(@Nullable List<Link> links, String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String postStart, String preStop, String stop, String postStop, String shutdown) {
         super(links, name);
         this.download = download;
+        this.init = init;
+        this.preInstall = preInstall;
         this.install = install;
+        this.postInstall = postInstall;
         this.start = start;
+        this.startDetection = startDetection;
+        this.stopDetection = stopDetection;
+        this.postStart = postStart;
+        this.preStop = preStop;
         this.stop = stop;
+        this.postStop = postStop;
+        this.shutdown = shutdown;
     }
 
-    public LifecycleComponent(String name, String download, String install, String start, String stop) {
-        this(null, name, download, install, start, stop);
+    public LifecycleComponent(String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String postStart, String preStop, String stop, String postStop, String shutdown) {
+        this(null, name, download, init, preInstall, install, postInstall, start, startDetection, stopDetection, postStart, preStop, stop, postStop, shutdown);
     }
 
     protected LifecycleComponent() {
@@ -59,12 +77,36 @@ public class LifecycleComponent extends NamedEntity {
         this.download = download;
     }
 
+    public String getInit() {
+        return init;
+    }
+
+    public void setInit(String init) {
+        this.init = init;
+    }
+
+    public String getPreInstall() {
+        return preInstall;
+    }
+
+    public void setPreInstall(String preInstall) {
+        this.preInstall = preInstall;
+    }
+
     public String getInstall() {
         return install;
     }
 
     public void setInstall(String install) {
         this.install = install;
+    }
+
+    public String getPostInstall() {
+        return postInstall;
+    }
+
+    public void setPostInstall(String postInstall) {
+        this.postInstall = postInstall;
     }
 
     public String getStart() {
@@ -75,11 +117,59 @@ public class LifecycleComponent extends NamedEntity {
         this.start = start;
     }
 
+    public String getStartDetection() {
+        return startDetection;
+    }
+
+    public void setStartDetection(String startDetection) {
+        this.startDetection = startDetection;
+    }
+
+    public String getStopDetection() {
+        return stopDetection;
+    }
+
+    public void setStopDetection(String stopDetection) {
+        this.stopDetection = stopDetection;
+    }
+
+    public String getPostStart() {
+        return postStart;
+    }
+
+    public void setPostStart(String postStart) {
+        this.postStart = postStart;
+    }
+
+    public String getPreStop() {
+        return preStop;
+    }
+
+    public void setPreStop(String preStop) {
+        this.preStop = preStop;
+    }
+
     public String getStop() {
         return stop;
     }
 
     public void setStop(String stop) {
         this.stop = stop;
+    }
+
+    public String getPostStop() {
+        return postStop;
+    }
+
+    public void setPostStop(String postStop) {
+        this.postStop = postStop;
+    }
+
+    public String getShutdown() {
+        return shutdown;
+    }
+
+    public void setShutdown(String shutdown) {
+        this.shutdown = shutdown;
     }
 }
