@@ -28,8 +28,8 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential")
-public class ConstantMonitor extends AbstractEntity {
+@Path("constantMonitor")
+public class ConstantMonitor extends AbstractEntity<ConstantMonitor> {
 
     private Double value;
 
@@ -52,5 +52,13 @@ public class ConstantMonitor extends AbstractEntity {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    @Override public int compareTo(ConstantMonitor o) {
+        if(this.getValue().equals(o.getValue())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("api")
-public class Api extends NamedEntity {
+public class Api extends NamedEntity<Api> {
 
     private String internalProviderName;
 
@@ -51,5 +51,14 @@ public class Api extends NamedEntity {
 
     public void setInternalProviderName(String internalProviderName) {
         this.internalProviderName = internalProviderName;
+    }
+
+    @Override public int compareTo(Api o) {
+        if(this.getName().equals(o.getName()) &&
+            this.getInternalProviderName().equals(o.getInternalProviderName())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

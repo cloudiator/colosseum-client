@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("userCredential")
-public class UserCredential extends AbstractEntity {
+public class UserCredential extends AbstractEntity<UserCredential> {
 
     private Long cloudApi;
     private Long credential;
@@ -71,5 +71,15 @@ public class UserCredential extends AbstractEntity {
 
     public void setFrontendUser(Long frontendUser) {
         this.frontendUser = frontendUser;
+    }
+
+    @Override public int compareTo(UserCredential o) {
+        if(this.getCloudApi().equals(o.getCloudApi()) &&
+            this.getCredential().equals(o.getCredential()) &&
+            this.getFrontendUser().equals(o.getFrontendUser())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

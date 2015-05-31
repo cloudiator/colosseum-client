@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("application")
-public class Application extends NamedEntity {
+public class Application extends NamedEntity<Application> {
 
     public Application(@Nullable List<Link> links, String name) {
         super(links, name);
@@ -40,5 +40,13 @@ public class Application extends NamedEntity {
     }
 
     protected Application() {
+    }
+
+    @Override public int compareTo(Application o) {
+        if(this.getName().equals(o.getName())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

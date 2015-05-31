@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("geo")
-public class GeoLocation extends AbstractEntity {
+public class GeoLocation extends AbstractEntity<GeoLocation> {
 
     private String region;
     private String city;
@@ -101,5 +101,18 @@ public class GeoLocation extends AbstractEntity {
 
     public void setLocationLongitude(Float locationLongitude) {
         LocationLongitude = locationLongitude;
+    }
+
+    @Override public int compareTo(GeoLocation o) {
+        if(this.getRegion().equals(o.getRegion()) &&
+            this.getCity().equals(o.getCity()) &&
+            this.getCountry().equals(o.getCountry()) &&
+            this.getIso3166().equals(o.getIso3166()) &&
+            this.getLocationLatitude().equals(o.getLocationLatitude()) &&
+            this.getLocationLongitude().equals(o.getLocationLongitude())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

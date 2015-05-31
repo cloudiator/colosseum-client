@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Created by daniel on 21.01.15.
  */
-public abstract class AbstractEntity implements Entity {
+public abstract class AbstractEntity <T> implements Entity, Comparable<T> {
 
     @JsonIgnore @Nullable private List<Link> link;
 
@@ -57,5 +57,10 @@ public abstract class AbstractEntity implements Entity {
             }
         }
         throw new IllegalStateException("self link not present in entity");
+    }
+
+    @Override public Long getId() {
+        String selfLink = this.getSelfLink();
+        return Long.parseLong(selfLink.substring(selfLink.lastIndexOf('/') + 1));
     }
 }

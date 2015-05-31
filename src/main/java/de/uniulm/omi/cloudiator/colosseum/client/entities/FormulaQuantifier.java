@@ -28,8 +28,8 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential")
-public class FormulaQuantifier extends AbstractEntity {
+@Path("formulaQuantifier")
+public class FormulaQuantifier extends AbstractEntity<FormulaQuantifier> {
 
     private Boolean relative;
     private Double value;
@@ -62,5 +62,14 @@ public class FormulaQuantifier extends AbstractEntity {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    @Override public int compareTo(FormulaQuantifier o) {
+        if(this.getRelative().equals(o.getRelative()) &&
+            this.getValue().equals(o.getValue())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

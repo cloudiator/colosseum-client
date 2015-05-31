@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("vmt")
-public class VirtualMachineTemplate extends AbstractEntity {
+public class VirtualMachineTemplate extends AbstractEntity<VirtualMachineTemplate> {
 
     private Long cloud;
     private Long image;
@@ -81,5 +81,16 @@ public class VirtualMachineTemplate extends AbstractEntity {
 
     public void setHardware(Long hardware) {
         this.hardware = hardware;
+    }
+
+    @Override public int compareTo(VirtualMachineTemplate o) {
+        if(this.getCloud().equals(o.getCloud()) &&
+            this.getImage().equals(o.getImage()) &&
+            this.getLocation().equals(o.getLocation()) &&
+            this.getHardware().equals(o.getHardware())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

@@ -28,8 +28,8 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential")
-public class MonitorInstance extends AbstractEntity {
+@Path("monitorInstance")
+public class MonitorInstance extends AbstractEntity<MonitorInstance> {
 
     private Long monitor;
     private Long ipAddress;
@@ -83,5 +83,16 @@ public class MonitorInstance extends AbstractEntity {
 
     public void setComponent(Long component) {
         this.component = component;
+    }
+
+    @Override public int compareTo(MonitorInstance o) {
+        if(this.getMonitor().equals(o.getMonitor()) &&
+            this.getIpAddress().equals(o.getIpAddress()) &&
+            this.getComponent().equals(o.getComponent()) &&
+            this.getVm().equals(o.getVm())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

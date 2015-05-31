@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("credential")
-public class Credential extends AbstractEntity {
+public class Credential extends AbstractEntity<Credential> {
 
     private String user;
     private String secret;
@@ -61,5 +61,14 @@ public class Credential extends AbstractEntity {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+
+    @Override public int compareTo(Credential o) {
+        if(this.getUser().equals(o.getUser()) &&
+            this.getSecret().equals(o.getSecret())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

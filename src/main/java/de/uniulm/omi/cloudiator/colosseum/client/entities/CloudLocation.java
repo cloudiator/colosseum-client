@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudLocation")
-public class CloudLocation extends AbstractEntity {
+public class CloudLocation extends AbstractEntity<CloudLocation> {
 
     private Long cloud;
     private Long location;
@@ -71,5 +71,15 @@ public class CloudLocation extends AbstractEntity {
 
     public void setCloudUuid(String cloudUuid) {
         this.cloudUuid = cloudUuid;
+    }
+
+    @Override public int compareTo(CloudLocation o) {
+        //ignore clouduuid, right?
+        if(this.getLocation().equals(o.getLocation()) &&
+            this.getCloud().equals(o.getCloud())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

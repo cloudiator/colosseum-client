@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudHardware")
-public class CloudHardware extends AbstractEntity {
+public class CloudHardware extends AbstractEntity<CloudHardware> {
 
     private Long cloud;
     private Long hardware;
@@ -71,5 +71,15 @@ public class CloudHardware extends AbstractEntity {
 
     public void setCloud(Long cloud) {
         this.cloud = cloud;
+    }
+
+    @Override public int compareTo(CloudHardware o) {
+        //ignore clouduuid, right?
+        if(this.getHardware().equals(o.getHardware()) &&
+            this.getCloud().equals(o.getCloud())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

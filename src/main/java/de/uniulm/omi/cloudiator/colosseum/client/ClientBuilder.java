@@ -51,12 +51,12 @@ public class ClientBuilder {
         return this;
     }
 
-    public <T extends Entity> ClientController<T> build(Class<T> clazz) {
+    public de.uniulm.omi.cloudiator.colosseum.client.Client build() {
         final Client client =
             javax.ws.rs.client.ClientBuilder.newBuilder().register(JacksonJsonProvider.class)
                 .register(LoggingFilter.class)
                 .register(new AuthenticationFilter(this.credentials, this.url)).build();
-        return new ClientController<>(client, this.url, clazz);
+        return new de.uniulm.omi.cloudiator.colosseum.client.Client(client,this.url);
     }
 
 }

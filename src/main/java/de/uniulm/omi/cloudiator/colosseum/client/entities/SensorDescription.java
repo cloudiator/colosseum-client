@@ -29,8 +29,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential")
-public class SensorDescription extends AbstractEntity {
+@Path("sensorDescription")
+public class SensorDescription extends AbstractEntity<SensorDescription> {
 
     private String className;
     private String metricName;
@@ -74,5 +74,15 @@ public class SensorDescription extends AbstractEntity {
 
     public void setIsVmSensor(Boolean isVmSensor) {
         this.isVmSensor = isVmSensor;
+    }
+
+    @Override public int compareTo(SensorDescription o) {
+        if(this.getClassName().equals(o.getClassName()) &&
+            this.getIsVmSensor().equals(o.getIsVmSensor()) &&
+            this.getMetricName().equals(o.getMetricName())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("communicationChannel")
-public class CommunicationChannel extends AbstractEntity {
+public class CommunicationChannel extends AbstractEntity<CommunicationChannel> {
 
     private Long communication;
     private Long provider;
@@ -71,5 +71,16 @@ public class CommunicationChannel extends AbstractEntity {
 
     public void setConsumer(Long consumer) {
         this.consumer = consumer;
+    }
+
+    @Override public int compareTo(CommunicationChannel o) {
+        //ignore clouduuid, right?
+        if(this.getCommunication().equals(o.getCommunication()) &&
+            this.getProvider().equals(o.getProvider()) &&
+            this.getConsumer().equals(o.getConsumer())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

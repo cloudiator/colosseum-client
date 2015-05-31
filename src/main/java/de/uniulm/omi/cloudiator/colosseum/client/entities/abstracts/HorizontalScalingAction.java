@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Frank on 27.05.2015.
  */
-public abstract class HorizontalScalingAction extends ScalingAction {
+public abstract class HorizontalScalingAction<T> extends ScalingAction<T> {
 
     private Long amount;
     private Long min;

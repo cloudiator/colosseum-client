@@ -28,7 +28,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("fg")
-public class FrontendGroup extends NamedEntity {
+public class FrontendGroup extends NamedEntity<FrontendGroup> {
 
     private List<Long> frontendUsers;
 
@@ -50,5 +50,14 @@ public class FrontendGroup extends NamedEntity {
 
     public void setFrontendUsers(List<Long> frontendUsers) {
         this.frontendUsers = frontendUsers;
+    }
+
+    @Override public int compareTo(FrontendGroup o) {
+        //ignore users, so you dont have to get all to compare, right?
+        if(this.getName().equals(o.getName())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

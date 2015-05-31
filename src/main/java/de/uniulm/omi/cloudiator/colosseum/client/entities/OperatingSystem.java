@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.OperatingSystemArchitecture;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -29,31 +30,31 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("os")
-public class OperatingSystem extends AbstractEntity {
+public class OperatingSystem extends AbstractEntity<OperatingSystem> {
 
-    private Long operatingSystemArchitecture;
+    private OperatingSystemArchitecture operatingSystemArchitecture;
     private Long operatingSystemVendor;
     private String version;
 
-    public OperatingSystem(@Nullable List<Link> links, Long operatingSystemArchitecture, Long operatingSystemVendor, String version) {
+    public OperatingSystem(@Nullable List<Link> links, OperatingSystemArchitecture operatingSystemArchitecture, Long operatingSystemVendor, String version) {
         super(links);
         this.operatingSystemArchitecture = operatingSystemArchitecture;
         this.operatingSystemVendor = operatingSystemVendor;
         this.version = version;
     }
 
-    public OperatingSystem(Long operatingSystemArchitecture, Long operatingSystemVendor, String version) {
+    public OperatingSystem(OperatingSystemArchitecture operatingSystemArchitecture, Long operatingSystemVendor, String version) {
         this(null, operatingSystemArchitecture, operatingSystemVendor, version);
     }
 
     protected OperatingSystem() {
     }
 
-    public Long getOperatingSystemArchitecture() {
+    public OperatingSystemArchitecture getOperatingSystemArchitecture() {
         return operatingSystemArchitecture;
     }
 
-    public void setOperatingSystemArchitecture(Long operatingSystemArchitecture) {
+    public void setOperatingSystemArchitecture(OperatingSystemArchitecture operatingSystemArchitecture) {
         this.operatingSystemArchitecture = operatingSystemArchitecture;
     }
 
@@ -71,5 +72,16 @@ public class OperatingSystem extends AbstractEntity {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    @Override public int compareTo(OperatingSystem o) {
+        //ignoring cloouduuid, correct?
+        if(this.getOperatingSystemArchitecture().equals(o.getOperatingSystemArchitecture()) &&
+            this.getOperatingSystemVendor().equals(o.getOperatingSystemVendor()) &&
+            this.getVersion().equals(o.getVersion())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

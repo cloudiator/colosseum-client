@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("virtualMachine")
-public class VirtualMachine extends NamedEntity {
+public class VirtualMachine extends NamedEntity<VirtualMachine> {
 
     private Long cloud;
     private Long cloudImage;
@@ -91,5 +91,18 @@ public class VirtualMachine extends NamedEntity {
 
     public void setCloudUuid(String cloudUuid) {
         this.cloudUuid = cloudUuid;
+    }
+
+    @Override public int compareTo(VirtualMachine o) {
+        //ignoring cloouduuid, correct?
+        if(this.getName().equals(o.getName()) &&
+            this.getCloud().equals(o.getCloud()) &&
+            this.getCloudImage().equals(o.getCloudImage()) &&
+            this.getCloudLocation().equals(o.getCloudLocation()) &&
+            this.getCloudHardware().equals(o.getCloudHardware())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

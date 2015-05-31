@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Frank on 27.05.2015.
  */
-public abstract class ComponentHorizontalScalingAction extends HorizontalScalingAction {
+public abstract class ComponentHorizontalScalingAction<T> extends HorizontalScalingAction<T> {
 
     private Long applicationComponent;
 

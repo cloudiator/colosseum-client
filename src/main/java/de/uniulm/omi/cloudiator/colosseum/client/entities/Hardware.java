@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("hardware")
-public class Hardware extends AbstractEntity {
+public class Hardware extends AbstractEntity<Hardware> {
 
     private Long cloud;
     private Long hardwareOffer;
@@ -81,5 +81,51 @@ public class Hardware extends AbstractEntity {
 
     public void setLocations(List<Long> locations) {
         this.locations = locations;
+    }
+
+    @Override public int compareTo(Hardware o) {
+        //ignoring cloouduuid, correct?
+        if(this.getCloud().equals(o.getCloud()) &&
+            this.getHardwareOffer().equals(o.getHardwareOffer()) &&
+            this.getLocations().containsAll(o.getLocations()) &&
+            o.getLocations().containsAll(this.getLocations())) {
+
+//            Boolean allLocationsSame = true;
+//
+//            for (Long loc : this.getLocations()){
+//                Boolean currentLocExists = false;
+//                for(Long loc2 : o.getLocations()){
+//                    if(loc.equals(loc2)){
+//                        currentLocExists = true;
+//                    }
+//                }
+//
+//                if (currentLocExists == false) {
+//                    allLocationsSame = false;
+//                    break;
+//                }
+//            }
+//
+//            for (Long loc : o.getLocations()){
+//                Boolean currentLocExists = false;
+//                for(Long loc2 : this.getLocations()){
+//                    if(loc.equals(loc2)){
+//                        currentLocExists = true;
+//                        continue;
+//                    }
+//                }
+//
+//                if (currentLocExists == false) {
+//                    allLocationsSame = false;
+//                    break;
+//                }
+//            }
+//
+//            if(allLocationsSame) {
+//                return 0;
+//            }
+        }
+
+        return -1;
     }
 }

@@ -30,8 +30,8 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential")
-public class ComposedMonitor extends AbstractEntity {
+@Path("composedMonitor")
+public class ComposedMonitor extends AbstractEntity<ComposedMonitor> {
 
     private FlowOperator flowOperator;
     private FormulaOperator function;
@@ -125,5 +125,21 @@ public class ComposedMonitor extends AbstractEntity {
 
     public void setSchedule(Long schedule) {
         this.schedule = schedule;
+    }
+
+    @Override public int compareTo(ComposedMonitor o) {
+        if(this.getFlowOperator().equals(o.getFlowOperator()) &&
+            this.getFunction().equals(o.getFunction()) &&
+            this.getWindow().equals(o.getWindow()) &&
+            this.getQuantifier().equals(o.getQuantifier()) &&
+            this.getSchedule().equals(o.getSchedule()) &&
+            this.getMonitors().containsAll(o.getMonitors()) &&
+            this.getScalingActions().containsAll(o.getScalingActions()) &&
+            o.getMonitors().containsAll(this.getMonitors()) &&
+            o.getScalingActions().containsAll(this.getScalingActions())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

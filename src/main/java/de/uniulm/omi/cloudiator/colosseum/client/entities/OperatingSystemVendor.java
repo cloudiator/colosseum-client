@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.OperatingSystemVendorType;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -29,27 +30,37 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("osVendor")
-public class OperatingSystemVendor extends NamedEntity {
+public class OperatingSystemVendor extends NamedEntity<OperatingSystemVendor> {
 
-    private Long operatingSystemVendorType;
+    private OperatingSystemVendorType operatingSystemVendorType;
 
-    public OperatingSystemVendor(@Nullable List<Link> links, String name, Long operatingSystemVendorType) {
+    public OperatingSystemVendor(@Nullable List<Link> links, String name, OperatingSystemVendorType operatingSystemVendorType) {
         super(links, name);
         this.operatingSystemVendorType = operatingSystemVendorType;
     }
 
-    public OperatingSystemVendor(String name, Long operatingSystemVendorType) {
+    public OperatingSystemVendor(String name, OperatingSystemVendorType operatingSystemVendorType) {
         this(null, name, operatingSystemVendorType);
     }
 
     protected OperatingSystemVendor() {
     }
 
-    public Long getOperatingSystemVendorType() {
+    public OperatingSystemVendorType getOperatingSystemVendorType() {
         return operatingSystemVendorType;
     }
 
-    public void setOperatingSystemVendorType(Long operatingSystemVendorType) {
+    public void setOperatingSystemVendorType(OperatingSystemVendorType operatingSystemVendorType) {
         this.operatingSystemVendorType = operatingSystemVendorType;
+    }
+
+    @Override public int compareTo(OperatingSystemVendor o) {
+        //ignoring cloouduuid, correct?
+        if(this.getOperatingSystemVendorType().equals(o.getOperatingSystemVendorType()) &&
+            this.getName().equals(o.getName())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

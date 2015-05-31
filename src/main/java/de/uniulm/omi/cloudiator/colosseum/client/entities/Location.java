@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.LocationScope;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -29,16 +30,16 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("location")
-public class Location extends AbstractEntity {
+public class Location extends AbstractEntity<Location> {
 
     private Long cloud;
     private String cloudUuid;
     private Long parent;
-    private String locationScope;
+    private LocationScope locationScope;
     private Boolean isAssignable;
     private Long geoLocation;
 
-    public Location(@Nullable List<Link> links, Long cloud, String cloudUuid, Long parent, String locationScope, Boolean isAssignable, Long geoLocation) {
+    public Location(@Nullable List<Link> links, Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation) {
         super(links);
         this.cloud = cloud;
         this.cloudUuid = cloudUuid;
@@ -48,7 +49,7 @@ public class Location extends AbstractEntity {
         this.geoLocation = geoLocation;
     }
 
-    public Location(Long cloud, String cloudUuid, Long parent, String locationScope, Boolean isAssignable, Long geoLocation) {
+    public Location(Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation) {
         this(null, cloud, cloudUuid, parent, locationScope, isAssignable, geoLocation);
     }
 
@@ -79,11 +80,11 @@ public class Location extends AbstractEntity {
         this.parent = parent;
     }
 
-    public String getLocationScope() {
+    public LocationScope getLocationScope() {
         return locationScope;
     }
 
-    public void setLocationScope(String locationScope) {
+    public void setLocationScope(LocationScope locationScope) {
         this.locationScope = locationScope;
     }
 
@@ -101,5 +102,18 @@ public class Location extends AbstractEntity {
 
     public void setGeoLocation(Long geoLocation) {
         this.geoLocation = geoLocation;
+    }
+
+    @Override public int compareTo(Location o) {
+        //ignoring cloouduuid, correct?
+        if(this.getCloud().equals(o.getCloud()) &&
+            this.getIsAssignable().equals(o.getIsAssignable()) &&
+            this.getGeoLocation().equals(o.getGeoLocation()) &&
+            this.getLocationScope().equals(o.getLocationScope()) &&
+            this.getParent().equals(o.getParent())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

@@ -29,32 +29,32 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("hardwareOffer")
-public class HardwareOffer extends AbstractEntity {
+public class HardwareOffer extends AbstractEntity<HardwareOffer> {
 
-    private Integer numberOfCpu;
+    private Integer numberOfCores;
     private Long mbOfRam;
     private Long localDiskSpace;
 
-    public HardwareOffer(@Nullable List<Link> links, Integer numberOfCpu, Long mbOfRam, Long localDiskSpace) {
+    public HardwareOffer(@Nullable List<Link> links, Integer numberOfCores, Long mbOfRam, Long localDiskSpace) {
         super(links);
-        this.numberOfCpu = numberOfCpu;
+        this.numberOfCores = numberOfCores;
         this.mbOfRam = mbOfRam;
         this.localDiskSpace = localDiskSpace;
     }
 
-    public HardwareOffer(Integer numberOfCpu, Long mbOfRam, Long localDiskSpace) {
-        this(null, numberOfCpu, mbOfRam, localDiskSpace);
+    public HardwareOffer(Integer numberOfCores, Long mbOfRam, Long localDiskSpace) {
+        this(null, numberOfCores, mbOfRam, localDiskSpace);
     }
 
     protected HardwareOffer() {
     }
 
-    public Integer getNumberOfCpu() {
-        return numberOfCpu;
+    public Integer getNumberOfCores() {
+        return numberOfCores;
     }
 
-    public void setNumberOfCpu(Integer numberOfCpu) {
-        this.numberOfCpu = numberOfCpu;
+    public void setNumberOfCores(Integer numberOfCores) {
+        this.numberOfCores = numberOfCores;
     }
 
     public Long getMbOfRam() {
@@ -71,5 +71,15 @@ public class HardwareOffer extends AbstractEntity {
 
     public void setLocalDiskSpace(Long localDiskSpace) {
         this.localDiskSpace = localDiskSpace;
+    }
+
+    @Override public int compareTo(HardwareOffer o) {
+        if(this.getNumberOfCores().equals(o.getNumberOfCores()) &&
+            this.getMbOfRam().equals(o.getMbOfRam()) &&
+            this.getLocalDiskSpace().equals(o.getLocalDiskSpace())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

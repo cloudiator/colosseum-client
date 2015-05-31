@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("image")
-public class Image extends NamedEntity {
+public class Image extends NamedEntity<Image> {
 
     private String cloudUuid;
     private Long cloud;
@@ -81,5 +81,18 @@ public class Image extends NamedEntity {
 
     public void setOperatingSystem(Long operatingSystem) {
         this.operatingSystem = operatingSystem;
+    }
+
+    @Override public int compareTo(Image o) {
+        //ignoring cloouduuid, correct?
+        if(this.getCloud().equals(o.getCloud()) &&
+            this.getName().equals(o.getName()) &&
+            this.getOperatingSystem().equals(o.getOperatingSystem()) &&
+            this.getLocations().containsAll(o.getLocations()) &&
+            o.getLocations().containsAll(this.getLocations())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

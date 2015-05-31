@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Frank on 27.05.2015.
  */
-public abstract class ScalingAction extends AbstractEntity {
+public abstract class ScalingAction<T> extends AbstractEntity<T> {
 
     public ScalingAction(@Nullable List<Link> link) {
         super(link);

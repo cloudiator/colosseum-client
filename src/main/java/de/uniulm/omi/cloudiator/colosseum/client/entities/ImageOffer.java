@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("imageOffer")
-public class ImageOffer extends NamedEntity {
+public class ImageOffer extends NamedEntity<ImageOffer> {
 
     private Long operatingSystem;
 
@@ -51,5 +51,14 @@ public class ImageOffer extends NamedEntity {
 
     public void setOperatingSystem(Long operatingSystem) {
         this.operatingSystem = operatingSystem;
+    }
+
+    @Override public int compareTo(ImageOffer o) {
+        if(this.getOperatingSystem().equals(o.getOperatingSystem()) &&
+            this.getName().equals(o.getName())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

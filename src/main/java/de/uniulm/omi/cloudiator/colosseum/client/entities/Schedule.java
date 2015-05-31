@@ -29,8 +29,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential")
-public class Schedule extends AbstractEntity {
+@Path("schedule")
+public class Schedule extends AbstractEntity<Schedule> {
 
     private Long interval;
     private TimeUnit timeUnit;
@@ -63,5 +63,14 @@ public class Schedule extends AbstractEntity {
 
     public void setTimeUnit(TimeUnit timeUnit) {
         this.timeUnit = timeUnit;
+    }
+
+    @Override public int compareTo(Schedule o) {
+        if(this.timeUnit.equals(o.getTimeUnit()) &&
+            this.interval.equals(o.getInterval())){
+            return 0;
+        }
+
+        return -1;
     }
 }

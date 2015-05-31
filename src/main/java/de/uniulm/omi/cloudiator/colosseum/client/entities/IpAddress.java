@@ -31,7 +31,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("ip")
-public class IpAddress extends AbstractEntity {
+public class IpAddress extends AbstractEntity<IpAddress> {
 
     private final ArrayList<String> allowed = new ArrayList<String>(Arrays.asList("PRIVATE", "PUBLIC"));
 
@@ -78,5 +78,15 @@ public class IpAddress extends AbstractEntity {
             throw new Exception("Wrong IP-Type!");
         }
         this.ipType = ipType;
+    }
+
+    @Override public int compareTo(IpAddress o) {
+        if(this.getIp().equals(o.getIp()) &&
+            this.getVirtualMachine().equals(o.getVirtualMachine()) &&
+            this.getIpType().equals(o.getIpType())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

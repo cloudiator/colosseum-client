@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("instance")
-public class Instance extends AbstractEntity {
+public class Instance extends AbstractEntity<Instance> {
 
     private Long applicationComponent;
     private Long applicationInstance;
@@ -71,5 +71,15 @@ public class Instance extends AbstractEntity {
 
     public void setApplicationInstance(Long applicationInstance) {
         this.applicationInstance = applicationInstance;
+    }
+
+    @Override public int compareTo(Instance o) {
+        if(this.getApplicationComponent().equals(o.getApplicationComponent()) &&
+            this.getApplicationInstance().equals(o.getApplicationInstance()) &&
+            this.getVirtualMachine().equals(o.getVirtualMachine())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

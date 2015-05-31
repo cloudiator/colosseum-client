@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudImage")
-public class CloudImage extends AbstractEntity {
+public class CloudImage extends AbstractEntity<CloudImage> {
 
     private Long cloud;
     private Long image;
@@ -71,5 +71,15 @@ public class CloudImage extends AbstractEntity {
 
     public void setCloudUuid(String cloudUuid) {
         this.cloudUuid = cloudUuid;
+    }
+
+    @Override public int compareTo(CloudImage o) {
+        //ignore clouduuid, right?
+        if(this.getImage().equals(o.getImage()) &&
+            this.getCloud().equals(o.getCloud())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

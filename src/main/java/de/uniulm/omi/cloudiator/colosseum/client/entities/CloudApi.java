@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudApi")
-public class CloudApi extends AbstractEntity {
+public class CloudApi extends AbstractEntity <CloudApi> {
 
     private Long api;
     private Long cloud;
@@ -71,5 +71,15 @@ public class CloudApi extends AbstractEntity {
 
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
+    }
+
+    @Override public int compareTo(CloudApi o) {
+        if(this.getApi().equals(o.getApi()) &&
+            this.getCloud().equals(o.getCloud()) &&
+            this.getEndpoint().equals(o.getEndpoint())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

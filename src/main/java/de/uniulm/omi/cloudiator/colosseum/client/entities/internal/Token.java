@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Created by daniel on 22.01.15.
  */
-public class Token extends AbstractEntity {
+public class Token extends AbstractEntity<Token> {
 
     private String createdOn;
     private String expiresAt;
@@ -77,5 +77,9 @@ public class Token extends AbstractEntity {
 
     @JsonIgnore boolean isExpired() {
         return System.currentTimeMillis() > Long.valueOf(this.expiresAt);
+    }
+
+    @Override public int compareTo(Token o) {
+        return 0;
     }
 }

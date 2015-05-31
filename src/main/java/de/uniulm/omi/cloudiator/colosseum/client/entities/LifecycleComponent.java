@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("lifecycleComponent")
-public class LifecycleComponent extends NamedEntity {
+public class LifecycleComponent extends NamedEntity<LifecycleComponent> {
 
     private String download;
     private String init;
@@ -39,13 +39,14 @@ public class LifecycleComponent extends NamedEntity {
     private String start;
     private String startDetection;
     private String stopDetection;
+    private String preStart;
     private String postStart;
     private String preStop;
     private String stop;
     private String postStop;
     private String shutdown;
 
-    public LifecycleComponent(@Nullable List<Link> links, String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String postStart, String preStop, String stop, String postStop, String shutdown) {
+    public LifecycleComponent(@Nullable List<Link> links, String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String preStart, String postStart, String preStop, String stop, String postStop, String shutdown) {
         super(links, name);
         this.download = download;
         this.init = init;
@@ -55,6 +56,7 @@ public class LifecycleComponent extends NamedEntity {
         this.start = start;
         this.startDetection = startDetection;
         this.stopDetection = stopDetection;
+        this.preStart = preStart;
         this.postStart = postStart;
         this.preStop = preStop;
         this.stop = stop;
@@ -62,8 +64,8 @@ public class LifecycleComponent extends NamedEntity {
         this.shutdown = shutdown;
     }
 
-    public LifecycleComponent(String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String postStart, String preStop, String stop, String postStop, String shutdown) {
-        this(null, name, download, init, preInstall, install, postInstall, start, startDetection, stopDetection, postStart, preStop, stop, postStop, shutdown);
+    public LifecycleComponent(String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String preStart, String postStart, String preStop, String stop, String postStop, String shutdown) {
+        this(null, name, download, init, preInstall, install, postInstall, start, startDetection, stopDetection, preStart, postStart, preStop, stop, postStop, shutdown);
     }
 
     protected LifecycleComponent() {
@@ -171,5 +173,33 @@ public class LifecycleComponent extends NamedEntity {
 
     public void setShutdown(String shutdown) {
         this.shutdown = shutdown;
+    }
+
+    public String getPreStart() {
+        return preStart;
+    }
+
+    public void setPreStart(String preStart) {
+        this.preStart = preStart;
+    }
+
+    @Override public int compareTo(LifecycleComponent o) {
+        if(this.getName().equals(o.getName()) &&
+            this.getDownload().equals(o.getDownload()) &&
+            this.getInit().equals(o.getInit()) &&
+            this.getInstall().equals(o.getInstall()) &&
+            this.getPostInstall().equals(o.getPostInstall()) &&
+            this.getPreStart().equals(o.getPreStart()) &&
+            this.getStart().equals(o.getStart()) &&
+            this.getPreStop().equals(o.getPreStop()) &&
+            this.getStop().equals(o.getStop()) &&
+            this.getPostStop().equals(o.getPostStop()) &&
+            this.getStartDetection().equals(o.getStartDetection()) &&
+            this.getStopDetection().equals(o.getStopDetection()) &&
+            this.getShutdown().equals(o.getShutdown())) {
+            return 0;
+        }
+
+        return -1;
     }
 }

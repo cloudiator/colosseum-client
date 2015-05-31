@@ -28,21 +28,21 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("userCredential") public class RawMonitor extends AbstractEntity {
+@Path("rawMonitor") public class RawMonitor extends AbstractEntity<RawMonitor> {
 
     private Long application;
     private Long component;
-    private Long instance;
+    private Long componentInstance;
     private Long cloud;
     private Long sensorDescription;
     private Long schedule;
 
-    public RawMonitor(@Nullable List<Link> link, Long application, Long component, Long instance,
+    public RawMonitor(@Nullable List<Link> link, Long application, Long component, Long componentInstance,
         Long cloud, Long sensorDescription, Long schedule) {
         super(link);
         this.application = application;
         this.component = component;
-        this.instance = instance;
+        this.componentInstance = componentInstance;
         this.cloud = cloud;
         this.sensorDescription = sensorDescription;
         this.schedule = schedule;
@@ -73,12 +73,12 @@ import java.util.List;
         this.component = component;
     }
 
-    public Long getInstance() {
-        return instance;
+    public Long getComponentInstance() {
+        return componentInstance;
     }
 
-    public void setInstance(Long instance) {
-        this.instance = instance;
+    public void setComponentInstance(Long componentInstance) {
+        this.componentInstance = componentInstance;
     }
 
     public Long getCloud() {
@@ -103,5 +103,18 @@ import java.util.List;
 
     public void setSchedule(Long schedule) {
         this.schedule = schedule;
+    }
+
+    @Override public int compareTo(RawMonitor o) {
+        if(this.getApplication().equals(o.getApplication()) &&
+            this.getCloud().equals(o.getCloud()) &&
+            this.getComponent().equals(o.getComponent()) &&
+            this.getComponentInstance().equals(o.getComponentInstance()) &&
+            this.getSchedule().equals(o.getSchedule()) &&
+            this.getSensorDescription().equals(o.getSensorDescription())) {
+            return 0;
+        }
+
+        return -1;
     }
 }
