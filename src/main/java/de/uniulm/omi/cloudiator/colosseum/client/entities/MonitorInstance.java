@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("monitorInstance")
-public class MonitorInstance extends AbstractEntity<MonitorInstance> {
+public class MonitorInstance extends AbstractEntity {
 
     private Long monitor;
     private Long ipAddress;
@@ -85,14 +85,31 @@ public class MonitorInstance extends AbstractEntity<MonitorInstance> {
         this.component = component;
     }
 
-    @Override public int compareTo(MonitorInstance o) {
-        if(this.getMonitor().equals(o.getMonitor()) &&
-            this.getIpAddress().equals(o.getIpAddress()) &&
-            this.getComponent().equals(o.getComponent()) &&
-            this.getVm().equals(o.getVm())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        MonitorInstance that = (MonitorInstance) o;
+
+        if (component != null ? !component.equals(that.component) : that.component != null)
+            return false;
+        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null)
+            return false;
+        if (monitor != null ? !monitor.equals(that.monitor) : that.monitor != null)
+            return false;
+        if (vm != null ? !vm.equals(that.vm) : that.vm != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = monitor != null ? monitor.hashCode() : 0;
+        result = 31 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
+        result = 31 * result + (vm != null ? vm.hashCode() : 0);
+        result = 31 * result + (component != null ? component.hashCode() : 0);
+        return result;
     }
 }

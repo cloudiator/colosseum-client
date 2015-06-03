@@ -30,7 +30,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("os")
-public class OperatingSystem extends AbstractEntity<OperatingSystem> {
+public class OperatingSystem extends AbstractEntity {
 
     private OperatingSystemArchitecture operatingSystemArchitecture;
     private Long operatingSystemVendor;
@@ -74,14 +74,32 @@ public class OperatingSystem extends AbstractEntity<OperatingSystem> {
         this.version = version;
     }
 
-    @Override public int compareTo(OperatingSystem o) {
-        //ignoring cloouduuid, correct?
-        if(this.getOperatingSystemArchitecture().equals(o.getOperatingSystemArchitecture()) &&
-            this.getOperatingSystemVendor().equals(o.getOperatingSystemVendor()) &&
-            this.getVersion().equals(o.getVersion())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        OperatingSystem that = (OperatingSystem) o;
+
+        if (operatingSystemArchitecture != that.operatingSystemArchitecture)
+            return false;
+        if (operatingSystemVendor != null ?
+            !operatingSystemVendor.equals(that.operatingSystemVendor) :
+            that.operatingSystemVendor != null)
+            return false;
+        if (version != null ? !version.equals(that.version) : that.version != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result =
+            operatingSystemArchitecture != null ? operatingSystemArchitecture.hashCode() : 0;
+        result =
+            31 * result + (operatingSystemVendor != null ? operatingSystemVendor.hashCode() : 0);
+        result = 31 * result + (version != null ? version.hashCode() : 0);
+        return result;
     }
 }

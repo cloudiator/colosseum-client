@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("communication")
-public class Communication extends AbstractEntity<Communication> {
+public class Communication extends AbstractEntity {
 
     private Long provider;
     private Long consumer;
@@ -73,13 +73,28 @@ public class Communication extends AbstractEntity<Communication> {
         this.port = port;
     }
 
-    @Override public int compareTo(Communication o) {
-        if(this.getProvider().equals(o.getProvider()) &&
-            this.getPort().equals(o.getPort()) &&
-            this.getConsumer().equals(o.getConsumer())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        Communication that = (Communication) o;
+
+        if (consumer != null ? !consumer.equals(that.consumer) : that.consumer != null)
+            return false;
+        if (port != null ? !port.equals(that.port) : that.port != null)
+            return false;
+        if (provider != null ? !provider.equals(that.provider) : that.provider != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = provider != null ? provider.hashCode() : 0;
+        result = 31 * result + (consumer != null ? consumer.hashCode() : 0);
+        result = 31 * result + (port != null ? port.hashCode() : 0);
+        return result;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Frank on 27.05.2015.
  */
-public abstract class HorizontalScalingAction<T> extends ScalingAction<T> {
+public abstract class HorizontalScalingAction extends ScalingAction {
 
     private Long amount;
     private Long min;
@@ -62,5 +62,33 @@ public abstract class HorizontalScalingAction<T> extends ScalingAction<T> {
 
     public void setCount(Long count) {
         this.count = count;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        HorizontalScalingAction that = (HorizontalScalingAction) o;
+
+        if (amount != null ? !amount.equals(that.amount) : that.amount != null)
+            return false;
+        if (count != null ? !count.equals(that.count) : that.count != null)
+            return false;
+        if (max != null ? !max.equals(that.max) : that.max != null)
+            return false;
+        if (min != null ? !min.equals(that.min) : that.min != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = amount != null ? amount.hashCode() : 0;
+        result = 31 * result + (min != null ? min.hashCode() : 0);
+        result = 31 * result + (max != null ? max.hashCode() : 0);
+        result = 31 * result + (count != null ? count.hashCode() : 0);
+        return result;
     }
 }

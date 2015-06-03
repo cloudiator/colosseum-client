@@ -23,6 +23,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +32,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("ip")
-public class IpAddress extends AbstractEntity<IpAddress> {
+public class IpAddress extends AbstractEntity {
 
     private final ArrayList<String> allowed = new ArrayList<String>(Arrays.asList("PRIVATE", "PUBLIC"));
 
@@ -39,14 +40,14 @@ public class IpAddress extends AbstractEntity<IpAddress> {
     private Long virtualMachine;
     private String ipType;
 
-    public IpAddress(@Nullable List<Link> links, String ip, Long virtualMachine, String ipType) throws Exception {
+    public IpAddress(@Nullable List<Link> links, String ip, Long virtualMachine, String ipType) {
         super(links);
         this.ip = ip;
         this.virtualMachine = virtualMachine;
         this.setIpType(ipType);
     }
 
-    public IpAddress(String ip, Long virtualMachine, String ipType) throws Exception {
+    public IpAddress(String ip, Long virtualMachine, String ipType) {
         this(null, ip, virtualMachine, ipType);
     }
 
@@ -73,20 +74,40 @@ public class IpAddress extends AbstractEntity<IpAddress> {
         return ipType;
     }
 
-    public void setIpType(String ipType) throws Exception {
+    public void setIpType(String ipType) {
         if (!allowed.contains(ipType)) {
-            throw new Exception("Wrong IP-Type!");
+            throw new InvalidParameterException("Wrong IP-Type!");
         }
         this.ipType = ipType;
     }
 
-    @Override public int compareTo(IpAddress o) {
-        if(this.getIp().equals(o.getIp()) &&
-            this.getVirtualMachine().equals(o.getVirtualMachine()) &&
-            this.getIpType().equals(o.getIpType())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        IpAddress ipAddress = (IpAddress) o;
+
+        if (allowed != null ? !allowed.equals(ipAddress.allowed) : ipAddress.allowed != null)
+            return false;
+        if (ip != null ? !ip.equals(ipAddress.ip) : ipAddress.ip != null)
+            return false;
+        if (ipType != null ? !ipType.equals(ipAddress.ipType) : ipAddress.ipType != null)
+            return false;
+        if (virtualMachine != null ?
+            !virtualMachine.equals(ipAddress.virtualMachine) :
+            ipAddress.virtualMachine != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = allowed != null ? allowed.hashCode() : 0;
+        result = 31 * result + (ip != null ? ip.hashCode() : 0);
+        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
+        result = 31 * result + (ipType != null ? ipType.hashCode() : 0);
+        return result;
     }
 }

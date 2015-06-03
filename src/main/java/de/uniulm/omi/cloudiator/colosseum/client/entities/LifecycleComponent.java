@@ -29,9 +29,8 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("lifecycleComponent")
-public class LifecycleComponent extends NamedEntity<LifecycleComponent> {
+public class LifecycleComponent extends NamedEntity {
 
-    private String download;
     private String init;
     private String preInstall;
     private String install;
@@ -46,9 +45,8 @@ public class LifecycleComponent extends NamedEntity<LifecycleComponent> {
     private String postStop;
     private String shutdown;
 
-    public LifecycleComponent(@Nullable List<Link> links, String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String preStart, String postStart, String preStop, String stop, String postStop, String shutdown) {
+    public LifecycleComponent(@Nullable List<Link> links, String name, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String preStart, String postStart, String preStop, String stop, String postStop, String shutdown) {
         super(links, name);
-        this.download = download;
         this.init = init;
         this.preInstall = preInstall;
         this.install = install;
@@ -64,19 +62,11 @@ public class LifecycleComponent extends NamedEntity<LifecycleComponent> {
         this.shutdown = shutdown;
     }
 
-    public LifecycleComponent(String name, String download, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String preStart, String postStart, String preStop, String stop, String postStop, String shutdown) {
-        this(null, name, download, init, preInstall, install, postInstall, start, startDetection, stopDetection, preStart, postStart, preStop, stop, postStop, shutdown);
+    public LifecycleComponent(String name, String init, String preInstall, String install, String postInstall, String start, String startDetection, String stopDetection, String preStart, String postStart, String preStop, String stop, String postStop, String shutdown) {
+        this(null, name, init, preInstall, install, postInstall, start, startDetection, stopDetection, preStart, postStart, preStop, stop, postStop, shutdown);
     }
 
     protected LifecycleComponent() {
-    }
-
-    public String getDownload() {
-        return download;
-    }
-
-    public void setDownload(String download) {
-        this.download = download;
     }
 
     public String getInit() {
@@ -183,23 +173,65 @@ public class LifecycleComponent extends NamedEntity<LifecycleComponent> {
         this.preStart = preStart;
     }
 
-    @Override public int compareTo(LifecycleComponent o) {
-        if(this.getName().equals(o.getName()) &&
-            this.getDownload().equals(o.getDownload()) &&
-            this.getInit().equals(o.getInit()) &&
-            this.getInstall().equals(o.getInstall()) &&
-            this.getPostInstall().equals(o.getPostInstall()) &&
-            this.getPreStart().equals(o.getPreStart()) &&
-            this.getStart().equals(o.getStart()) &&
-            this.getPreStop().equals(o.getPreStop()) &&
-            this.getStop().equals(o.getStop()) &&
-            this.getPostStop().equals(o.getPostStop()) &&
-            this.getStartDetection().equals(o.getStartDetection()) &&
-            this.getStopDetection().equals(o.getStopDetection()) &&
-            this.getShutdown().equals(o.getShutdown())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
 
-        return -1;
+        LifecycleComponent that = (LifecycleComponent) o;
+
+        if (init != null ? !init.equals(that.init) : that.init != null)
+            return false;
+        if (install != null ? !install.equals(that.install) : that.install != null)
+            return false;
+        if (postInstall != null ? !postInstall.equals(that.postInstall) : that.postInstall != null)
+            return false;
+        if (postStart != null ? !postStart.equals(that.postStart) : that.postStart != null)
+            return false;
+        if (postStop != null ? !postStop.equals(that.postStop) : that.postStop != null)
+            return false;
+        if (preInstall != null ? !preInstall.equals(that.preInstall) : that.preInstall != null)
+            return false;
+        if (preStart != null ? !preStart.equals(that.preStart) : that.preStart != null)
+            return false;
+        if (preStop != null ? !preStop.equals(that.preStop) : that.preStop != null)
+            return false;
+        if (shutdown != null ? !shutdown.equals(that.shutdown) : that.shutdown != null)
+            return false;
+        if (start != null ? !start.equals(that.start) : that.start != null)
+            return false;
+        if (startDetection != null ?
+            !startDetection.equals(that.startDetection) :
+            that.startDetection != null)
+            return false;
+        if (stop != null ? !stop.equals(that.stop) : that.stop != null)
+            return false;
+        if (stopDetection != null ?
+            !stopDetection.equals(that.stopDetection) :
+            that.stopDetection != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (init != null ? init.hashCode() : 0);
+        result = 31 * result + (preInstall != null ? preInstall.hashCode() : 0);
+        result = 31 * result + (install != null ? install.hashCode() : 0);
+        result = 31 * result + (postInstall != null ? postInstall.hashCode() : 0);
+        result = 31 * result + (start != null ? start.hashCode() : 0);
+        result = 31 * result + (startDetection != null ? startDetection.hashCode() : 0);
+        result = 31 * result + (stopDetection != null ? stopDetection.hashCode() : 0);
+        result = 31 * result + (preStart != null ? preStart.hashCode() : 0);
+        result = 31 * result + (postStart != null ? postStart.hashCode() : 0);
+        result = 31 * result + (preStop != null ? preStop.hashCode() : 0);
+        result = 31 * result + (stop != null ? stop.hashCode() : 0);
+        result = 31 * result + (postStop != null ? postStop.hashCode() : 0);
+        result = 31 * result + (shutdown != null ? shutdown.hashCode() : 0);
+        return result;
     }
 }

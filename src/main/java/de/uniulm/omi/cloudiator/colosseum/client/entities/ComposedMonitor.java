@@ -31,7 +31,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("composedMonitor")
-public class ComposedMonitor extends AbstractEntity<ComposedMonitor> {
+public class ComposedMonitor extends AbstractEntity {
 
     private FlowOperator flowOperator;
     private FormulaOperator function;
@@ -127,19 +127,38 @@ public class ComposedMonitor extends AbstractEntity<ComposedMonitor> {
         this.schedule = schedule;
     }
 
-    @Override public int compareTo(ComposedMonitor o) {
-        if(this.getFlowOperator().equals(o.getFlowOperator()) &&
-            this.getFunction().equals(o.getFunction()) &&
-            this.getWindow().equals(o.getWindow()) &&
-            this.getQuantifier().equals(o.getQuantifier()) &&
-            this.getSchedule().equals(o.getSchedule()) &&
-            this.getMonitors().containsAll(o.getMonitors()) &&
-            this.getScalingActions().containsAll(o.getScalingActions()) &&
-            o.getMonitors().containsAll(this.getMonitors()) &&
-            o.getScalingActions().containsAll(this.getScalingActions())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        //ignore scaling actions for identity, right?
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        ComposedMonitor that = (ComposedMonitor) o;
+
+        if (flowOperator != that.flowOperator)
+            return false;
+        if (function != that.function)
+            return false;
+        if (monitors != null ? !monitors.equals(that.monitors) : that.monitors != null)
+            return false;
+        if (quantifier != null ? !quantifier.equals(that.quantifier) : that.quantifier != null)
+            return false;
+        if (schedule != null ? !schedule.equals(that.schedule) : that.schedule != null)
+            return false;
+        if (window != null ? !window.equals(that.window) : that.window != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = flowOperator != null ? flowOperator.hashCode() : 0;
+        result = 31 * result + (function != null ? function.hashCode() : 0);
+        result = 31 * result + (quantifier != null ? quantifier.hashCode() : 0);
+        result = 31 * result + (window != null ? window.hashCode() : 0);
+        result = 31 * result + (monitors != null ? monitors.hashCode() : 0);
+        result = 31 * result + (schedule != null ? schedule.hashCode() : 0);
+        return result;
     }
 }

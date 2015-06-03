@@ -16,7 +16,7 @@ public class SingletonFactory {
 
     public <T extends AbstractEntity> T singleton(T obj){
         for(T onlineObj : client.controller((Class<T>)obj.getClass()).getList()){
-            if(onlineObj.compareTo(obj) == 0){
+            if(onlineObj.equals(obj)){
                 return onlineObj;
             }
         }

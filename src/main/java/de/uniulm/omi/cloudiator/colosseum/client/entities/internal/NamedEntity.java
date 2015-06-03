@@ -23,9 +23,9 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-public abstract class NamedEntity <T> extends AbstractEntity <T> {
+public abstract class NamedEntity extends AbstractEntity {
 
-    private String name;
+    protected String name;
 
     public String getName() {
         return name;
@@ -45,5 +45,23 @@ public abstract class NamedEntity <T> extends AbstractEntity <T> {
     }
 
     protected NamedEntity() {
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        NamedEntity that = (NamedEntity) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

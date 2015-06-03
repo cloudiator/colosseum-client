@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("constantMonitor")
-public class ConstantMonitor extends AbstractEntity<ConstantMonitor> {
+public class ConstantMonitor extends AbstractEntity {
 
     private Double value;
 
@@ -54,11 +54,21 @@ public class ConstantMonitor extends AbstractEntity<ConstantMonitor> {
         this.value = value;
     }
 
-    @Override public int compareTo(ConstantMonitor o) {
-        if(this.getValue().equals(o.getValue())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        ConstantMonitor that = (ConstantMonitor) o;
+
+        if (value != null ? !value.equals(that.value) : that.value != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        return value != null ? value.hashCode() : 0;
     }
 }

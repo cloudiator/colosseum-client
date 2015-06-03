@@ -28,7 +28,7 @@ import java.util.List;
  * Created by daniel on 21.01.15.
  */
 @Path("cloud")
-public class Cloud extends NamedEntity<Cloud> {
+public class Cloud extends NamedEntity {
 
     private String endpoint;
     private Long api;
@@ -62,13 +62,28 @@ public class Cloud extends NamedEntity<Cloud> {
         this.api = api;
     }
 
-    @Override public int compareTo(Cloud o) {
-        if(this.getName().equals(o.getName()) &&
-            this.getEndpoint().equals(o.getEndpoint()) &&
-            this.getApi().equals(o.getApi())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
 
-        return -1;
+        Cloud cloud = (Cloud) o;
+
+        if (api != null ? !api.equals(cloud.api) : cloud.api != null)
+            return false;
+        if (endpoint != null ? !endpoint.equals(cloud.endpoint) : cloud.endpoint != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
+        result = 31 * result + (api != null ? api.hashCode() : 0);
+        return result;
     }
 }

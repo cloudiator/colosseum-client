@@ -30,7 +30,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("location")
-public class Location extends AbstractEntity<Location> {
+public class Location extends AbstractEntity {
 
     private Long cloud;
     private String cloudUuid;
@@ -38,8 +38,9 @@ public class Location extends AbstractEntity<Location> {
     private LocationScope locationScope;
     private Boolean isAssignable;
     private Long geoLocation;
+    private List<Long> cloudCredentials;
 
-    public Location(@Nullable List<Link> links, Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation) {
+    public Location(@Nullable List<Link> links, Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
         super(links);
         this.cloud = cloud;
         this.cloudUuid = cloudUuid;
@@ -47,10 +48,11 @@ public class Location extends AbstractEntity<Location> {
         this.locationScope = locationScope;
         this.isAssignable = isAssignable;
         this.geoLocation = geoLocation;
+        this.cloudCredentials = cloudCredentials;
     }
 
-    public Location(Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation) {
-        this(null, cloud, cloudUuid, parent, locationScope, isAssignable, geoLocation);
+    public Location(Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
+        this(null, cloud, cloudUuid, parent, locationScope, isAssignable, geoLocation, cloudCredentials);
     }
 
     protected Location() {
@@ -104,16 +106,46 @@ public class Location extends AbstractEntity<Location> {
         this.geoLocation = geoLocation;
     }
 
-    @Override public int compareTo(Location o) {
-        //ignoring cloouduuid, correct?
-        if(this.getCloud().equals(o.getCloud()) &&
-            this.getIsAssignable().equals(o.getIsAssignable()) &&
-            this.getGeoLocation().equals(o.getGeoLocation()) &&
-            this.getLocationScope().equals(o.getLocationScope()) &&
-            this.getParent().equals(o.getParent())) {
-            return 0;
-        }
+    public List<Long> getCloudCredentials() {
+        return cloudCredentials;
+    }
 
-        return -1;
+    public void setCloudCredentials(List<Long> cloudCredentials) {
+        this.cloudCredentials = cloudCredentials;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Location location = (Location) o;
+
+        if (cloud != null ? !cloud.equals(location.cloud) : location.cloud != null)
+            return false;
+        if (geoLocation != null ?
+            !geoLocation.equals(location.geoLocation) :
+            location.geoLocation != null)
+            return false;
+        if (isAssignable != null ?
+            !isAssignable.equals(location.isAssignable) :
+            location.isAssignable != null)
+            return false;
+        if (locationScope != location.locationScope)
+            return false;
+        if (parent != null ? !parent.equals(location.parent) : location.parent != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = cloud != null ? cloud.hashCode() : 0;
+        result = 31 * result + (parent != null ? parent.hashCode() : 0);
+        result = 31 * result + (locationScope != null ? locationScope.hashCode() : 0);
+        result = 31 * result + (isAssignable != null ? isAssignable.hashCode() : 0);
+        result = 31 * result + (geoLocation != null ? geoLocation.hashCode() : 0);
+        return result;
     }
 }

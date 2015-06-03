@@ -32,7 +32,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("componentHorizontalOutScalingAction")
-public class ComponentHorizontalOutScalingAction extends ComponentHorizontalScalingAction<ComponentHorizontalOutScalingAction> {
+public class ComponentHorizontalOutScalingAction extends ComponentHorizontalScalingAction {
     public ComponentHorizontalOutScalingAction(@Nullable List<Link> link, Long amount, Long min,
         Long max, Long count, Long applicationComponent) {
         super(link, amount, min, max, count, applicationComponent);
@@ -44,17 +44,5 @@ public class ComponentHorizontalOutScalingAction extends ComponentHorizontalScal
     }
 
     protected ComponentHorizontalOutScalingAction(){
-    }
-
-    @Override public int compareTo(ComponentHorizontalOutScalingAction o) {
-        if(this.getAmount().equals(o.getAmount()) &&
-            this.getApplicationComponent().equals(o.getApplicationComponent()) &&
-            this.getMax().equals(o.getMax()) &&
-            this.getMin().equals(o.getMin()) &&
-            this.getCount().equals(o.getCount())) {
-            return 0;
-        }
-
-        return -1;
     }
 }

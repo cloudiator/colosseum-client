@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("userCredential")
-public class UserCredential extends AbstractEntity<UserCredential> {
+public class UserCredential extends AbstractEntity {
 
     private Long cloudApi;
     private Long credential;
@@ -73,13 +73,30 @@ public class UserCredential extends AbstractEntity<UserCredential> {
         this.frontendUser = frontendUser;
     }
 
-    @Override public int compareTo(UserCredential o) {
-        if(this.getCloudApi().equals(o.getCloudApi()) &&
-            this.getCredential().equals(o.getCredential()) &&
-            this.getFrontendUser().equals(o.getFrontendUser())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        UserCredential that = (UserCredential) o;
+
+        if (cloudApi != null ? !cloudApi.equals(that.cloudApi) : that.cloudApi != null)
+            return false;
+        if (credential != null ? !credential.equals(that.credential) : that.credential != null)
+            return false;
+        if (frontendUser != null ?
+            !frontendUser.equals(that.frontendUser) :
+            that.frontendUser != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = cloudApi != null ? cloudApi.hashCode() : 0;
+        result = 31 * result + (credential != null ? credential.hashCode() : 0);
+        result = 31 * result + (frontendUser != null ? frontendUser.hashCode() : 0);
+        return result;
     }
 }

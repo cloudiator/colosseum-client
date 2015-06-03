@@ -29,7 +29,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 /**
  * Created by daniel on 21.01.15.
  */
-public abstract class AbstractEntity <T> implements Entity, Comparable<T> {
+public abstract class AbstractEntity implements Entity {
 
     @JsonIgnore @Nullable private List<Link> link;
 

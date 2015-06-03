@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("rawMonitor") public class RawMonitor extends AbstractEntity<RawMonitor> {
+@Path("rawMonitor") public class RawMonitor extends AbstractEntity {
 
     private Long application;
     private Long component;
@@ -105,16 +105,41 @@ import java.util.List;
         this.schedule = schedule;
     }
 
-    @Override public int compareTo(RawMonitor o) {
-        if(this.getApplication().equals(o.getApplication()) &&
-            this.getCloud().equals(o.getCloud()) &&
-            this.getComponent().equals(o.getComponent()) &&
-            this.getComponentInstance().equals(o.getComponentInstance()) &&
-            this.getSchedule().equals(o.getSchedule()) &&
-            this.getSensorDescription().equals(o.getSensorDescription())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        RawMonitor that = (RawMonitor) o;
+
+        if (application != null ? !application.equals(that.application) : that.application != null)
+            return false;
+        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
+            return false;
+        if (component != null ? !component.equals(that.component) : that.component != null)
+            return false;
+        if (componentInstance != null ?
+            !componentInstance.equals(that.componentInstance) :
+            that.componentInstance != null)
+            return false;
+        if (schedule != null ? !schedule.equals(that.schedule) : that.schedule != null)
+            return false;
+        if (sensorDescription != null ?
+            !sensorDescription.equals(that.sensorDescription) :
+            that.sensorDescription != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = application != null ? application.hashCode() : 0;
+        result = 31 * result + (component != null ? component.hashCode() : 0);
+        result = 31 * result + (componentInstance != null ? componentInstance.hashCode() : 0);
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
+        result = 31 * result + (sensorDescription != null ? sensorDescription.hashCode() : 0);
+        result = 31 * result + (schedule != null ? schedule.hashCode() : 0);
+        return result;
     }
 }

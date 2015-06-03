@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("ac")
-public class ApplicationComponent extends AbstractEntity<ApplicationComponent> {
+public class ApplicationComponent extends AbstractEntity {
 
     private Long application;
     private Long component;
@@ -73,13 +73,31 @@ public class ApplicationComponent extends AbstractEntity<ApplicationComponent> {
         this.virtualMachineTemplate = virtualMachineTemplate;
     }
 
-    @Override public int compareTo(ApplicationComponent o) {
-        if(this.getApplication().equals(o.getApplication()) &&
-            this.getComponent().equals(o.getComponent()) &&
-            this.getVirtualMachineTemplate().equals(o.getVirtualMachineTemplate())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        ApplicationComponent that = (ApplicationComponent) o;
+
+        if (application != null ? !application.equals(that.application) : that.application != null)
+            return false;
+        if (component != null ? !component.equals(that.component) : that.component != null)
+            return false;
+        if (virtualMachineTemplate != null ?
+            !virtualMachineTemplate.equals(that.virtualMachineTemplate) :
+            that.virtualMachineTemplate != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = application != null ? application.hashCode() : 0;
+        result = 31 * result + (component != null ? component.hashCode() : 0);
+        result =
+            31 * result + (virtualMachineTemplate != null ? virtualMachineTemplate.hashCode() : 0);
+        return result;
     }
 }

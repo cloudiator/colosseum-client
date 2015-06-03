@@ -71,6 +71,9 @@ public class App {
         //fetch the first cloud from the list
         Cloud cloud = clouds.get(0);
 
+        //create a another Cloud
+        cloud = controller.create(new Cloud("MyCloud-" + random.nextInt(1000), "endpointTest.com", api.getId()));
+
         //update a cloud
         cloud.setName("MyNewName-" + random.nextInt(100));
         controller.update(cloud);
@@ -108,30 +111,48 @@ public class App {
          */
         /** TODO the creation of a new user does always fail */
         FrontendUser johnDoe = factory.singleton(new FrontendUser("John", "Doe", "john.doe@example.com", null, null));
-        FrontendGroup adminGroup = factory.singleton(new FrontendGroup("admin", null));
+        List<Long> frontendUsers = new ArrayList<>();
+        frontendUsers.add(johnDoe.getId());
+        FrontendGroup adminGroup = factory.singleton(new FrontendGroup("admin", frontendUsers));
         Api openstackApi = factory.singleton(new Api("openstack", "openstack-nova"));
         Application couchbaseApplication = factory.singleton(new Application("Cloudbase"));
         Cloud omistackCloud = factory.singleton(new Cloud("omistack",
-            "http://url.com/", openstackApi.getId()));
-        CloudCredential adminOmistack = factory.singleton(new CloudCredential("tenant:user", "secret", omistackCloud.getId(), adminGroup.getId()));
-        /** TODO how to add cloudcredentials to location? */
-        HardwareOffer mediumFlavour = factory.singleton(new HardwareOffer(4, 2048l, 20000000l));
+            "http://omistack.e-technik.uni-ulm.de:5000/v2.0", openstackApi.getId()));
+        CloudCredential adminOmistack = factory.singleton(new CloudCredential("paasage:griesinger_dev", "kOlfiiK876H", omistackCloud.getId(), adminGroup.getId()));
+        List<Long> cloudCredentials = new ArrayList<>();
+        cloudCredentials.add(adminOmistack.getId());
+        HardwareOffer mediumFlavour = factory.singleton(new HardwareOffer(4, 4096l, null));
         GeoLocation ulm = factory.singleton(new GeoLocation("BW", "Ulm", "Deutschland", "ISO-OMG", 1.0f, 1.0f));
         /** TODO Location does not work, since the Locations shoud be added to the frontendusergroup directly */
-        Location location = factory.singleton(new Location(omistackCloud.getId(), "regionOne", null, LocationScope.HOST, true, ulm.getId() ));
+        Location location = factory.singleton(new Location(omistackCloud.getId(), "regionOne", null, LocationScope.HOST, true, ulm.getId(), cloudCredentials));
         List<Long> locations = new ArrayList();
         locations.add(location.getId());
-        Hardware omistackMediumFlavour = factory.singleton(new Hardware(omistackCloud.getId(), mediumFlavour.getId(), null, locations));
+        Hardware omistackMediumFlavour = factory.singleton(new Hardware(omistackCloud.getId(), mediumFlavour.getId(), "hardware_wf_", locations, cloudCredentials));
         OperatingSystemVendor ubuntu = factory.singleton(new OperatingSystemVendor("ubuntu", OperatingSystemVendorType.NIX));
         OperatingSystem ubuntuCurrent = factory.singleton(new OperatingSystem(OperatingSystemArchitecture.AMD64, ubuntu.getId(), "14.04"));
-        Image rawUbuntuImage = factory.singleton(new Image("Ubuntu Server 14.04", null, omistackCloud.getId(), locations, null /* should be os, not working currently */));
+        Image rawUbuntuImage = factory.singleton(new Image("Ubuntu Server 14.04", null, omistackCloud.getId(), locations, null /* should be os, not working currently */, cloudCredentials));
         VirtualMachineTemplate mediumUbuntuServer = factory.singleton(new VirtualMachineTemplate(omistackCloud.getId(), rawUbuntuImage.getId(), location.getId(), omistackMediumFlavour.getId()));
-        LifecycleComponent couchbaseComponent = factory.singleton(new LifecycleComponent("CouchbaseComponent", "...", "...", "...",
+        LifecycleComponent couchbaseComponent = factory.singleton(new LifecycleComponent("CouchbaseComponent", "...", "...",
             "...", "...", "...", "...", "...", "...", "...", "...", "...", "...", "..."));
         ApplicationComponent couchbaseAppComponent = factory.singleton(new ApplicationComponent(couchbaseApplication.getId(), couchbaseComponent.getId(), mediumUbuntuServer.getId()));
+        ApplicationInstance couchbaseApplicationInstance = factory.singleton(new ApplicationInstance(couchbaseApplication.getId()));
+        VirtualMachine couchNode_1 = factory.singleton(new VirtualMachine("frank_srl_couchbase_1", omistackCloud.getId(), rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId(), "whatshouldthisclouduuidbe?1"));
+        VirtualMachine couchNode_2 = factory.singleton(new VirtualMachine("frank_srl_couchbase_2", omistackCloud.getId(), rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId(), "whatshouldthisclouduuidbe?2"));
+        VirtualMachine couchNode_3 = factory.singleton(new VirtualMachine("frank_srl_couchbase_3", omistackCloud.getId(), rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId(), "whatshouldthisclouduuidbe?3"));
+        Instance couchNodeInstance_1 = factory.singleton(new Instance(couchbaseAppComponent.getId(), couchbaseApplicationInstance.getId(), couchNode_1.getId()));
+        Instance couchNodeInstance_2 = factory.singleton(new Instance(couchbaseAppComponent.getId(), couchbaseApplicationInstance.getId(), couchNode_2.getId()));
+        Instance couchNodeInstance_3 = factory.singleton(new Instance(couchbaseAppComponent.getId(), couchbaseApplicationInstance.getId(), couchNode_3.getId()));
+        IpAddress couchNodeIpPublic_1 = factory.singleton(new IpAddress("134.60.64.49", couchNode_1.getId(), "PUBLIC"));
+        IpAddress couchNodeIpPublic_2 = factory.singleton(new IpAddress("134.60.64.48", couchNode_2.getId(), "PUBLIC"));
+        IpAddress couchNodeIpPublic_3 = factory.singleton(new IpAddress("134.60.64.40", couchNode_3.getId(), "PUBLIC"));
+        IpAddress couchNodeIpPrivate_1 = factory.singleton(new IpAddress("192.168.3.80", couchNode_1.getId(), "PRIVATE"));
+        IpAddress couchNodeIpPrivate_2 = factory.singleton(new IpAddress("192.168.3.83", couchNode_2.getId(), "PRIVATE"));
+        IpAddress couchNodeIpPrivate_3 = factory.singleton(new IpAddress("192.168.3.82", couchNode_3.getId(), "PRIVATE"));
+        Communication couchbaseCommunication = factory.singleton(new Communication(couchbaseAppComponent.getId(), couchbaseAppComponent.getId(), 123));
+        CommunicationChannel communication1_2 = factory.singleton(new CommunicationChannel(couchbaseCommunication.getId(), couchNodeInstance_1.getId(), couchNodeInstance_2.getId()));
+        // The communication chanel has to be set up between each instance to handle synchronization...
 
-
-        //to change an object in the database:
+        //Example: How to change an object in the database:
         openstackApi.setName("openstack");
         cw.Api().update(openstackApi);
 

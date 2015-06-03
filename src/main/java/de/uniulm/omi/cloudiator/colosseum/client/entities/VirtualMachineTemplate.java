@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("vmt")
-public class VirtualMachineTemplate extends AbstractEntity<VirtualMachineTemplate> {
+public class VirtualMachineTemplate extends AbstractEntity {
 
     private Long cloud;
     private Long image;
@@ -83,14 +83,31 @@ public class VirtualMachineTemplate extends AbstractEntity<VirtualMachineTemplat
         this.hardware = hardware;
     }
 
-    @Override public int compareTo(VirtualMachineTemplate o) {
-        if(this.getCloud().equals(o.getCloud()) &&
-            this.getImage().equals(o.getImage()) &&
-            this.getLocation().equals(o.getLocation()) &&
-            this.getHardware().equals(o.getHardware())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        VirtualMachineTemplate that = (VirtualMachineTemplate) o;
+
+        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
+            return false;
+        if (hardware != null ? !hardware.equals(that.hardware) : that.hardware != null)
+            return false;
+        if (image != null ? !image.equals(that.image) : that.image != null)
+            return false;
+        if (location != null ? !location.equals(that.location) : that.location != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = cloud != null ? cloud.hashCode() : 0;
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
+        return result;
     }
 }

@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudApi")
-public class CloudApi extends AbstractEntity <CloudApi> {
+public class CloudApi extends AbstractEntity {
 
     private Long api;
     private Long cloud;
@@ -73,13 +73,28 @@ public class CloudApi extends AbstractEntity <CloudApi> {
         this.endpoint = endpoint;
     }
 
-    @Override public int compareTo(CloudApi o) {
-        if(this.getApi().equals(o.getApi()) &&
-            this.getCloud().equals(o.getCloud()) &&
-            this.getEndpoint().equals(o.getEndpoint())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        CloudApi cloudApi = (CloudApi) o;
+
+        if (api != null ? !api.equals(cloudApi.api) : cloudApi.api != null)
+            return false;
+        if (cloud != null ? !cloud.equals(cloudApi.cloud) : cloudApi.cloud != null)
+            return false;
+        if (endpoint != null ? !endpoint.equals(cloudApi.endpoint) : cloudApi.endpoint != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = api != null ? api.hashCode() : 0;
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
+        result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
+        return result;
     }
 }

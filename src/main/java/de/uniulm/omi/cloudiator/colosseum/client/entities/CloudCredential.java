@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudCredential")
-public class CloudCredential extends AbstractEntity<CloudCredential> {
+public class CloudCredential extends AbstractEntity {
 
     private String user;
     private String secret;
@@ -83,14 +83,31 @@ public class CloudCredential extends AbstractEntity<CloudCredential> {
         this.frontendGroup = frontendGroup;
     }
 
-    @Override public int compareTo(CloudCredential o) {
+    @Override public boolean equals(Object o) {
         //ignore secret, right?
-        if(this.getUser().equals(o.getUser()) &&
-            this.getCloud().equals(o.getCloud()) &&
-            this.getFrontendGroup().equals(o.getFrontendGroup())) {
-            return 0;
-        }
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        CloudCredential that = (CloudCredential) o;
+
+        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
+            return false;
+        if (frontendGroup != null ?
+            !frontendGroup.equals(that.frontendGroup) :
+            that.frontendGroup != null)
+            return false;
+        if (user != null ? !user.equals(that.user) : that.user != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
+        result = 31 * result + (frontendGroup != null ? frontendGroup.hashCode() : 0);
+        return result;
     }
 }

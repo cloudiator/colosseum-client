@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * Created by frank on 21.01.15.
  */
 @Path("timeWindow")
-public class TimeWindow extends AbstractEntity<TimeWindow>{
+public class TimeWindow extends AbstractEntity{
 
     private Long interval;
     private TimeUnit timeUnit;
@@ -65,12 +65,25 @@ public class TimeWindow extends AbstractEntity<TimeWindow>{
         this.timeUnit = timeUnit;
     }
 
-    @Override public int compareTo(TimeWindow o) {
-        if(this.getInterval().equals(o.getInterval()) &&
-            this.getTimeUnit().equals(o.getTimeUnit())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        TimeWindow that = (TimeWindow) o;
+
+        if (interval != null ? !interval.equals(that.interval) : that.interval != null)
+            return false;
+        if (timeUnit != that.timeUnit)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = interval != null ? interval.hashCode() : 0;
+        result = 31 * result + (timeUnit != null ? timeUnit.hashCode() : 0);
+        return result;
     }
 }

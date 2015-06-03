@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("cloudImage")
-public class CloudImage extends AbstractEntity<CloudImage> {
+public class CloudImage extends AbstractEntity {
 
     private Long cloud;
     private Long image;
@@ -73,13 +73,28 @@ public class CloudImage extends AbstractEntity<CloudImage> {
         this.cloudUuid = cloudUuid;
     }
 
-    @Override public int compareTo(CloudImage o) {
-        //ignore clouduuid, right?
-        if(this.getImage().equals(o.getImage()) &&
-            this.getCloud().equals(o.getCloud())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        CloudImage that = (CloudImage) o;
+
+        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
+            return false;
+        if (cloudUuid != null ? !cloudUuid.equals(that.cloudUuid) : that.cloudUuid != null)
+            return false;
+        if (image != null ? !image.equals(that.image) : that.image != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = cloud != null ? cloud.hashCode() : 0;
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        return result;
     }
 }

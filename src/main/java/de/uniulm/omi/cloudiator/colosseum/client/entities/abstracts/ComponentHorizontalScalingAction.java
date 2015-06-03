@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by Frank on 27.05.2015.
  */
-public abstract class ComponentHorizontalScalingAction<T> extends HorizontalScalingAction<T> {
+public abstract class ComponentHorizontalScalingAction extends HorizontalScalingAction {
 
     private Long applicationComponent;
 
@@ -32,5 +32,29 @@ public abstract class ComponentHorizontalScalingAction<T> extends HorizontalScal
 
     public Long getApplicationComponent() {
         return applicationComponent;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+
+        ComponentHorizontalScalingAction that = (ComponentHorizontalScalingAction) o;
+
+        if (applicationComponent != null ?
+            !applicationComponent.equals(that.applicationComponent) :
+            that.applicationComponent != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (applicationComponent != null ? applicationComponent.hashCode() : 0);
+        return result;
     }
 }

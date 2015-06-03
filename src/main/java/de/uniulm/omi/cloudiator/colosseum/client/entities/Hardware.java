@@ -29,23 +29,25 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("hardware")
-public class Hardware extends AbstractEntity<Hardware> {
+public class Hardware extends AbstractEntity {
 
     private Long cloud;
     private Long hardwareOffer;
     private String cloudUuid;
     private List<Long> locations;
+    private List<Long> cloudCredentials;
 
-    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations) {
+    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations, List<Long> cloudCredentials) {
         super(links);
         this.cloud = cloud;
         this.hardwareOffer = hardwareOffer;
         this.cloudUuid = cloudUuid;
         this.locations = locations;
+        this.cloudCredentials = cloudCredentials;
     }
 
-    public Hardware(Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations) {
-        this(null, cloud, hardwareOffer, cloudUuid, locations);
+    public Hardware(Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations, List<Long> cloudCredentials) {
+        this(null, cloud, hardwareOffer, cloudUuid, locations, cloudCredentials);
     }
 
     protected Hardware() {
@@ -83,49 +85,41 @@ public class Hardware extends AbstractEntity<Hardware> {
         this.locations = locations;
     }
 
-    @Override public int compareTo(Hardware o) {
-        //ignoring cloouduuid, correct?
-        if(this.getCloud().equals(o.getCloud()) &&
-            this.getHardwareOffer().equals(o.getHardwareOffer()) &&
-            this.getLocations().containsAll(o.getLocations()) &&
-            o.getLocations().containsAll(this.getLocations())) {
+    public List<Long> getCloudCredentials() {
+        return cloudCredentials;
+    }
 
-//            Boolean allLocationsSame = true;
-//
-//            for (Long loc : this.getLocations()){
-//                Boolean currentLocExists = false;
-//                for(Long loc2 : o.getLocations()){
-//                    if(loc.equals(loc2)){
-//                        currentLocExists = true;
-//                    }
-//                }
-//
-//                if (currentLocExists == false) {
-//                    allLocationsSame = false;
-//                    break;
-//                }
-//            }
-//
-//            for (Long loc : o.getLocations()){
-//                Boolean currentLocExists = false;
-//                for(Long loc2 : this.getLocations()){
-//                    if(loc.equals(loc2)){
-//                        currentLocExists = true;
-//                        continue;
-//                    }
-//                }
-//
-//                if (currentLocExists == false) {
-//                    allLocationsSame = false;
-//                    break;
-//                }
-//            }
-//
-//            if(allLocationsSame) {
-//                return 0;
-//            }
-        }
+    public void setCloudCredentials(List<Long> cloudCredentials) {
+        this.cloudCredentials = cloudCredentials;
+    }
 
-        return -1;
+    @Override public boolean equals(Object o) {
+        //ignore list of credentials and locations, right?
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Hardware hardware = (Hardware) o;
+
+        if (cloud != null ? !cloud.equals(hardware.cloud) : hardware.cloud != null)
+            return false;
+        //ignore clouduuid:
+        //if (cloudUuid != null ? !cloudUuid.equals(hardware.cloudUuid) : hardware.cloudUuid != null)
+        //    return false;
+        if (hardwareOffer != null ?
+            !hardwareOffer.equals(hardware.hardwareOffer) :
+            hardware.hardwareOffer != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = cloud != null ? cloud.hashCode() : 0;
+        result = 31 * result + (hardwareOffer != null ? hardwareOffer.hashCode() : 0);
+        //ignore clouduuid:
+        //result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        return result;
     }
 }

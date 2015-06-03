@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("instance")
-public class Instance extends AbstractEntity<Instance> {
+public class Instance extends AbstractEntity {
 
     private Long applicationComponent;
     private Long applicationInstance;
@@ -73,13 +73,34 @@ public class Instance extends AbstractEntity<Instance> {
         this.applicationInstance = applicationInstance;
     }
 
-    @Override public int compareTo(Instance o) {
-        if(this.getApplicationComponent().equals(o.getApplicationComponent()) &&
-            this.getApplicationInstance().equals(o.getApplicationInstance()) &&
-            this.getVirtualMachine().equals(o.getVirtualMachine())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        Instance instance = (Instance) o;
+
+        if (applicationComponent != null ?
+            !applicationComponent.equals(instance.applicationComponent) :
+            instance.applicationComponent != null)
+            return false;
+        if (applicationInstance != null ?
+            !applicationInstance.equals(instance.applicationInstance) :
+            instance.applicationInstance != null)
+            return false;
+        if (virtualMachine != null ?
+            !virtualMachine.equals(instance.virtualMachine) :
+            instance.virtualMachine != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = applicationComponent != null ? applicationComponent.hashCode() : 0;
+        result = 31 * result + (applicationInstance != null ? applicationInstance.hashCode() : 0);
+        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
+        return result;
     }
 }

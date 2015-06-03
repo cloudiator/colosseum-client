@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
  * Created by frank on 21.01.15.
  */
 @Path("sensorDescription")
-public class SensorDescription extends AbstractEntity<SensorDescription> {
+public class SensorDescription extends AbstractEntity {
 
     private String className;
     private String metricName;
@@ -76,13 +76,28 @@ public class SensorDescription extends AbstractEntity<SensorDescription> {
         this.isVmSensor = isVmSensor;
     }
 
-    @Override public int compareTo(SensorDescription o) {
-        if(this.getClassName().equals(o.getClassName()) &&
-            this.getIsVmSensor().equals(o.getIsVmSensor()) &&
-            this.getMetricName().equals(o.getMetricName())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        SensorDescription that = (SensorDescription) o;
+
+        if (className != null ? !className.equals(that.className) : that.className != null)
+            return false;
+        if (isVmSensor != null ? !isVmSensor.equals(that.isVmSensor) : that.isVmSensor != null)
+            return false;
+        if (metricName != null ? !metricName.equals(that.metricName) : that.metricName != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = className != null ? className.hashCode() : 0;
+        result = 31 * result + (metricName != null ? metricName.hashCode() : 0);
+        result = 31 * result + (isVmSensor != null ? isVmSensor.hashCode() : 0);
+        return result;
     }
 }

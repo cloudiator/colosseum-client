@@ -29,7 +29,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("frontendUser")
-public class FrontendUser extends AbstractEntity<FrontendUser> {
+public class FrontendUser extends AbstractEntity {
 
     private String firstName;
     private String lastName;
@@ -93,14 +93,29 @@ public class FrontendUser extends AbstractEntity<FrontendUser> {
         this.repeat = repeat;
     }
 
-    @Override public int compareTo(FrontendUser o) {
+    @Override public boolean equals(Object o) {
         //ignore password, right?
-        if(this.getFirstName().equals(o.getFirstName()) &&
-            this.getLastName().equals(o.getLastName()) &&
-            this.getMail().equals(o.getMail())) {
-            return 0;
-        }
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
-        return -1;
+        FrontendUser that = (FrontendUser) o;
+
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null)
+            return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null)
+            return false;
+        if (mail != null ? !mail.equals(that.mail) : that.mail != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        return result;
     }
 }

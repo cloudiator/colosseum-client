@@ -29,23 +29,25 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("image")
-public class Image extends NamedEntity<Image> {
+public class Image extends NamedEntity {
 
     private String cloudUuid;
     private Long cloud;
     private List<Long> locations;
     private Long operatingSystem;
+    private List<Long> cloudCredentials;
 
-    public Image(@Nullable List<Link> links, String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem) {
+    public Image(@Nullable List<Link> links, String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
         super(links, name);
         this.cloudUuid = cloudUuid;
         this.cloud = cloud;
         this.locations = locations;
         this.operatingSystem = operatingSystem;
+        this.cloudCredentials = cloudCredentials;
     }
 
-    public Image(String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem) {
-        this(null, name, cloudUuid, cloud, locations, operatingSystem);
+    public Image(String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
+        this(null, name, cloudUuid, cloud, locations, operatingSystem, cloudCredentials);
     }
 
     protected Image() {
@@ -83,16 +85,44 @@ public class Image extends NamedEntity<Image> {
         this.operatingSystem = operatingSystem;
     }
 
-    @Override public int compareTo(Image o) {
-        //ignoring cloouduuid, correct?
-        if(this.getCloud().equals(o.getCloud()) &&
-            this.getName().equals(o.getName()) &&
-            this.getOperatingSystem().equals(o.getOperatingSystem()) &&
-            this.getLocations().containsAll(o.getLocations()) &&
-            o.getLocations().containsAll(this.getLocations())) {
-            return 0;
-        }
+    public List<Long> getCloudCredentials() {
+        return cloudCredentials;
+    }
 
-        return -1;
+    public void setCloudCredentials(List<Long> cloudCredentials) {
+        this.cloudCredentials = cloudCredentials;
+    }
+
+    @Override public boolean equals(Object o) {
+        //ignore list of credentials and locations, right?
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+
+        Image image = (Image) o;
+
+        if (cloud != null ? !cloud.equals(image.cloud) : image.cloud != null)
+            return false;
+        // ignore clouduuid:
+        //if (cloudUuid != null ? !cloudUuid.equals(image.cloudUuid) : image.cloudUuid != null)
+        //    return false;
+        if (operatingSystem != null ?
+            !operatingSystem.equals(image.operatingSystem) :
+            image.operatingSystem != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        // ignore locations, right?
+        int result = super.hashCode();
+        // ignore clouduuid: result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
+        result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
+        return result;
     }
 }

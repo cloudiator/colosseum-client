@@ -30,7 +30,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("osVendor")
-public class OperatingSystemVendor extends NamedEntity<OperatingSystemVendor> {
+public class OperatingSystemVendor extends NamedEntity {
 
     private OperatingSystemVendorType operatingSystemVendorType;
 
@@ -54,13 +54,27 @@ public class OperatingSystemVendor extends NamedEntity<OperatingSystemVendor> {
         this.operatingSystemVendorType = operatingSystemVendorType;
     }
 
-    @Override public int compareTo(OperatingSystemVendor o) {
-        //ignoring cloouduuid, correct?
-        if(this.getOperatingSystemVendorType().equals(o.getOperatingSystemVendorType()) &&
-            this.getName().equals(o.getName())) {
-            return 0;
-        }
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
 
-        return -1;
+        OperatingSystemVendor that = (OperatingSystemVendor) o;
+
+        if (operatingSystemVendorType != that.operatingSystemVendorType)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (operatingSystemVendorType != null ?
+            operatingSystemVendorType.hashCode() :
+            0);
+        return result;
     }
 }
