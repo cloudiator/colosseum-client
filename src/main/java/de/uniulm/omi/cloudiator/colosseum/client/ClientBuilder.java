@@ -21,7 +21,6 @@ package de.uniulm.omi.cloudiator.colosseum.client;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AuthenticationFilter;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Credential;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import org.glassfish.jersey.filter.LoggingFilter;
 
 import javax.ws.rs.client.Client;
@@ -46,8 +45,8 @@ public class ClientBuilder {
         return this;
     }
 
-    public ClientBuilder credentials(String email, String password) {
-        this.credentials = new Credential(email, password);
+    public ClientBuilder credentials(String email, String tenant, String password) {
+        this.credentials = new Credential(email, tenant, password);
         return this;
     }
 
@@ -56,7 +55,7 @@ public class ClientBuilder {
             javax.ws.rs.client.ClientBuilder.newBuilder().register(JacksonJsonProvider.class)
                 .register(LoggingFilter.class)
                 .register(new AuthenticationFilter(this.credentials, this.url)).build();
-        return new de.uniulm.omi.cloudiator.colosseum.client.Client(client,this.url);
+        return new de.uniulm.omi.cloudiator.colosseum.client.Client(client, this.url);
     }
 
 }

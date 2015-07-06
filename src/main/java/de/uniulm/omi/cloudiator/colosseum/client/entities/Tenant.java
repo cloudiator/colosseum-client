@@ -27,21 +27,21 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("fg")
-public class FrontendGroup extends NamedEntity {
+@Path("tenant")
+public class Tenant extends NamedEntity {
 
     private List<Long> frontendUsers;
 
-    public FrontendGroup(List<Link> links, String name, List<Long> frontendUsers) {
+    public Tenant(List<Link> links, String name, List<Long> frontendUsers) {
         super(links, name);
         this.frontendUsers = frontendUsers;
     }
 
-    public FrontendGroup(String name, List<Long> frontendUsers) {
+    public Tenant(String name, List<Long> frontendUsers) {
         this(null, name, frontendUsers);
     }
 
-    protected FrontendGroup() {
+    protected Tenant() {
     }
 
     public List<Long> getFrontendUsers() {
