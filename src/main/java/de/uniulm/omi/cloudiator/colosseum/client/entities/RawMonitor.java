@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -28,7 +29,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("rawMonitor") public class RawMonitor extends AbstractEntity {
+@Path("rawMonitor") public class RawMonitor extends Monitor {
 
     private Long application;
     private Long component;
@@ -37,9 +38,9 @@ import java.util.List;
     private Long sensorDescription;
     private Long schedule;
 
-    public RawMonitor(@Nullable List<Link> link, Long application, Long component, Long componentInstance,
+    public RawMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long application, Long component, Long componentInstance,
         Long cloud, Long sensorDescription, Long schedule) {
-        super(link);
+        super(link, externalReferences);
         this.application = application;
         this.component = component;
         this.componentInstance = componentInstance;
@@ -48,9 +49,14 @@ import java.util.List;
         this.schedule = schedule;
     }
 
+    public RawMonitor(@Nullable List<String> externalReferences, Long application, Long component, Long instance, Long cloud,
+        Long sensorDescription, Long schedule) {
+        this(null, externalReferences, application, component, instance, cloud, sensorDescription, schedule);
+    }
+
     public RawMonitor(Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
-        this(null, application, component, instance, cloud, sensorDescription, schedule);
+        this(null, null, application, component, instance, cloud, sensorDescription, schedule);
     }
 
     protected RawMonitor() {

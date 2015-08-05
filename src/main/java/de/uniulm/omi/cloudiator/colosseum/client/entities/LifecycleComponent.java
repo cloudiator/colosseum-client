@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Component;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -29,7 +30,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("lifecycleComponent")
-public class LifecycleComponent extends NamedEntity {
+public class LifecycleComponent extends Component {
 
     private String init;
     private String preInstall;

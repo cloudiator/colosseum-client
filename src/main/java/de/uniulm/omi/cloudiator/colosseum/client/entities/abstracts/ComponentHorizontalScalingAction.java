@@ -12,15 +12,15 @@ public abstract class ComponentHorizontalScalingAction extends HorizontalScaling
 
     private Long applicationComponent;
 
-    public ComponentHorizontalScalingAction(@Nullable List<Link> link, Long amount, Long min,
+    public ComponentHorizontalScalingAction(@Nullable List<Link> link, List<String> externalReferences, Long amount, Long min,
         Long max, Long count, Long applicationComponent) {
-        super(link, amount, min, max, count);
+        super(link, externalReferences, amount, min, max, count);
         this.applicationComponent = applicationComponent;
     }
 
-    public ComponentHorizontalScalingAction(Long amount, Long min, Long max, Long count,
+    public ComponentHorizontalScalingAction(List<String> externalReferences, Long amount, Long min, Long max, Long count,
         Long applicationComponent) {
-        this(null, amount, min, max, count, applicationComponent);
+        this(null, externalReferences, amount, min, max, count, applicationComponent);
     }
 
     protected ComponentHorizontalScalingAction(){

@@ -16,20 +16,21 @@ public abstract class HorizontalScalingAction extends ScalingAction {
     private Long max;
     private Long count;
 
-    public HorizontalScalingAction(@Nullable List<Link> link, Long amount, Long min, Long max,
+    public HorizontalScalingAction(@Nullable List<Link> link, List<String> externalReferences, Long amount, Long min, Long max,
         Long count) {
-        super(link);
+        super(link, externalReferences);
         this.amount = amount;
         this.min = min;
         this.max = max;
         this.count = count;
     }
 
-    public HorizontalScalingAction(Long amount, Long min, Long max, Long count) {
-        this(null, amount, min, max, count);
+    public HorizontalScalingAction(List<String> externalReferences, Long amount, Long min, Long max, Long count) {
+        this(null, externalReferences, amount, min, max, count);
     }
 
     protected HorizontalScalingAction() {
+        super();
     }
 
     public Long getAmount() {

@@ -1,8 +1,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.CloudApi;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.*;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 
 /**
@@ -30,6 +28,18 @@ public class ClientWrapper {
 
     public ClientController<CloudApi> CloudApi(){
         return this.get(CloudApi.class);
+    }
+
+    public ClientController<RawMonitor> RawMonitor(){
+        return this.get(RawMonitor.class);
+    }
+
+    public ClientController<ComposedMonitor> ComposedMonitor(){
+        return this.get(ComposedMonitor.class);
+    }
+
+    public ClientController<MonitorInstance> MonitorInstance(){
+        return this.get(MonitorInstance.class);
     }
 
 }

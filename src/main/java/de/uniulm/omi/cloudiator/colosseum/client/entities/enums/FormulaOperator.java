@@ -4,6 +4,7 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  * Created by Frank on 27.05.2015.
  */
 public enum FormulaOperator {
+
     /** Kairos aggregators */
     SUM, // ADD, PLUS
     MINUS,
@@ -31,5 +32,22 @@ public enum FormulaOperator {
     /** event aggregators / binary */
     OR,
     AND,
-    XOR
+    XOR;
+
+
+    private final String text;
+
+    private FormulaOperator(final String text) {
+        this.text = text;
+    }
+
+    private FormulaOperator(){
+        this.text = this.toString();
+    }
+
+    @Override public String toString() {
+        if(text == null)
+            return super.toString();
+        return text;
+    }
 }

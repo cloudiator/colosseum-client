@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -29,24 +30,28 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("monitorInstance")
-public class MonitorInstance extends AbstractEntity {
+public class MonitorInstance extends Monitor {
 
     private Long monitor;
     private Long ipAddress;
-    private Long vm;
+    private Long virtualMachine;
     private Long component;
 
-    public MonitorInstance(@Nullable List<Link> link, Long monitor, Long ipAddress, Long vm,
+    public MonitorInstance(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long monitor, Long ipAddress, Long virtualMachine,
         Long component) {
-        super(link);
+        super(link, externalReferences);
         this.monitor = monitor;
         this.ipAddress = ipAddress;
-        this.vm = vm;
+        this.virtualMachine = virtualMachine;
         this.component = component;
     }
 
-    public MonitorInstance(Long monitor, Long ipAddress, Long vm, Long component) {
-        this(null, monitor, ipAddress, vm, component);
+    public MonitorInstance(List<String> externalReferences, Long monitor, Long ipAddress, Long virtualMachine, Long component) {
+        this(null, externalReferences, monitor, ipAddress, virtualMachine, component);
+    }
+
+    public MonitorInstance(Long monitor, Long ipAddress, Long virtualMachine, Long component) {
+        this(null, null, monitor, ipAddress, virtualMachine, component);
     }
 
     protected MonitorInstance(){
@@ -69,12 +74,12 @@ public class MonitorInstance extends AbstractEntity {
         this.ipAddress = ipAddress;
     }
 
-    public Long getVm() {
-        return vm;
+    public Long getVirtualMachine() {
+        return virtualMachine;
     }
 
-    public void setVm(Long vm) {
-        this.vm = vm;
+    public void setVirtualMachine(Long virtualMachine) {
+        this.virtualMachine = virtualMachine;
     }
 
     public Long getComponent() {
@@ -99,7 +104,7 @@ public class MonitorInstance extends AbstractEntity {
             return false;
         if (monitor != null ? !monitor.equals(that.monitor) : that.monitor != null)
             return false;
-        if (vm != null ? !vm.equals(that.vm) : that.vm != null)
+        if (virtualMachine != null ? !virtualMachine.equals(that.virtualMachine) : that.virtualMachine != null)
             return false;
 
         return true;
@@ -108,7 +113,7 @@ public class MonitorInstance extends AbstractEntity {
     @Override public int hashCode() {
         int result = monitor != null ? monitor.hashCode() : 0;
         result = 31 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
-        result = 31 * result + (vm != null ? vm.hashCode() : 0);
+        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
         result = 31 * result + (component != null ? component.hashCode() : 0);
         return result;
     }

@@ -9,13 +9,17 @@ import java.util.List;
 /**
  * Created by Frank on 27.05.2015.
  */
-public abstract class ScalingAction extends AbstractEntity {
+public abstract class ScalingAction extends ExternalReferencedEntity {
 
-    public ScalingAction(@Nullable List<Link> link) {
-        super(link);
+    public ScalingAction(@Nullable List<Link> link, @Nullable List<String> externalReferences) {
+        super(link, externalReferences);
+    }
+
+    public ScalingAction(@Nullable List<String> externalReferences) {
+        this(null, externalReferences);
     }
 
     protected ScalingAction() {
-        this(null);
+        super();
     }
 }

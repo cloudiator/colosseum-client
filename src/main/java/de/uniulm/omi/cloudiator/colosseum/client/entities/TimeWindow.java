@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Window;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -30,14 +31,12 @@ import java.util.concurrent.TimeUnit;
  * Created by frank on 21.01.15.
  */
 @Path("timeWindow")
-public class TimeWindow extends AbstractEntity{
+public class TimeWindow extends Window {
 
-    private Long interval;
     private TimeUnit timeUnit;
 
     public TimeWindow(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
-        super(link);
-        this.interval = interval;
+        super(link, interval);
         this.timeUnit = timeUnit;
     }
 
@@ -47,14 +46,6 @@ public class TimeWindow extends AbstractEntity{
 
     protected TimeWindow(){
 
-    }
-
-    public Long getInterval() {
-        return interval;
-    }
-
-    public void setInterval(Long interval) {
-        this.interval = interval;
     }
 
     public TimeUnit getTimeUnit() {
@@ -70,11 +61,11 @@ public class TimeWindow extends AbstractEntity{
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
+        if (!super.equals(o))
+            return false;
 
         TimeWindow that = (TimeWindow) o;
 
-        if (interval != null ? !interval.equals(that.interval) : that.interval != null)
-            return false;
         if (timeUnit != that.timeUnit)
             return false;
 
@@ -82,7 +73,7 @@ public class TimeWindow extends AbstractEntity{
     }
 
     @Override public int hashCode() {
-        int result = interval != null ? interval.hashCode() : 0;
+        int result = super.hashCode();
         result = 31 * result + (timeUnit != null ? timeUnit.hashCode() : 0);
         return result;
     }

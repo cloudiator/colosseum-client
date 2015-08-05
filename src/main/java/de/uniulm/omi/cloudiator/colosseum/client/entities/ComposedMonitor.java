@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FlowOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
@@ -31,7 +32,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("composedMonitor")
-public class ComposedMonitor extends AbstractEntity {
+public class ComposedMonitor extends Monitor {
 
     private FlowOperator flowOperator;
     private FormulaOperator function;
@@ -41,10 +42,23 @@ public class ComposedMonitor extends AbstractEntity {
     private List<Long> scalingActions;
     private Long schedule;
 
-    public ComposedMonitor(@Nullable List<Link> link, FlowOperator flowOperator,
+    public ComposedMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
         List<Long> scalingActions, Long schedule) {
-        super(link);
+        super(link, externalReferences);
+        this.flowOperator = flowOperator;
+        this.function = function;
+        this.quantifier = quantifier;
+        this.window = window;
+        this.monitors = monitors;
+        this.scalingActions = scalingActions;
+        this.schedule = schedule;
+    }
+
+    public ComposedMonitor(@Nullable List<String> externalReferences, FlowOperator flowOperator,
+        FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
+        List<Long> scalingActions, Long schedule) {
+        super(null, externalReferences);
         this.flowOperator = flowOperator;
         this.function = function;
         this.quantifier = quantifier;
@@ -57,7 +71,7 @@ public class ComposedMonitor extends AbstractEntity {
     public ComposedMonitor(FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
         List<Long> scalingActions, Long schedule) {
-        super(null);
+        super(null, null);
         this.flowOperator = flowOperator;
         this.function = function;
         this.quantifier = quantifier;

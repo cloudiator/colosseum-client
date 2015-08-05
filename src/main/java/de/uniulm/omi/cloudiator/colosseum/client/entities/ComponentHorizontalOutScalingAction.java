@@ -33,14 +33,19 @@ import java.util.List;
  */
 @Path("componentHorizontalOutScalingAction")
 public class ComponentHorizontalOutScalingAction extends ComponentHorizontalScalingAction {
-    public ComponentHorizontalOutScalingAction(@Nullable List<Link> link, Long amount, Long min,
+    public ComponentHorizontalOutScalingAction(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long amount, Long min,
         Long max, Long count, Long applicationComponent) {
-        super(link, amount, min, max, count, applicationComponent);
+        super(link, externalReferences, amount, min, max, count, applicationComponent);
+    }
+
+    public ComponentHorizontalOutScalingAction(@Nullable List<String> externalReferences, Long amount, Long min, Long max, Long count,
+        Long applicationComponent) {
+        this(null, externalReferences, amount, min, max, count, applicationComponent);
     }
 
     public ComponentHorizontalOutScalingAction(Long amount, Long min, Long max, Long count,
         Long applicationComponent) {
-        super(amount, min, max, count, applicationComponent);
+        this(null, null, amount, min, max, count, applicationComponent);
     }
 
     protected ComponentHorizontalOutScalingAction(){

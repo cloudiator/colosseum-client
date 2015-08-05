@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -29,17 +30,21 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("constantMonitor")
-public class ConstantMonitor extends AbstractEntity {
+public class ConstantMonitor extends Monitor {
 
     private Double value;
 
-    public ConstantMonitor(@Nullable List<Link> link, Double value) {
-        super(link);
+    public ConstantMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, Double value) {
+        super(link, externalReferences);
         this.value = value;
     }
 
+    public ConstantMonitor(List<String> externalReferences, Double value) {
+        this(null, externalReferences, value);
+    }
+
     public ConstantMonitor(Double value) {
-        this(null, value);
+        this(null, null, value);
     }
 
     protected ConstantMonitor(){
