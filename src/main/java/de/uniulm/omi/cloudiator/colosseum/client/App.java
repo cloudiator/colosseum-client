@@ -44,12 +44,13 @@ public class App {
         String url = "http://localhost:9000/api";
         String username = "john.doe@example.com";
         String password = "admin";
+        String tenant = "admin";
 
         ClientBuilder clientBuilder = ClientBuilder.getNew()
             // the base url
             .url(url)
                 // the login credentials
-            .credentials(username, password);
+            .credentials(username, tenant, password);
 
         Client client = clientBuilder.build();
 
@@ -113,14 +114,14 @@ public class App {
             factory.singleton(new FrontendUser("John", "Doe", "john.doe@example.com", null, null));
         List<Long> frontendUsers = new ArrayList<>();
         frontendUsers.add(johnDoe.getId());
-        FrontendGroup adminGroup = factory.singleton(new FrontendGroup("admin", frontendUsers));
+        Tenant adminGroup = factory.singleton(new Tenant("admin", frontendUsers));
         Api openstackApi = factory.singleton(new Api("openstack", "openstack-nova"));
         Application couchbaseApplication = factory.singleton(new Application("Cloudbase"));
         Cloud omistackCloud = factory.singleton(
             new Cloud("omistack", "http://omistack.e-technik.uni-ulm.de:5000/v2.0",
                 openstackApi.getId()));
         CloudCredential adminOmistack = factory.singleton(
-            new CloudCredential("t:u", "p",
+            new CloudCredential("paasage:griesinger_dev", "d695001d7a29af890533",
                 omistackCloud.getId(), adminGroup.getId()));
         List<Long> cloudCredentials = new ArrayList<>();
         cloudCredentials.add(adminOmistack.getId());

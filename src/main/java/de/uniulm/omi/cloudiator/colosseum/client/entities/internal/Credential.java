@@ -27,15 +27,19 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class Credential {
 
     private String email;
+    private String tenant;
     private String password;
 
-    public Credential(String email, String password) {
+    public Credential(String email, String password, String tenant) {
         checkNotNull(email);
         checkArgument(!email.isEmpty());
         checkNotNull(password);
         checkArgument(!password.isEmpty());
+        checkNotNull(tenant);
+        checkArgument(!tenant.isEmpty());
         this.email = email;
         this.password = password;
+        this.tenant = tenant;
     }
 
     protected Credential() {
@@ -60,5 +64,13 @@ public class Credential {
         checkNotNull(password);
         checkArgument(!password.isEmpty());
         this.password = password;
+    }
+
+    public String getTenant() {
+        return tenant;
+    }
+
+    public void setTenant(String tenant) {
+        this.tenant = tenant;
     }
 }
