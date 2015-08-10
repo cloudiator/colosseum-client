@@ -121,7 +121,7 @@ public class App {
             new Cloud("omistack", "http://omistack.e-technik.uni-ulm.de:5000/v2.0",
                 openstackApi.getId()));
         CloudCredential adminOmistack = factory.singleton(
-            new CloudCredential("paasage:griesinger_dev", "d695001d7a29af890533",
+            new CloudCredential("paasage:user", "password",
                 omistackCloud.getId(), adminGroup.getId()));
         List<Long> cloudCredentials = new ArrayList<>();
         cloudCredentials.add(adminOmistack.getId());
