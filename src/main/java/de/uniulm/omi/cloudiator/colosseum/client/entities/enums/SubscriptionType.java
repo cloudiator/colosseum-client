@@ -5,7 +5,8 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  */
 public enum SubscriptionType {
 
-    CDO("CDO");
+    CDO("CDO"),
+    CDO_EVENT("CDO");
 
     private final String text;
 

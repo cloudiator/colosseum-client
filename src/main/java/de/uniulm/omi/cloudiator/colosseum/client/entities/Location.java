@@ -33,17 +33,17 @@ import java.util.List;
 public class Location extends AbstractEntity {
 
     private Long cloud;
-    private String cloudUuid;
+    private String remoteId;
     private Long parent;
     private LocationScope locationScope;
     private Boolean isAssignable;
     private Long geoLocation;
     private List<Long> cloudCredentials;
 
-    public Location(@Nullable List<Link> links, Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
+    public Location(@Nullable List<Link> links, Long cloud, String remoteId, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
         super(links);
         this.cloud = cloud;
-        this.cloudUuid = cloudUuid;
+        this.remoteId = remoteId;
         this.parent = parent;
         this.locationScope = locationScope;
         this.isAssignable = isAssignable;
@@ -51,8 +51,8 @@ public class Location extends AbstractEntity {
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Location(Long cloud, String cloudUuid, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
-        this(null, cloud, cloudUuid, parent, locationScope, isAssignable, geoLocation, cloudCredentials);
+    public Location(Long cloud, String remoteId, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
+        this(null, cloud, remoteId, parent, locationScope, isAssignable, geoLocation, cloudCredentials);
     }
 
     protected Location() {
@@ -66,12 +66,12 @@ public class Location extends AbstractEntity {
         this.cloud = cloud;
     }
 
-    public String getCloudUuid() {
-        return cloudUuid;
+    public String getRemoteId() {
+        return remoteId;
     }
 
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
+    public void setRemoteId(String remoteId) {
+        this.remoteId = remoteId;
     }
 
     public Long getParent() {

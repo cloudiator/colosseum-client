@@ -10,44 +10,11 @@ import java.util.List;
  * Created by Frank on 09.06.2015.
  */
 public abstract class Window extends AbstractEntity{
-    Long interval;
-
-    public Window(@Nullable List<Link> link, Long interval) {
+    public Window(@Nullable List<Link> link){
         super(link);
-        this.interval = interval;
     }
 
-    public Long getInterval() {
-        return interval;
-    }
+    protected Window(){
 
-    public void setInterval(Long interval) {
-        this.interval = interval;
-    }
-
-    public Window(Long interval) {
-        this(null, interval);
-    }
-
-    protected Window() {
-        super();
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        Window window = (Window) o;
-
-        if (interval != null ? !interval.equals(window.interval) : window.interval != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        return interval != null ? interval.hashCode() : 0;
     }
 }

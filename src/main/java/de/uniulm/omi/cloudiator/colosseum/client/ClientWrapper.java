@@ -42,4 +42,8 @@ public class ClientWrapper {
         return this.get(MonitorInstance.class);
     }
 
+    public ClientController<MonitorSubscription> MonitorSubscription(){
+        return this.get(MonitorSubscription.class);
+    }
+
 }

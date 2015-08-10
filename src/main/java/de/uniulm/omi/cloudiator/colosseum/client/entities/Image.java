@@ -31,34 +31,34 @@ import java.util.List;
 @Path("image")
 public class Image extends NamedEntity {
 
-    private String cloudUuid;
+    private String remoteId;
     private Long cloud;
     private List<Long> locations;
     private Long operatingSystem;
     private List<Long> cloudCredentials;
 
-    public Image(@Nullable List<Link> links, String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
+    public Image(@Nullable List<Link> links, String name, String remoteId, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
         super(links, name);
-        this.cloudUuid = cloudUuid;
+        this.remoteId = remoteId;
         this.cloud = cloud;
         this.locations = locations;
         this.operatingSystem = operatingSystem;
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Image(String name, String cloudUuid, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
-        this(null, name, cloudUuid, cloud, locations, operatingSystem, cloudCredentials);
+    public Image(String name, String remoteId, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
+        this(null, name, remoteId, cloud, locations, operatingSystem, cloudCredentials);
     }
 
     protected Image() {
     }
 
-    public String getCloudUuid() {
-        return cloudUuid;
+    public String getRemoteId() {
+        return remoteId;
     }
 
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
+    public void setRemoteId(String remoteId) {
+        this.remoteId = remoteId;
     }
 
     public Long getCloud() {
@@ -107,7 +107,7 @@ public class Image extends NamedEntity {
         if (cloud != null ? !cloud.equals(image.cloud) : image.cloud != null)
             return false;
         // ignore clouduuid:
-        //if (cloudUuid != null ? !cloudUuid.equals(image.cloudUuid) : image.cloudUuid != null)
+        //if (remoteId != null ? !remoteId.equals(image.remoteId) : image.remoteId != null)
         //    return false;
         if (operatingSystem != null ?
             !operatingSystem.equals(image.operatingSystem) :
@@ -120,7 +120,7 @@ public class Image extends NamedEntity {
     @Override public int hashCode() {
         // ignore locations, right?
         int result = super.hashCode();
-        // ignore clouduuid: result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        // ignore clouduuid: result = 31 * result + (remoteId != null ? remoteId.hashCode() : 0);
         result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
         return result;

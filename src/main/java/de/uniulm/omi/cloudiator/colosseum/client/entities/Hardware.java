@@ -33,21 +33,21 @@ public class Hardware extends AbstractEntity {
 
     private Long cloud;
     private Long hardwareOffer;
-    private String cloudUuid;
+    private String remoteId;
     private List<Long> locations;
     private List<Long> cloudCredentials;
 
-    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations, List<Long> cloudCredentials) {
+    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String remoteId, List<Long> locations, List<Long> cloudCredentials) {
         super(links);
         this.cloud = cloud;
         this.hardwareOffer = hardwareOffer;
-        this.cloudUuid = cloudUuid;
+        this.remoteId = remoteId;
         this.locations = locations;
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Hardware(Long cloud, Long hardwareOffer, String cloudUuid, List<Long> locations, List<Long> cloudCredentials) {
-        this(null, cloud, hardwareOffer, cloudUuid, locations, cloudCredentials);
+    public Hardware(Long cloud, Long hardwareOffer, String remoteId, List<Long> locations, List<Long> cloudCredentials) {
+        this(null, cloud, hardwareOffer, remoteId, locations, cloudCredentials);
     }
 
     protected Hardware() {
@@ -69,12 +69,12 @@ public class Hardware extends AbstractEntity {
         this.hardwareOffer = hardwareOffer;
     }
 
-    public String getCloudUuid() {
-        return cloudUuid;
+    public String getRemoteId() {
+        return remoteId;
     }
 
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
+    public void setRemoteId(String remoteId) {
+        this.remoteId = remoteId;
     }
 
     public List<Long> getLocations() {
@@ -105,7 +105,7 @@ public class Hardware extends AbstractEntity {
         if (cloud != null ? !cloud.equals(hardware.cloud) : hardware.cloud != null)
             return false;
         //ignore clouduuid:
-        //if (cloudUuid != null ? !cloudUuid.equals(hardware.cloudUuid) : hardware.cloudUuid != null)
+        //if (remoteId != null ? !remoteId.equals(hardware.remoteId) : hardware.remoteId != null)
         //    return false;
         if (hardwareOffer != null ?
             !hardwareOffer.equals(hardware.hardwareOffer) :
@@ -119,7 +119,7 @@ public class Hardware extends AbstractEntity {
         int result = cloud != null ? cloud.hashCode() : 0;
         result = 31 * result + (hardwareOffer != null ? hardwareOffer.hashCode() : 0);
         //ignore clouduuid:
-        //result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        //result = 31 * result + (remoteId != null ? remoteId.hashCode() : 0);
         return result;
     }
 }

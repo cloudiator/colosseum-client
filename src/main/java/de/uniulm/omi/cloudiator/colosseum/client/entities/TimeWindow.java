@@ -35,8 +35,10 @@ public class TimeWindow extends Window {
 
     private TimeUnit timeUnit;
 
+    private Long interval;
+
     public TimeWindow(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
-        super(link, interval);
+        super(link);
         this.timeUnit = timeUnit;
     }
 
@@ -56,16 +58,24 @@ public class TimeWindow extends Window {
         this.timeUnit = timeUnit;
     }
 
+    public Long getInterval() {
+        return interval;
+    }
+
+    public void setInterval(Long interval) {
+        this.interval = interval;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        if (!super.equals(o))
+        if (!(o instanceof TimeWindow))
             return false;
 
         TimeWindow that = (TimeWindow) o;
 
+        if (interval != null ? !interval.equals(that.interval) : that.interval != null)
+            return false;
         if (timeUnit != that.timeUnit)
             return false;
 
@@ -73,8 +83,8 @@ public class TimeWindow extends Window {
     }
 
     @Override public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (timeUnit != null ? timeUnit.hashCode() : 0);
+        int result = timeUnit != null ? timeUnit.hashCode() : 0;
+        result = 31 * result + (interval != null ? interval.hashCode() : 0);
         return result;
     }
 }

@@ -55,6 +55,8 @@ public abstract class NamedEntity extends AbstractEntity {
 
         NamedEntity that = (NamedEntity) o;
 
+        //TODO: better case insensitive?
+        //name.equalsIgnoreCase(that.name)
         if (name != null ? !name.equals(that.name) : that.name != null)
             return false;
 

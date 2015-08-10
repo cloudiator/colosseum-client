@@ -127,7 +127,7 @@ public class App {
         cloudCredentials.add(adminOmistack.getId());
         // Pause so the syncing of the cloud may happen before we find the hardware, etc.
         //if(true)return;
-        //Thread.sleep(150000);
+        Thread.sleep(150000);
         HardwareOffer mediumFlavour = factory.singleton(new HardwareOffer(4, 4096l, null));
         GeoLocation ulm =
             factory.singleton(new GeoLocation("BW", "Ulm", "Deutschland", "ISO-OMG", 1.0f, 1.0f));
@@ -140,7 +140,7 @@ public class App {
             new Hardware(omistackCloud.getId(), mediumFlavour.getId(), "hardware_wf_", locations,
                 cloudCredentials));
         OperatingSystemVendor ubuntu =
-            factory.singleton(new OperatingSystemVendor("ubuntu", OperatingSystemVendorType.NIX));
+            factory.singleton(new OperatingSystemVendor("Ubuntu", OperatingSystemVendorType.NIX));
         OperatingSystem ubuntuCurrent = factory.singleton(
             new OperatingSystem(OperatingSystemArchitecture.AMD64, ubuntu.getId(), "14.04"));
         Image rawUbuntuImage = factory.singleton(
@@ -288,5 +288,10 @@ public class App {
                 cw.MonitorInstance().update(mi);
             }
         }
+        // Subscribe to last monitor for listening to values:
+        MonitorSubscription monitorSubscription =
+            cw.MonitorSubscription().create(new MonitorSubscription(composedMonitor.getId(),
+                "localhost", SubscriptionType.CDO, FilterType.ANY, 0.0));
+
     }
 }

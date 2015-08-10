@@ -35,19 +35,19 @@ public class VirtualMachine extends NamedEntity {
     private Long image;
     private Long hardware;
     private Long location;
-    private String cloudUuid;
+    private String remoteId;
 
-    public VirtualMachine(@Nullable List<Link> links, String name, Long cloud, Long image, Long hardware, Long location, String cloudUuid) {
+    public VirtualMachine(@Nullable List<Link> links, String name, Long cloud, Long image, Long hardware, Long location, String remoteId) {
         super(links, name);
         this.cloud = cloud;
         this.image = image;
         this.hardware = hardware;
         this.location = location;
-        this.cloudUuid = cloudUuid;
+        this.remoteId = remoteId;
     }
 
-    public VirtualMachine(String name, Long cloud, Long image, Long hardware, Long location, String cloudUuid) {
-        this(null, name, cloud, image, hardware, location, cloudUuid);
+    public VirtualMachine(String name, Long cloud, Long image, Long hardware, Long location, String remoteId) {
+        this(null, name, cloud, image, hardware, location, remoteId);
     }
 
     protected VirtualMachine() {
@@ -85,12 +85,12 @@ public class VirtualMachine extends NamedEntity {
         this.location = location;
     }
 
-    public String getCloudUuid() {
-        return cloudUuid;
+    public String getRemoteId() {
+        return remoteId;
     }
 
-    public void setCloudUuid(String cloudUuid) {
-        this.cloudUuid = cloudUuid;
+    public void setRemoteId(String remoteId) {
+        this.remoteId = remoteId;
     }
 
     @Override public boolean equals(Object o) {
@@ -115,8 +115,8 @@ public class VirtualMachine extends NamedEntity {
             !location.equals(that.location) :
             that.location != null)
             return false;
-        // ignore cloudUuid
-        //if (cloudUuid != null ? !cloudUuid.equals(that.cloudUuid) : that.cloudUuid != null)
+        // ignore remoteId
+        //if (remoteId != null ? !remoteId.equals(that.remoteId) : that.remoteId != null)
         //    return false;
 
         return true;
@@ -128,7 +128,7 @@ public class VirtualMachine extends NamedEntity {
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        result = 31 * result + (remoteId != null ? remoteId.hashCode() : 0);
         return result;
     }
 }
