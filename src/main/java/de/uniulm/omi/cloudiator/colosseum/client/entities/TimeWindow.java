@@ -34,12 +34,13 @@ import java.util.concurrent.TimeUnit;
 public class TimeWindow extends Window {
 
     private TimeUnit timeUnit;
-
     private Long interval;
+
 
     public TimeWindow(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
         super(link);
         this.timeUnit = timeUnit;
+        this.interval = interval;
     }
 
     public TimeWindow(Long interval, TimeUnit timeUnit) {
