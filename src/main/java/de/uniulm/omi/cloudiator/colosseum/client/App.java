@@ -46,10 +46,18 @@ public class App {
         String password = "admin";
         String tenant = "admin";
 
+        //Cloud
+        String cloudApiName = "openstack";
+        String cloudApiVersion = "openstack-nova";
+        String cloudName = "openstack";
+        String cloudURL = "http://subdomain.domain.org:1234/v2.0";
+        String cloudUser = "tenant:user";
+        String cloudSecret = "secret";
+
         ClientBuilder clientBuilder = ClientBuilder.getNew()
             // the base url
             .url(url)
-                // the login credentials
+            // the login credentials
             .credentials(username, tenant, password);
 
         Client client = clientBuilder.build();
@@ -115,20 +123,20 @@ public class App {
         List<Long> frontendUsers = new ArrayList<>();
         frontendUsers.add(johnDoe.getId());
         Tenant adminGroup = factory.singleton(new Tenant("admin", frontendUsers));
-        Api openstackApi = factory.singleton(new Api("openstack", "openstack-nova"));
+        Api openstackApi = factory.singleton(new Api(cloudApiName, cloudApiVersion));
         Application couchbaseApplication = factory.singleton(new Application("Cloudbase"));
         Cloud omistackCloud = factory.singleton(
-            new Cloud("omistack", "http://omistack.e-technik.uni-ulm.de:5000/v2.0",
+            new Cloud(cloudName, cloudURL,
                 openstackApi.getId()));
         CloudCredential adminOmistack = factory.singleton(
-            new CloudCredential("paasage:user", "password",
+            new CloudCredential(cloudUser, cloudSecret,
                 omistackCloud.getId(), adminGroup.getId()));
         List<Long> cloudCredentials = new ArrayList<>();
         cloudCredentials.add(adminOmistack.getId());
         // Pause so the syncing of the cloud may happen before we find the hardware, etc.
         //if(true)return;
         Thread.sleep(150000);
-        HardwareOffer mediumFlavour = factory.singleton(new HardwareOffer(4, 4096l, null));
+        HardwareOffer mediumFlavour = factory.singleton(new HardwareOffer(4, 8000l, 80000000000l));
         GeoLocation ulm =
             factory.singleton(new GeoLocation("BW", "Ulm", "Deutschland", "ISO-OMG", 1.0f, 1.0f));
         Location location = factory.singleton(
@@ -144,7 +152,7 @@ public class App {
         OperatingSystem ubuntuCurrent = factory.singleton(
             new OperatingSystem(OperatingSystemArchitecture.AMD64, ubuntu.getId(), "14.04"));
         Image rawUbuntuImage = factory.singleton(
-            new Image("Ubuntu Server 14.04", null, omistackCloud.getId(), locations, null /* should be os, not working currently */,
+            new Image("Ubuntu Server 14.04", "SOMEWILDREMOTEIDUBUNTU14", omistackCloud.getId(), locations, ubuntuCurrent.getId(),
                 cloudCredentials));
         VirtualMachineTemplate mediumUbuntuServer = factory.singleton(
             new VirtualMachineTemplate(omistackCloud.getId(), rawUbuntuImage.getId(),
@@ -203,7 +211,7 @@ public class App {
 
 
 
-        //if(true)return;
+        if(true)return;
 
 
         // delete existing monitors:
