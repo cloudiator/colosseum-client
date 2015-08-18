@@ -47,12 +47,12 @@ public class App {
         String tenant = "admin";
 
         //Cloud
-        String cloudApiName = "openstack";
+        String cloudApiName = "omistack";
         String cloudApiVersion = "openstack-nova";
-        String cloudName = "openstack";
-        String cloudURL = "http://subdomain.domain.org:1234/v2.0";
-        String cloudUser = "tenant:user";
-        String cloudSecret = "secret";
+        String cloudName = "omistack";
+        String cloudURL = "http://omistack.e-technik.uni-ulm.de:5000/v2.0";
+        String cloudUser = "paasage:griesinger_dev";
+        String cloudSecret = "d32k34f8V%34uf_v234fnm";
 
         ClientBuilder clientBuilder = ClientBuilder.getNew()
             // the base url
@@ -140,19 +140,19 @@ public class App {
         GeoLocation ulm =
             factory.singleton(new GeoLocation("BW", "Ulm", "Deutschland", "ISO-OMG", 1.0f, 1.0f));
         Location location = factory.singleton(
-            new Location(omistackCloud.getId(), "regionOne", null, LocationScope.HOST, true,
+            new Location("regionOne", "cloudProviderIdLocation", omistackCloud.getId(), null, LocationScope.HOST, true,
                 ulm.getId(), cloudCredentials));
         List<Long> locations = new ArrayList();
         locations.add(location.getId());
         Hardware omistackMediumFlavour = factory.singleton(
-            new Hardware(omistackCloud.getId(), mediumFlavour.getId(), "hardware_wf_", locations,
+            new Hardware("hardware_wf_", "cloudProviderIdHardware", omistackCloud.getId(), mediumFlavour.getId(), locations,
                 cloudCredentials));
         OperatingSystemVendor ubuntu =
             factory.singleton(new OperatingSystemVendor("Ubuntu", OperatingSystemVendorType.NIX));
         OperatingSystem ubuntuCurrent = factory.singleton(
             new OperatingSystem(OperatingSystemArchitecture.AMD64, ubuntu.getId(), "14.04"));
         Image rawUbuntuImage = factory.singleton(
-            new Image("Ubuntu Server 14.04", "SOMEWILDREMOTEIDUBUNTU14", omistackCloud.getId(), locations, ubuntuCurrent.getId(),
+            new Image("SOMEWILDREMOTEIDUBUNTU14", "cloudProviderIdImage", "Ubuntu Server 14.04", omistackCloud.getId(), locations, ubuntuCurrent.getId(),
                 cloudCredentials));
         VirtualMachineTemplate mediumUbuntuServer = factory.singleton(
             new VirtualMachineTemplate(omistackCloud.getId(), rawUbuntuImage.getId(),
@@ -166,17 +166,17 @@ public class App {
         ApplicationInstance couchbaseApplicationInstance =
             factory.singleton(new ApplicationInstance(couchbaseApplication.getId()));
         VirtualMachine couchNode_1 = factory.singleton(
-            new VirtualMachine("frank_srl_couchbase_1", omistackCloud.getId(),
-                rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId(),
-                "whatshouldthisclouduuidbe?1"));
+            new VirtualMachine(
+                "whatshouldthisclouduuidbe?1", "somecloudid?1", "frank_srl_couchbase_1", omistackCloud.getId(),
+                rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId()));
         VirtualMachine couchNode_2 = factory.singleton(
-            new VirtualMachine("frank_srl_couchbase_2", omistackCloud.getId(),
-                rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId(),
-                "whatshouldthisclouduuidbe?2"));
+            new VirtualMachine(
+                "whatshouldthisclouduuidbe?2", "somecloudid?2", "frank_srl_couchbase_2", omistackCloud.getId(),
+                rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId()));
         VirtualMachine couchNode_3 = factory.singleton(
-            new VirtualMachine("frank_srl_couchbase_3", omistackCloud.getId(),
-                rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId(),
-                "whatshouldthisclouduuidbe?3"));
+            new VirtualMachine(
+                "whatshouldthisclouduuidbe?3", "somecloudid?3", "frank_srl_couchbase_3", omistackCloud.getId(),
+                rawUbuntuImage.getId(), omistackMediumFlavour.getId(), location.getId()));
         Instance couchNodeInstance_1 = factory.singleton(
             new Instance(couchbaseAppComponent.getId(), couchbaseApplicationInstance.getId(),
                 couchNode_1.getId()));

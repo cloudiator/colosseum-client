@@ -18,9 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -29,36 +27,26 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("image")
-public class Image extends NamedEntity {
+public class Image extends NamedRemoteEntity {
 
-    private String remoteId;
     private Long cloud;
     private List<Long> locations;
     private Long operatingSystem;
     private List<Long> cloudCredentials;
 
-    public Image(@Nullable List<Link> links, String name, String remoteId, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
-        super(links, name);
-        this.remoteId = remoteId;
+    public Image(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
+        super(links, remoteId, cloudProviderId, name);
         this.cloud = cloud;
         this.locations = locations;
         this.operatingSystem = operatingSystem;
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Image(String name, String remoteId, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
-        this(null, name, remoteId, cloud, locations, operatingSystem, cloudCredentials);
+    public Image(String remoteId, String cloudProviderId, String name, Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials) {
+        this(null, remoteId, cloudProviderId, name, cloud, locations, operatingSystem, cloudCredentials);
     }
 
     protected Image() {
-    }
-
-    public String getRemoteId() {
-        return remoteId;
-    }
-
-    public void setRemoteId(String remoteId) {
-        this.remoteId = remoteId;
     }
 
     public Long getCloud() {
@@ -94,10 +82,9 @@ public class Image extends NamedEntity {
     }
 
     @Override public boolean equals(Object o) {
-        //ignore list of credentials and locations, right?
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (!(o instanceof Image))
             return false;
         if (!super.equals(o))
             return false;
@@ -106,9 +93,12 @@ public class Image extends NamedEntity {
 
         if (cloud != null ? !cloud.equals(image.cloud) : image.cloud != null)
             return false;
-        // ignore clouduuid:
-        //if (remoteId != null ? !remoteId.equals(image.remoteId) : image.remoteId != null)
-        //    return false;
+        if (cloudCredentials != null ?
+            !cloudCredentials.equals(image.cloudCredentials) :
+            image.cloudCredentials != null)
+            return false;
+        if (locations != null ? !locations.equals(image.locations) : image.locations != null)
+            return false;
         if (operatingSystem != null ?
             !operatingSystem.equals(image.operatingSystem) :
             image.operatingSystem != null)
@@ -118,11 +108,11 @@ public class Image extends NamedEntity {
     }
 
     @Override public int hashCode() {
-        // ignore locations, right?
         int result = super.hashCode();
-        // ignore clouduuid: result = 31 * result + (remoteId != null ? remoteId.hashCode() : 0);
         result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
+        result = 31 * result + (locations != null ? locations.hashCode() : 0);
         result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
+        result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
         return result;
     }
 }

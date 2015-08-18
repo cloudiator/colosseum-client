@@ -22,6 +22,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.LocationScope;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -30,20 +31,18 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("location")
-public class Location extends AbstractEntity {
+public class Location extends RemoteEntity {
 
     private Long cloud;
-    private String remoteId;
     private Long parent;
     private LocationScope locationScope;
     private Boolean isAssignable;
     private Long geoLocation;
     private List<Long> cloudCredentials;
 
-    public Location(@Nullable List<Link> links, Long cloud, String remoteId, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
-        super(links);
+    public Location(@Nullable List<Link> links, String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
+        super(links, remoteId, cloudProviderId);
         this.cloud = cloud;
-        this.remoteId = remoteId;
         this.parent = parent;
         this.locationScope = locationScope;
         this.isAssignable = isAssignable;
@@ -51,8 +50,8 @@ public class Location extends AbstractEntity {
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Location(Long cloud, String remoteId, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
-        this(null, cloud, remoteId, parent, locationScope, isAssignable, geoLocation, cloudCredentials);
+    public Location(String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
+        this(null, remoteId, cloudProviderId, cloud, parent, locationScope, isAssignable, geoLocation, cloudCredentials);
     }
 
     protected Location() {
@@ -64,14 +63,6 @@ public class Location extends AbstractEntity {
 
     public void setCloud(Long cloud) {
         this.cloud = cloud;
-    }
-
-    public String getRemoteId() {
-        return remoteId;
-    }
-
-    public void setRemoteId(String remoteId) {
-        this.remoteId = remoteId;
     }
 
     public Long getParent() {
@@ -117,12 +108,18 @@ public class Location extends AbstractEntity {
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (!(o instanceof Location))
+            return false;
+        if (!super.equals(o))
             return false;
 
         Location location = (Location) o;
 
         if (cloud != null ? !cloud.equals(location.cloud) : location.cloud != null)
+            return false;
+        if (cloudCredentials != null ?
+            !cloudCredentials.equals(location.cloudCredentials) :
+            location.cloudCredentials != null)
             return false;
         if (geoLocation != null ?
             !geoLocation.equals(location.geoLocation) :
@@ -141,11 +138,13 @@ public class Location extends AbstractEntity {
     }
 
     @Override public int hashCode() {
-        int result = cloud != null ? cloud.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (parent != null ? parent.hashCode() : 0);
         result = 31 * result + (locationScope != null ? locationScope.hashCode() : 0);
         result = 31 * result + (isAssignable != null ? isAssignable.hashCode() : 0);
         result = 31 * result + (geoLocation != null ? geoLocation.hashCode() : 0);
+        result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
         return result;
     }
 }

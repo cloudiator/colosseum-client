@@ -21,6 +21,7 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -29,25 +30,23 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("hardware")
-public class Hardware extends AbstractEntity {
+public class Hardware extends RemoteEntity {
 
     private Long cloud;
     private Long hardwareOffer;
-    private String remoteId;
     private List<Long> locations;
     private List<Long> cloudCredentials;
 
-    public Hardware(@Nullable List<Link> links, Long cloud, Long hardwareOffer, String remoteId, List<Long> locations, List<Long> cloudCredentials) {
-        super(links);
+    public Hardware(@Nullable List<Link> links, String remoteId, String cloudProviderId, Long cloud, Long hardwareOffer, List<Long> locations, List<Long> cloudCredentials) {
+        super(links, remoteId, cloudProviderId);
         this.cloud = cloud;
         this.hardwareOffer = hardwareOffer;
-        this.remoteId = remoteId;
         this.locations = locations;
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Hardware(Long cloud, Long hardwareOffer, String remoteId, List<Long> locations, List<Long> cloudCredentials) {
-        this(null, cloud, hardwareOffer, remoteId, locations, cloudCredentials);
+    public Hardware(String remoteId, String cloudProviderId, Long cloud, Long hardwareOffer, List<Long> locations, List<Long> cloudCredentials) {
+        this(null, remoteId, cloudProviderId, cloud, hardwareOffer, locations, cloudCredentials);
     }
 
     protected Hardware() {
@@ -69,14 +68,6 @@ public class Hardware extends AbstractEntity {
         this.hardwareOffer = hardwareOffer;
     }
 
-    public String getRemoteId() {
-        return remoteId;
-    }
-
-    public void setRemoteId(String remoteId) {
-        this.remoteId = remoteId;
-    }
-
     public List<Long> getLocations() {
         return locations;
     }
@@ -94,32 +85,39 @@ public class Hardware extends AbstractEntity {
     }
 
     @Override public boolean equals(Object o) {
-        //ignore list of credentials and locations, right?
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (!(o instanceof Hardware))
+            return false;
+        if (!super.equals(o))
             return false;
 
         Hardware hardware = (Hardware) o;
 
-        if (cloud != null ? !cloud.equals(hardware.cloud) : hardware.cloud != null)
-            return false;
-        //ignore clouduuid:
-        //if (remoteId != null ? !remoteId.equals(hardware.remoteId) : hardware.remoteId != null)
-        //    return false;
+        //TODO ignore cloud for comparing?
+//        if (cloud != null ? !cloud.equals(hardware.cloud) : hardware.cloud != null)
+//            return false;
+//        if (cloudCredentials != null ?
+//            !cloudCredentials.equals(hardware.cloudCredentials) :
+//            hardware.cloudCredentials != null)
+//            return false;
         if (hardwareOffer != null ?
             !hardwareOffer.equals(hardware.hardwareOffer) :
             hardware.hardwareOffer != null)
             return false;
+        //ignore locations
+        //if (locations != null ? !locations.equals(hardware.locations) : hardware.locations != null)
+        //    return false;
 
         return true;
     }
 
     @Override public int hashCode() {
-        int result = cloud != null ? cloud.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (hardwareOffer != null ? hardwareOffer.hashCode() : 0);
-        //ignore clouduuid:
-        //result = 31 * result + (remoteId != null ? remoteId.hashCode() : 0);
+        result = 31 * result + (locations != null ? locations.hashCode() : 0);
+        result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
         return result;
     }
 }
