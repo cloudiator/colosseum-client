@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.MetricMonitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
@@ -29,7 +30,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("rawMonitor") public class RawMonitor extends Monitor {
+@Path("rawMonitor") public class RawMonitor extends MetricMonitor {
 
     private Long application;
     private Long component;
@@ -38,9 +39,11 @@ import java.util.List;
     private Long sensorDescription;
     private Long schedule;
 
-    public RawMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long application, Long component, Long componentInstance,
+    public RawMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences,
+        @Nullable List<Long> monitorInstances,
+        Long application, Long component, Long componentInstance,
         Long cloud, Long sensorDescription, Long schedule) {
-        super(link, externalReferences);
+        super(link, externalReferences, monitorInstances);
         this.application = application;
         this.component = component;
         this.componentInstance = componentInstance;
@@ -49,14 +52,19 @@ import java.util.List;
         this.schedule = schedule;
     }
 
-    public RawMonitor(@Nullable List<String> externalReferences, Long application, Long component, Long instance, Long cloud,
+    public RawMonitor(@Nullable List<String> externalReferences, @Nullable List<Long> monitorInstances, Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
-        this(null, externalReferences, application, component, instance, cloud, sensorDescription, schedule);
+        this(null, externalReferences, monitorInstances, application, component, instance, cloud, sensorDescription, schedule);
+    }
+
+    public RawMonitor(@Nullable List<Long> monitorInstances, Long application, Long component, Long instance, Long cloud,
+        Long sensorDescription, Long schedule) {
+        this(null, null, monitorInstances, application, component, instance, cloud, sensorDescription, schedule);
     }
 
     public RawMonitor(Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
-        this(null, null, application, component, instance, cloud, sensorDescription, schedule);
+        this(null, null, null, application, component, instance, cloud, sensorDescription, schedule);
     }
 
     protected RawMonitor() {

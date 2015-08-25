@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.MetricMonitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FlowOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
@@ -32,7 +33,7 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("composedMonitor")
-public class ComposedMonitor extends Monitor {
+public class ComposedMonitor extends MetricMonitor {
 
     private FlowOperator flowOperator;
     private FormulaOperator function;
@@ -42,10 +43,12 @@ public class ComposedMonitor extends Monitor {
     private List<Long> scalingActions;
     private Long schedule;
 
-    public ComposedMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, FlowOperator flowOperator,
+    public ComposedMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences,
+        @Nullable List<Long> monitorInstances,
+        FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
         List<Long> scalingActions, Long schedule) {
-        super(link, externalReferences);
+        super(link, externalReferences, monitorInstances);
         this.flowOperator = flowOperator;
         this.function = function;
         this.quantifier = quantifier;
@@ -55,10 +58,27 @@ public class ComposedMonitor extends Monitor {
         this.schedule = schedule;
     }
 
-    public ComposedMonitor(@Nullable List<String> externalReferences, FlowOperator flowOperator,
+    public ComposedMonitor(@Nullable List<String> externalReferences,
+        @Nullable List<Long> monitorInstances,
+        FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
         List<Long> scalingActions, Long schedule) {
-        super(null, externalReferences);
+        super(null, externalReferences, monitorInstances);
+        this.flowOperator = flowOperator;
+        this.function = function;
+        this.quantifier = quantifier;
+        this.window = window;
+        this.monitors = monitors;
+        this.scalingActions = scalingActions;
+        this.schedule = schedule;
+    }
+
+    public ComposedMonitor(
+        @Nullable List<Long> monitorInstances,
+        FlowOperator flowOperator,
+        FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
+        List<Long> scalingActions, Long schedule) {
+        super(null, null, monitorInstances);
         this.flowOperator = flowOperator;
         this.function = function;
         this.quantifier = quantifier;
@@ -71,7 +91,7 @@ public class ComposedMonitor extends Monitor {
     public ComposedMonitor(FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
         List<Long> scalingActions, Long schedule) {
-        super(null, null);
+        super(null, null, null);
         this.flowOperator = flowOperator;
         this.function = function;
         this.quantifier = quantifier;

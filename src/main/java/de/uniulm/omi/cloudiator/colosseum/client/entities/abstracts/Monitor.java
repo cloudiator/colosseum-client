@@ -10,11 +10,11 @@ import java.util.List;
  */
 public abstract class Monitor extends ExternalReferencedEntity{
 
-    public Monitor(@Nullable List<Link> link, List<String> externalReferences) {
+    public Monitor(@Nullable List<Link> link, @Nullable List<String> externalReferences) {
         super(link, externalReferences);
     }
 
-    public Monitor(List<String> externalReferences) {
+    public Monitor(@Nullable List<String> externalReferences) {
         super(externalReferences);
     }
 
