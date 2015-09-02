@@ -31,70 +31,59 @@ import java.util.List;
 @Path("communication")
 public class Communication extends AbstractEntity {
 
-    private Long provider;
-    private Long consumer;
-    private Integer port;
+    private Long requiredPort;
+    private Long providedPort;
 
-    public Communication(@Nullable List<Link> links, Long provider, Long consumer, Integer port) {
+    public Communication(@Nullable List<Link> links, Long requiredPort, Long providedPort) {
         super(links);
-        this.provider = provider;
-        this.consumer = consumer;
-        this.port = port;
+        this.requiredPort = requiredPort;
+        this.providedPort = providedPort;
     }
 
-    public Communication(Long provider, Long consumer, Integer port) {
-        this(null, provider, consumer, port);
+    public Communication(Long requiredPort, Long providedPort) {
+        this(null, requiredPort, providedPort);
     }
 
     protected Communication() {
     }
 
-    public Long getProvider() {
-        return provider;
+    public Long getRequiredPort() {
+        return requiredPort;
     }
 
-    public void setProvider(Long provider) {
-        this.provider = provider;
+    public void setRequiredPort(Long requiredPort) {
+        this.requiredPort = requiredPort;
     }
 
-    public Long getConsumer() {
-        return consumer;
+    public Long getProvidedPort() {
+        return providedPort;
     }
 
-    public void setConsumer(Long consumer) {
-        this.consumer = consumer;
-    }
-
-    public Integer getPort() {
-        return port;
-    }
-
-    public void setPort(Integer port) {
-        this.port = port;
+    public void setProvidedPort(Long providedPort) {
+        this.providedPort = providedPort;
     }
 
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (!(o instanceof Communication))
             return false;
 
         Communication that = (Communication) o;
 
-        if (consumer != null ? !consumer.equals(that.consumer) : that.consumer != null)
+        if (requiredPort != null ?
+            !requiredPort.equals(that.requiredPort) :
+            that.requiredPort != null)
             return false;
-        if (port != null ? !port.equals(that.port) : that.port != null)
-            return false;
-        if (provider != null ? !provider.equals(that.provider) : that.provider != null)
-            return false;
+        return !(providedPort != null ?
+            !providedPort.equals(that.providedPort) :
+            that.providedPort != null);
 
-        return true;
     }
 
     @Override public int hashCode() {
-        int result = provider != null ? provider.hashCode() : 0;
-        result = 31 * result + (consumer != null ? consumer.hashCode() : 0);
-        result = 31 * result + (port != null ? port.hashCode() : 0);
+        int result = requiredPort != null ? requiredPort.hashCode() : 0;
+        result = 31 * result + (providedPort != null ? providedPort.hashCode() : 0);
         return result;
     }
 }
