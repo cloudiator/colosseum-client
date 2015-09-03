@@ -28,6 +28,8 @@ import javax.ws.rs.core.MediaType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -79,6 +81,10 @@ public class ClientController<T extends Entity> {
         return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value())
             .get(new GenericType<List<T>>(parameterizedGenericType) {
             });
+    }
+
+    public List<T> getList(Predicate<? super T> filter) {
+        return getList().stream().filter(filter).collect(Collectors.toList());
     }
 
     public T create(T t) {
