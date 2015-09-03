@@ -72,4 +72,29 @@ public class CloudHardware extends AbstractEntity {
     public void setCloud(Long cloud) {
         this.cloud = cloud;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        CloudHardware that = (CloudHardware) o;
+
+        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
+            return false;
+        if (cloudUuid != null ? !cloudUuid.equals(that.cloudUuid) : that.cloudUuid != null)
+            return false;
+        if (hardware != null ? !hardware.equals(that.hardware) : that.hardware != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = cloud != null ? cloud.hashCode() : 0;
+        result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
+        result = 31 * result + (cloudUuid != null ? cloudUuid.hashCode() : 0);
+        return result;
+    }
 }

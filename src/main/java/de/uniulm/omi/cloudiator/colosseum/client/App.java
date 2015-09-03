@@ -18,10 +18,13 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.*;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Hello world!
@@ -30,18 +33,40 @@ public class App {
 
     public static Random random = new Random();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
+        /*****
+         *
+         *  Very simple and fast-forward example of using the client:
+         *
+         */
         //An example
+        String url = "http://localhost:9000/api";
+        String username = "john.doe@example.com";
+        String password = "admin";
+        String tenant = "admin";
+
+        ClientBuilder clientBuilder = ClientBuilder.getNew()
+            // the base url
+            .url(url)
+            // the login credentials
+            .credentials(username, tenant, password);
+
+        Client client = clientBuilder.build();
 
         //get the controller for the cloud entity
-        final ClientController<Cloud> controller = ClientBuilder.getNew()
-            // the base url
-            .url("http://localhost:9000/api")
-                // the login credentials
-            .credentials("john.doe@example.com", "admin")
-                // the entity to get the controller for.
-            .build(Cloud.class);
+        final ClientController<Cloud> controller = client.controller(Cloud.class);
+
+        //get the controller for the api entity
+        final ClientController<Api> apiController = client.controller(Api.class);
+
+        //create a new API
+        Api api = apiController.create(new Api("ApiName-" + random.nextInt(10000),
+            "InternalProviderName-" + random.nextInt(100)));
+
+        //create a new Cloud
+        controller
+            .create(new Cloud("MyCloud-" + random.nextInt(10000), "endpointTest.com", api.getId()));
 
         //fetch all clouds
         List<Cloud> clouds = controller.getList();
@@ -49,8 +74,9 @@ public class App {
         //fetch the first cloud from the list
         Cloud cloud = clouds.get(0);
 
-        //create a new Cloud
-        controller.create(new Cloud("MyCloud-" + random.nextInt(100)));
+        //create a another Cloud
+        cloud = controller
+            .create(new Cloud("MyCloud-" + random.nextInt(1000), "endpointTest.com", api.getId()));
 
         //update a cloud
         cloud.setName("MyNewName-" + random.nextInt(100));

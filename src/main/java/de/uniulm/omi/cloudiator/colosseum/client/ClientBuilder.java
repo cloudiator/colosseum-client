@@ -21,10 +21,10 @@ package de.uniulm.omi.cloudiator.colosseum.client;
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AuthenticationFilter;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Credential;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import org.glassfish.jersey.filter.LoggingFilter;
 
 import javax.ws.rs.client.Client;
+import java.util.logging.Logger;
 
 /**
  * Created by daniel on 21.01.15.
@@ -33,6 +33,7 @@ public class ClientBuilder {
 
     private String url;
     private Credential credentials;
+    private Logger logger;
 
     private ClientBuilder() {
     }
@@ -46,17 +47,26 @@ public class ClientBuilder {
         return this;
     }
 
-    public ClientBuilder credentials(String email, String password) {
-        this.credentials = new Credential(email, password);
+    public ClientBuilder credentials(String email, String tenant, String password) {
+        this.credentials = new Credential(email, tenant, password);
         return this;
     }
 
-    public <T extends Entity> ClientController<T> build(Class<T> clazz) {
+    public ClientBuilder logger(Logger logger) {
+        this.logger = logger;
+        return this;
+    }
+
+    public de.uniulm.omi.cloudiator.colosseum.client.Client build() {
+        if(this.logger == null){
+            this.logger = Logger.getGlobal();
+        }
+
         final Client client =
             javax.ws.rs.client.ClientBuilder.newBuilder().register(JacksonJsonProvider.class)
-                .register(LoggingFilter.class)
+                .register(new LoggingFilter(this.logger, true))
                 .register(new AuthenticationFilter(this.credentials, this.url)).build();
-        return new ClientController<>(client, this.url, clazz);
+        return new de.uniulm.omi.cloudiator.colosseum.client.Client(client, this.url);
     }
 
 }

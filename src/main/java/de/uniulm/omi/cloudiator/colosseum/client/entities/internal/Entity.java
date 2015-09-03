@@ -27,4 +27,6 @@ public interface Entity {
 
     @JsonIgnore public String getSelfLink();
 
+    @JsonIgnore public Long getId();
+
 }

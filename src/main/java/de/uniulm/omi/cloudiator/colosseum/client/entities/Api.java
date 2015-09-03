@@ -31,14 +31,49 @@ import java.util.List;
 @Path("api")
 public class Api extends NamedEntity {
 
-    public Api(@Nullable List<Link> links, String name) {
+    private String internalProviderName;
+
+    public Api(@Nullable List<Link> links, String name, String internalProviderName) {
         super(links, name);
+        this.internalProviderName = internalProviderName;
     }
 
-    public Api(String name) {
-        this(null, name);
+    public Api(String name, String internalProviderName) {
+        this(null, name, internalProviderName);
     }
 
     protected Api() {
+    }
+
+    public String getInternalProviderName() {
+        return internalProviderName;
+    }
+
+    public void setInternalProviderName(String internalProviderName) {
+        this.internalProviderName = internalProviderName;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+
+        Api api = (Api) o;
+
+        if (internalProviderName != null ?
+            !internalProviderName.equals(api.internalProviderName) :
+            api.internalProviderName != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (internalProviderName != null ? internalProviderName.hashCode() : 0);
+        return result;
     }
 }

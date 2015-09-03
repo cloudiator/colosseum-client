@@ -63,5 +63,6 @@ public class AuthenticationFilter implements ClientRequestFilter {
     @Override public void filter(ClientRequestContext requestContext) throws IOException {
         requestContext.getHeaders().add("X-Auth-Token", this.getToken().getToken());
         requestContext.getHeaders().add("X-Auth-UserId", this.getToken().getUserId());
+        requestContext.getHeaders().add("X-Tenant", this.credential.getTenant());
     }
 }

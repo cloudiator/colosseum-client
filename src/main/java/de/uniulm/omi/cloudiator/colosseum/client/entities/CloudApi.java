@@ -72,4 +72,29 @@ public class CloudApi extends AbstractEntity {
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
     }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        CloudApi cloudApi = (CloudApi) o;
+
+        if (api != null ? !api.equals(cloudApi.api) : cloudApi.api != null)
+            return false;
+        if (cloud != null ? !cloud.equals(cloudApi.cloud) : cloudApi.cloud != null)
+            return false;
+        if (endpoint != null ? !endpoint.equals(cloudApi.endpoint) : cloudApi.endpoint != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = api != null ? api.hashCode() : 0;
+        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
+        result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
+        return result;
+    }
 }

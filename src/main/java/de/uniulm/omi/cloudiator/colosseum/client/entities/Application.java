@@ -41,4 +41,5 @@ public class Application extends NamedEntity {
 
     protected Application() {
     }
+
 }

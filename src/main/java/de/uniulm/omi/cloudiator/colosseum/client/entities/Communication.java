@@ -31,35 +31,59 @@ import java.util.List;
 @Path("communication")
 public class Communication extends AbstractEntity {
 
-    private Long provider;
-    private Long consumer;
+    private Long requiredPort;
+    private Long providedPort;
 
-    public Communication(@Nullable List<Link> links, Long provider, Long consumer) {
+    public Communication(@Nullable List<Link> links, Long requiredPort, Long providedPort) {
         super(links);
-        this.provider = provider;
-        this.consumer = consumer;
+        this.requiredPort = requiredPort;
+        this.providedPort = providedPort;
     }
 
-    public Communication(Long provider, Long consumer) {
-        this(null, provider, consumer);
+    public Communication(Long requiredPort, Long providedPort) {
+        this(null, requiredPort, providedPort);
     }
 
     protected Communication() {
     }
 
-    public Long getProvider() {
-        return provider;
+    public Long getRequiredPort() {
+        return requiredPort;
     }
 
-    public void setProvider(Long provider) {
-        this.provider = provider;
+    public void setRequiredPort(Long requiredPort) {
+        this.requiredPort = requiredPort;
     }
 
-    public Long getConsumer() {
-        return consumer;
+    public Long getProvidedPort() {
+        return providedPort;
     }
 
-    public void setConsumer(Long consumer) {
-        this.consumer = consumer;
+    public void setProvidedPort(Long providedPort) {
+        this.providedPort = providedPort;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Communication))
+            return false;
+
+        Communication that = (Communication) o;
+
+        if (requiredPort != null ?
+            !requiredPort.equals(that.requiredPort) :
+            that.requiredPort != null)
+            return false;
+        return !(providedPort != null ?
+            !providedPort.equals(that.providedPort) :
+            that.providedPort != null);
+
+    }
+
+    @Override public int hashCode() {
+        int result = requiredPort != null ? requiredPort.hashCode() : 0;
+        result = 31 * result + (providedPort != null ? providedPort.hashCode() : 0);
+        return result;
     }
 }

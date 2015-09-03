@@ -28,20 +28,22 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("applicationComponent")
+@Path("ac")
 public class ApplicationComponent extends AbstractEntity {
 
     private Long application;
     private Long component;
+    private Long virtualMachineTemplate;
 
-    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component) {
+    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component, Long virtualMachineTemplate) {
         super(links);
         this.application = application;
         this.component = component;
+        this.virtualMachineTemplate = virtualMachineTemplate;
     }
 
-    public ApplicationComponent(Long application, Long component) {
-        this(null, application, component);
+    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate) {
+        this(null, application, component, virtualMachineTemplate);
     }
 
     protected ApplicationComponent() {
@@ -61,5 +63,41 @@ public class ApplicationComponent extends AbstractEntity {
 
     public void setComponent(Long component) {
         this.component = component;
+    }
+
+    public Long getVirtualMachineTemplate() {
+        return virtualMachineTemplate;
+    }
+
+    public void setVirtualMachineTemplate(Long virtualMachineTemplate) {
+        this.virtualMachineTemplate = virtualMachineTemplate;
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        ApplicationComponent that = (ApplicationComponent) o;
+
+        if (application != null ? !application.equals(that.application) : that.application != null)
+            return false;
+        if (component != null ? !component.equals(that.component) : that.component != null)
+            return false;
+        if (virtualMachineTemplate != null ?
+            !virtualMachineTemplate.equals(that.virtualMachineTemplate) :
+            that.virtualMachineTemplate != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = application != null ? application.hashCode() : 0;
+        result = 31 * result + (component != null ? component.hashCode() : 0);
+        result =
+            31 * result + (virtualMachineTemplate != null ? virtualMachineTemplate.hashCode() : 0);
+        return result;
     }
 }

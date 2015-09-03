@@ -62,4 +62,27 @@ public class Credential extends AbstractEntity {
     public void setSecret(String secret) {
         this.secret = secret;
     }
+
+    @Override public boolean equals(Object o) {
+        // same credential with different secret possible?
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Credential that = (Credential) o;
+
+        if (secret != null ? !secret.equals(that.secret) : that.secret != null)
+            return false;
+        if (user != null ? !user.equals(that.user) : that.user != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + (secret != null ? secret.hashCode() : 0);
+        return result;
+    }
 }

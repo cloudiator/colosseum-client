@@ -31,18 +31,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public abstract class AbstractEntity implements Entity {
 
-    @JsonIgnore @Nullable private List<Link> links;
+    @JsonIgnore @Nullable private List<Link> link;
 
-    @JsonIgnore public List<Link> getLinks() {
-        return links;
+    @JsonIgnore public List<Link> getLink() {
+        return link;
     }
 
-    @JsonProperty public void setLinks(@Nullable List<Link> links) {
-        this.links = links;
+    @JsonProperty public void setLink(@Nullable List<Link> link) {
+        this.link = link;
     }
 
-    public AbstractEntity(@Nullable List<Link> links) {
-        this.links = links;
+    public AbstractEntity(@Nullable List<Link> link) {
+        this.link = link;
     }
 
     public AbstractEntity() {
@@ -50,12 +50,17 @@ public abstract class AbstractEntity implements Entity {
     }
 
     @Override public String getSelfLink() {
-        checkNotNull(this.links);
-        for (Link link : this.links) {
+        checkNotNull(this.link);
+        for (Link link : this.link) {
             if (link.getRel().equals("self")) {
                 return link.getHref();
             }
         }
         throw new IllegalStateException("self link not present in entity");
+    }
+
+    @Override public Long getId() {
+        String selfLink = this.getSelfLink();
+        return Long.parseLong(selfLink.substring(selfLink.lastIndexOf('/') + 1));
     }
 }

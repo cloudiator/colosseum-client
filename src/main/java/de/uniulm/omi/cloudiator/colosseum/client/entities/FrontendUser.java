@@ -92,4 +92,30 @@ public class FrontendUser extends AbstractEntity {
     public void setRepeat(String repeat) {
         this.repeat = repeat;
     }
+
+    @Override public boolean equals(Object o) {
+        //ignore password, right?
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        FrontendUser that = (FrontendUser) o;
+
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null)
+            return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null)
+            return false;
+        if (mail != null ? !mail.equals(that.mail) : that.mail != null)
+            return false;
+
+        return true;
+    }
+
+    @Override public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (mail != null ? mail.hashCode() : 0);
+        return result;
+    }
 }
