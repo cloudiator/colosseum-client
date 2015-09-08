@@ -126,4 +126,12 @@ import java.util.List;
         result = 31 * result + (defaultUsername != null ? defaultUsername.hashCode() : 0);
         return result;
     }
+
+    public String getDefaultUsername() {
+        return defaultUsername;
+    }
+
+    public void setDefaultUsername(String defaultUsername) {
+        this.defaultUsername = defaultUsername;
+    }
 }
