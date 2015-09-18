@@ -33,14 +33,20 @@ import java.util.List;
 public class OperatingSystemVendor extends NamedEntity {
 
     private OperatingSystemVendorType operatingSystemVendorType;
+    private String defaultUserName;
+    private String defaultPassword;
 
-    public OperatingSystemVendor(@Nullable List<Link> links, String name, OperatingSystemVendorType operatingSystemVendorType) {
+    public OperatingSystemVendor(@Nullable List<Link> links, String name, OperatingSystemVendorType operatingSystemVendorType,
+                                 String defaultUserName, String defaultPassword) {
         super(links, name);
         this.operatingSystemVendorType = operatingSystemVendorType;
+        this.defaultUserName = defaultUserName;
+        this.defaultPassword = defaultPassword;
     }
 
-    public OperatingSystemVendor(String name, OperatingSystemVendorType operatingSystemVendorType) {
-        this(null, name, operatingSystemVendorType);
+    public OperatingSystemVendor(String name, OperatingSystemVendorType operatingSystemVendorType,
+                                 String defaultUserName, String defaultPassword) {
+        this(null, name, operatingSystemVendorType, defaultUserName, defaultPassword);
     }
 
     protected OperatingSystemVendor() {
@@ -54,27 +60,43 @@ public class OperatingSystemVendor extends NamedEntity {
         this.operatingSystemVendorType = operatingSystemVendorType;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        if (!super.equals(o))
-            return false;
+    public String getDefaultUserName() {
+        return defaultUserName;
+    }
+
+    public void setDefaultUserName(String defaultUserName) {
+        this.defaultUserName = defaultUserName;
+    }
+
+    public String getDefaultPassword() {
+        return defaultPassword;
+    }
+
+    public void setDefaultPassword(String defaultPassword) {
+        this.defaultPassword = defaultPassword;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OperatingSystemVendor)) return false;
+        if (!super.equals(o)) return false;
 
         OperatingSystemVendor that = (OperatingSystemVendor) o;
 
-        if (operatingSystemVendorType != that.operatingSystemVendorType)
+        if (operatingSystemVendorType != that.operatingSystemVendorType) return false;
+        if (defaultUserName != null ? !defaultUserName.equals(that.defaultUserName) : that.defaultUserName != null)
             return false;
+        return !(defaultPassword != null ? !defaultPassword.equals(that.defaultPassword) : that.defaultPassword != null);
 
-        return true;
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (operatingSystemVendorType != null ?
-            operatingSystemVendorType.hashCode() :
-            0);
+        result = 31 * result + (operatingSystemVendorType != null ? operatingSystemVendorType.hashCode() : 0);
+        result = 31 * result + (defaultUserName != null ? defaultUserName.hashCode() : 0);
+        result = 31 * result + (defaultPassword != null ? defaultPassword.hashCode() : 0);
         return result;
     }
 }
