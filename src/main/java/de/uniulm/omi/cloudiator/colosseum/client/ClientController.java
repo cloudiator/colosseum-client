@@ -96,8 +96,8 @@ public class ClientController<T extends Entity> {
         return collect.stream().findAny();
     }
 
-    public Optional<T> exists(Predicate<? super T> filter) {
-        getList().stream().anyMatch(filter);
+    public boolean exists(Predicate<? super T> filter) {
+        return getList().stream().anyMatch(filter);
     }
 
     public T create(T t) {
