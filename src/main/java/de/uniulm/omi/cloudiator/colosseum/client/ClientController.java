@@ -96,6 +96,10 @@ public class ClientController<T extends Entity> {
         return collect.stream().findAny();
     }
 
+    public Optional<T> exists(Predicate<? super T> filter) {
+        getList().stream().anyMatch(filter);
+    }
+
     public T create(T t) {
         return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value())
             .post(javax.ws.rs.client.Entity.entity(t, MediaType.APPLICATION_JSON_TYPE))
