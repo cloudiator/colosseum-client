@@ -31,27 +31,27 @@ import java.util.List;
 @Path("image") public class Image extends NamedRemoteEntity {
 
     private Long cloud;
-    private List<Long> locations;
+    private Long location;
     private Long operatingSystem;
     private List<Long> cloudCredentials;
-    private String defaultUsername;
+    private String defaultLoginUsername;
 
     public Image(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name,
-        Long cloud, List<Long> locations, Long operatingSystem, List<Long> cloudCredentials,
-        String defaultUsername) {
+        Long cloud, Long location, Long operatingSystem, List<Long> cloudCredentials,
+        String defaultLoginUsername) {
         super(links, remoteId, cloudProviderId, name);
         this.cloud = cloud;
-        this.locations = locations;
+        this.location = location;
         this.operatingSystem = operatingSystem;
         this.cloudCredentials = cloudCredentials;
-        this.defaultUsername = defaultUsername;
+        this.defaultLoginUsername = defaultLoginUsername;
     }
 
     public Image(String remoteId, String cloudProviderId, String name, Long cloud,
-        List<Long> locations, Long operatingSystem, List<Long> cloudCredentials,
-        String defaultUsername) {
-        this(null, remoteId, cloudProviderId, name, cloud, locations, operatingSystem,
-            cloudCredentials, defaultUsername);
+        Long location, Long operatingSystem, List<Long> cloudCredentials,
+        String defaultLoginUsername) {
+        this(null, remoteId, cloudProviderId, name, cloud, location, operatingSystem,
+            cloudCredentials, defaultLoginUsername);
     }
 
     protected Image() {
@@ -65,12 +65,12 @@ import java.util.List;
         this.cloud = cloud;
     }
 
-    public List<Long> getLocations() {
-        return locations;
+    public Long getLocation() {
+        return location;
     }
 
-    public void setLocations(List<Long> locations) {
-        this.locations = locations;
+    public void setLocation(Long location) {
+        this.location = location;
     }
 
     public Long getOperatingSystem() {
@@ -101,7 +101,7 @@ import java.util.List;
 
         if (cloud != null ? !cloud.equals(image.cloud) : image.cloud != null)
             return false;
-        if (locations != null ? !locations.equals(image.locations) : image.locations != null)
+        if (location != null ? !location.equals(image.location) : image.location != null)
             return false;
         if (operatingSystem != null ?
             !operatingSystem.equals(image.operatingSystem) :
@@ -111,27 +111,27 @@ import java.util.List;
             !cloudCredentials.equals(image.cloudCredentials) :
             image.cloudCredentials != null)
             return false;
-        return !(defaultUsername != null ?
-            !defaultUsername.equals(image.defaultUsername) :
-            image.defaultUsername != null);
+        return !(defaultLoginUsername != null ?
+            !defaultLoginUsername.equals(image.defaultLoginUsername) :
+            image.defaultLoginUsername != null);
 
     }
 
     @Override public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
-        result = 31 * result + (locations != null ? locations.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
         result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
-        result = 31 * result + (defaultUsername != null ? defaultUsername.hashCode() : 0);
+        result = 31 * result + (defaultLoginUsername != null ? defaultLoginUsername.hashCode() : 0);
         return result;
     }
 
-    public String getDefaultUsername() {
-        return defaultUsername;
+    public String getDefaultLoginUsername() {
+        return defaultLoginUsername;
     }
 
-    public void setDefaultUsername(String defaultUsername) {
-        this.defaultUsername = defaultUsername;
+    public void setDefaultLoginUsername(String defaultLoginUsername) {
+        this.defaultLoginUsername = defaultLoginUsername;
     }
 }

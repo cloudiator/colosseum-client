@@ -19,7 +19,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
 
@@ -34,19 +33,22 @@ public class Hardware extends RemoteEntity {
 
     private Long cloud;
     private Long hardwareOffer;
-    private List<Long> locations;
+    private Long location;
     private List<Long> cloudCredentials;
+    private String name;
 
-    public Hardware(@Nullable List<Link> links, String remoteId, String cloudProviderId, Long cloud, Long hardwareOffer, List<Long> locations, List<Long> cloudCredentials) {
+
+    public Hardware(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name, Long cloud, Long hardwareOffer, Long location, List<Long> cloudCredentials) {
         super(links, remoteId, cloudProviderId);
+        this.name = name;
         this.cloud = cloud;
         this.hardwareOffer = hardwareOffer;
-        this.locations = locations;
+        this.location = location;
         this.cloudCredentials = cloudCredentials;
     }
 
-    public Hardware(String remoteId, String cloudProviderId, Long cloud, Long hardwareOffer, List<Long> locations, List<Long> cloudCredentials) {
-        this(null, remoteId, cloudProviderId, cloud, hardwareOffer, locations, cloudCredentials);
+    public Hardware(String remoteId, String cloudProviderId, String name, Long cloud, Long hardwareOffer, Long location, List<Long> cloudCredentials) {
+        this(null, remoteId, cloudProviderId, name, cloud, hardwareOffer, location, cloudCredentials);
     }
 
     protected Hardware() {
@@ -68,12 +70,12 @@ public class Hardware extends RemoteEntity {
         this.hardwareOffer = hardwareOffer;
     }
 
-    public List<Long> getLocations() {
-        return locations;
+    public Long getLocation() {
+        return location;
     }
 
-    public void setLocations(List<Long> locations) {
-        this.locations = locations;
+    public void setLocation(Long location) {
+        this.location = location;
     }
 
     public List<Long> getCloudCredentials() {
@@ -84,40 +86,41 @@ public class Hardware extends RemoteEntity {
         this.cloudCredentials = cloudCredentials;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Hardware))
-            return false;
-        if (!super.equals(o))
-            return false;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Hardware hardware = (Hardware) o;
 
-        //TODO ignore cloud for comparing?
-//        if (cloud != null ? !cloud.equals(hardware.cloud) : hardware.cloud != null)
-//            return false;
-//        if (cloudCredentials != null ?
-//            !cloudCredentials.equals(hardware.cloudCredentials) :
-//            hardware.cloudCredentials != null)
-//            return false;
-        if (hardwareOffer != null ?
-            !hardwareOffer.equals(hardware.hardwareOffer) :
-            hardware.hardwareOffer != null)
+        if (cloud != null ? !cloud.equals(hardware.cloud) : hardware.cloud != null) return false;
+        if (hardwareOffer != null ? !hardwareOffer.equals(hardware.hardwareOffer) : hardware.hardwareOffer != null)
             return false;
-        //ignore locations
-        //if (locations != null ? !locations.equals(hardware.locations) : hardware.locations != null)
-        //    return false;
+        if (location != null ? !location.equals(hardware.location) : hardware.location != null) return false;
+        if (cloudCredentials != null ? !cloudCredentials.equals(hardware.cloudCredentials) : hardware.cloudCredentials != null)
+            return false;
+        return !(name != null ? !name.equals(hardware.name) : hardware.name != null);
 
-        return true;
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (hardwareOffer != null ? hardwareOffer.hashCode() : 0);
-        result = 31 * result + (locations != null ? locations.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }
