@@ -33,20 +33,20 @@ import java.util.List;
 public class OperatingSystemVendor extends NamedEntity {
 
     private OperatingSystemVendorType operatingSystemVendorType;
-    private String defaultUserName;
+    private String defaultLoginName;
     private String defaultPassword;
 
     public OperatingSystemVendor(@Nullable List<Link> links, String name, OperatingSystemVendorType operatingSystemVendorType,
-                                 String defaultUserName, String defaultPassword) {
+                                 String defaultLoginName, String defaultPassword) {
         super(links, name);
         this.operatingSystemVendorType = operatingSystemVendorType;
-        this.defaultUserName = defaultUserName;
+        this.defaultLoginName = defaultLoginName;
         this.defaultPassword = defaultPassword;
     }
 
     public OperatingSystemVendor(String name, OperatingSystemVendorType operatingSystemVendorType,
-                                 String defaultUserName, String defaultPassword) {
-        this(null, name, operatingSystemVendorType, defaultUserName, defaultPassword);
+                                 String defaultLoginName, String defaultPassword) {
+        this(null, name, operatingSystemVendorType, defaultLoginName, defaultPassword);
     }
 
     protected OperatingSystemVendor() {
@@ -60,12 +60,12 @@ public class OperatingSystemVendor extends NamedEntity {
         this.operatingSystemVendorType = operatingSystemVendorType;
     }
 
-    public String getDefaultUserName() {
-        return defaultUserName;
+    public String getDefaultLoginName() {
+        return defaultLoginName;
     }
 
-    public void setDefaultUserName(String defaultUserName) {
-        this.defaultUserName = defaultUserName;
+    public void setDefaultLoginName(String defaultLoginName) {
+        this.defaultLoginName = defaultLoginName;
     }
 
     public String getDefaultPassword() {
@@ -85,7 +85,7 @@ public class OperatingSystemVendor extends NamedEntity {
         OperatingSystemVendor that = (OperatingSystemVendor) o;
 
         if (operatingSystemVendorType != that.operatingSystemVendorType) return false;
-        if (defaultUserName != null ? !defaultUserName.equals(that.defaultUserName) : that.defaultUserName != null)
+        if (defaultLoginName != null ? !defaultLoginName.equals(that.defaultLoginName) : that.defaultLoginName != null)
             return false;
         return !(defaultPassword != null ? !defaultPassword.equals(that.defaultPassword) : that.defaultPassword != null);
 
@@ -95,7 +95,7 @@ public class OperatingSystemVendor extends NamedEntity {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (operatingSystemVendorType != null ? operatingSystemVendorType.hashCode() : 0);
-        result = 31 * result + (defaultUserName != null ? defaultUserName.hashCode() : 0);
+        result = 31 * result + (defaultLoginName != null ? defaultLoginName.hashCode() : 0);
         result = 31 * result + (defaultPassword != null ? defaultPassword.hashCode() : 0);
         return result;
     }
