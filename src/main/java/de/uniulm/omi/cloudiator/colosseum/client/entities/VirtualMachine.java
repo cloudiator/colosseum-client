@@ -33,17 +33,19 @@ public class VirtualMachine extends NamedRemoteEntity {
     private Long image;
     private Long hardware;
     private Long location;
+    private Long templateOptions;
 
-    public VirtualMachine(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name, Long cloud, Long image, Long hardware, Long location) {
+    public VirtualMachine(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name, Long cloud, Long image, Long hardware, Long location, Long templateOptions) {
         super(links, remoteId, cloudProviderId, name);
         this.cloud = cloud;
         this.image = image;
         this.hardware = hardware;
         this.location = location;
+        this.templateOptions = templateOptions;
     }
 
-    public VirtualMachine(String remoteId, String cloudProviderId, String name, Long cloud, Long image, Long hardware, Long location) {
-        this(null, remoteId, cloudProviderId, name, cloud, image, hardware, location);
+    public VirtualMachine(String remoteId, String cloudProviderId, String name, Long cloud, Long image, Long hardware, Long location, Long templateOptions) {
+        this(null, remoteId, cloudProviderId, name, cloud, image, hardware, location, templateOptions);
     }
 
     protected VirtualMachine() {
@@ -81,6 +83,14 @@ public class VirtualMachine extends NamedRemoteEntity {
         this.location = location;
     }
 
+    public Long getTemplateOptions() {
+        return templateOptions;
+    }
+
+    public void setTemplateOptions(Long templateOptions) {
+        this.templateOptions = templateOptions;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -99,6 +109,8 @@ public class VirtualMachine extends NamedRemoteEntity {
             return false;
         if (location != null ? !location.equals(that.location) : that.location != null)
             return false;
+        if (templateOptions != null ? !templateOptions.equals(that.location) : that.templateOptions != null)
+            return false;
 
         return true;
     }
@@ -109,6 +121,7 @@ public class VirtualMachine extends NamedRemoteEntity {
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (templateOptions != null ? templateOptions.hashCode() : 0);
         return result;
     }
 }

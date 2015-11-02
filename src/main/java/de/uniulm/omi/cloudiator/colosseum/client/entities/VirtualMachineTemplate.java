@@ -35,17 +35,19 @@ public class VirtualMachineTemplate extends AbstractEntity {
     private Long image;
     private Long location;
     private Long hardware;
+    private Long templateOptions;
 
-    public VirtualMachineTemplate(@Nullable List<Link> links, Long cloud, Long image, Long location, Long hardware) {
+    public VirtualMachineTemplate(@Nullable List<Link> links, Long cloud, Long image, Long location, Long hardware, Long templateOptions) {
         super(links);
         this.cloud = cloud;
         this.image = image;
         this.location = location;
         this.hardware = hardware;
+        this.templateOptions = templateOptions;
     }
 
-    public VirtualMachineTemplate(Long cloud, Long image, Long location, Long hardware) {
-        this(null, cloud, image, location, hardware);
+    public VirtualMachineTemplate(Long cloud, Long image, Long location, Long hardware, Long templateOptions) {
+        this(null, cloud, image, location, hardware, templateOptions);
     }
 
     protected VirtualMachineTemplate() {
@@ -83,6 +85,14 @@ public class VirtualMachineTemplate extends AbstractEntity {
         this.hardware = hardware;
     }
 
+    public Long getTemplateOptions() {
+        return templateOptions;
+    }
+
+    public void setTemplateOptions(Long templateOptions) {
+        this.templateOptions = templateOptions;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -99,6 +109,8 @@ public class VirtualMachineTemplate extends AbstractEntity {
             return false;
         if (location != null ? !location.equals(that.location) : that.location != null)
             return false;
+        if (templateOptions != null ? !templateOptions.equals(that.templateOptions) : that.templateOptions != null)
+            return false;
 
         return true;
     }
@@ -108,6 +120,7 @@ public class VirtualMachineTemplate extends AbstractEntity {
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
+        result = 31 * result + (templateOptions != null ? templateOptions.hashCode() : 0);
         return result;
     }
 }
