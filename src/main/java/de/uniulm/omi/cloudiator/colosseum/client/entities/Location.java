@@ -39,8 +39,9 @@ public class Location extends RemoteEntity {
     private Boolean isAssignable;
     private Long geoLocation;
     private List<Long> cloudCredentials;
+    private String name;
 
-    public Location(@Nullable List<Link> links, String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
+    public Location(@Nullable List<Link> links, String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials, String name) {
         super(links, remoteId, cloudProviderId);
         this.cloud = cloud;
         this.parent = parent;
@@ -48,10 +49,11 @@ public class Location extends RemoteEntity {
         this.isAssignable = isAssignable;
         this.geoLocation = geoLocation;
         this.cloudCredentials = cloudCredentials;
+        this.name = name;
     }
 
-    public Location(String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials) {
-        this(null, remoteId, cloudProviderId, cloud, parent, locationScope, isAssignable, geoLocation, cloudCredentials);
+    public Location(String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials, String name) {
+        this(null, remoteId, cloudProviderId, cloud, parent, locationScope, isAssignable, geoLocation, cloudCredentials, name);
     }
 
     protected Location() {
@@ -105,6 +107,14 @@ public class Location extends RemoteEntity {
         this.cloudCredentials = cloudCredentials;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -133,6 +143,8 @@ public class Location extends RemoteEntity {
             return false;
         if (parent != null ? !parent.equals(location.parent) : location.parent != null)
             return false;
+        if (name != null ? !name.equals(location.name) : location.name != null)
+            return false;
 
         return true;
     }
@@ -145,6 +157,7 @@ public class Location extends RemoteEntity {
         result = 31 * result + (isAssignable != null ? isAssignable.hashCode() : 0);
         result = 31 * result + (geoLocation != null ? geoLocation.hashCode() : 0);
         result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 }
