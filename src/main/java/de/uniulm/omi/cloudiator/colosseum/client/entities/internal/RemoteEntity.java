@@ -18,6 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
+
 import java.util.List;
 
 /**
@@ -26,16 +28,16 @@ import java.util.List;
 public abstract class RemoteEntity extends AbstractEntity {
 
     private String remoteId;
-    private String cloudProviderId;
+    private RemoteState remoteState;
 
-    public RemoteEntity(List<Link> links, String remoteId, String cloudProviderId) {
+    public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState) {
         super(links);
         this.remoteId = remoteId;
-        this.cloudProviderId = cloudProviderId;
+        this.remoteState = remoteState;
     }
 
-    public RemoteEntity(String remoteId, String cloudProviderId) {
-        this(null, remoteId, cloudProviderId);
+    public RemoteEntity(String remoteId, RemoteState remoteState) {
+        this(null, remoteId, remoteState);
     }
 
     protected RemoteEntity() {
@@ -49,12 +51,12 @@ public abstract class RemoteEntity extends AbstractEntity {
         this.remoteId = remoteId;
     }
 
-    public String getCloudProviderId() {
-        return cloudProviderId;
+    public RemoteState getRemoteState() {
+        return remoteState;
     }
 
-    public void setCloudProviderId(String cloudProviderId) {
-        this.cloudProviderId = cloudProviderId;
+    public void setRemoteState(RemoteState remoteState) {
+        this.remoteState = remoteState;
     }
 
     @Override public boolean equals(Object o) {

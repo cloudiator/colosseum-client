@@ -19,10 +19,8 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.LocationScope;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.*;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -31,40 +29,34 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("location")
-public class Location extends RemoteEntity {
+public class Location extends RemoteEntityInCloud {
 
-    private Long cloud;
     private Long parent;
     private LocationScope locationScope;
     private Boolean isAssignable;
     private Long geoLocation;
-    private List<Long> cloudCredentials;
     private String name;
 
-    public Location(@Nullable List<Link> links, String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials, String name) {
-        super(links, remoteId, cloudProviderId);
-        this.cloud = cloud;
+    public Location(List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId,
+                    List<Long> cloudCredentials, Long owner,Long parent, LocationScope locationScope,
+                    Boolean isAssignable, Long geoLocation, String name) {
+        super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner);
         this.parent = parent;
         this.locationScope = locationScope;
         this.isAssignable = isAssignable;
         this.geoLocation = geoLocation;
-        this.cloudCredentials = cloudCredentials;
         this.name = name;
     }
 
-    public Location(String remoteId, String cloudProviderId, Long cloud, Long parent, LocationScope locationScope, Boolean isAssignable, Long geoLocation, List<Long> cloudCredentials, String name) {
-        this(null, remoteId, cloudProviderId, cloud, parent, locationScope, isAssignable, geoLocation, cloudCredentials, name);
+    public Location(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId,
+                    List<Long> cloudCredentials, Long owner,Long parent, LocationScope locationScope,
+                    Boolean isAssignable, Long geoLocation, String name) {
+        this(null, remoteId, remoteState, cloud, cloudProviderId,
+                cloudCredentials, owner, parent, locationScope,
+                isAssignable, geoLocation, name);
     }
 
     protected Location() {
-    }
-
-    public Long getCloud() {
-        return cloud;
-    }
-
-    public void setCloud(Long cloud) {
-        this.cloud = cloud;
     }
 
     public Long getParent() {
@@ -99,14 +91,6 @@ public class Location extends RemoteEntity {
         this.geoLocation = geoLocation;
     }
 
-    public List<Long> getCloudCredentials() {
-        return cloudCredentials;
-    }
-
-    public void setCloudCredentials(List<Long> cloudCredentials) {
-        this.cloudCredentials = cloudCredentials;
-    }
-
     public String getName() {
         return name;
     }
@@ -125,12 +109,6 @@ public class Location extends RemoteEntity {
 
         Location location = (Location) o;
 
-        if (cloud != null ? !cloud.equals(location.cloud) : location.cloud != null)
-            return false;
-        if (cloudCredentials != null ?
-            !cloudCredentials.equals(location.cloudCredentials) :
-            location.cloudCredentials != null)
-            return false;
         if (geoLocation != null ?
             !geoLocation.equals(location.geoLocation) :
             location.geoLocation != null)
@@ -151,12 +129,10 @@ public class Location extends RemoteEntity {
 
     @Override public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (parent != null ? parent.hashCode() : 0);
         result = 31 * result + (locationScope != null ? locationScope.hashCode() : 0);
         result = 31 * result + (isAssignable != null ? isAssignable.hashCode() : 0);
         result = 31 * result + (geoLocation != null ? geoLocation.hashCode() : 0);
-        result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

@@ -18,24 +18,27 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
+
 import java.util.List;
 
 /**
  * Created by Frank on 18.08.2015.
  */
-public abstract class NamedRemoteEntity extends RemoteEntity {
+public abstract class NamedRemoteEntityInLocation extends RemoteEntityInLocation {
     private String name;
 
-    public NamedRemoteEntity(List<Link> links, String remoteId, String cloudProviderId, String name) {
-        super(links, remoteId, cloudProviderId);
+    public NamedRemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location, String name) {
+        super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location);
         this.name = name;
     }
 
-    public NamedRemoteEntity(String remoteId, String cloudProviderId, String name) {
-        this(null, remoteId, cloudProviderId, name);
+    public NamedRemoteEntityInLocation(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location, String name) {
+        super(remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location);
+        this.name = name;
     }
 
-    protected NamedRemoteEntity() {
+    protected NamedRemoteEntityInLocation() {
     }
 
     public String getName() {
@@ -49,12 +52,12 @@ public abstract class NamedRemoteEntity extends RemoteEntity {
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
-        if (!(o instanceof NamedRemoteEntity))
+        if (!(o instanceof NamedRemoteEntityInLocation))
             return false;
         if (!super.equals(o))
             return false;
 
-        NamedRemoteEntity that = (NamedRemoteEntity) o;
+        NamedRemoteEntityInLocation that = (NamedRemoteEntityInLocation) o;
 
         if (name != null ? !name.equals(that.name) : that.name != null)
             return false;

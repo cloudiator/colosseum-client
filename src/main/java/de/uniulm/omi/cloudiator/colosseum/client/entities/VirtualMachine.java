@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.*;
 
 import javax.annotation.Nullable;
@@ -27,36 +28,26 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("virtualMachine")
-public class VirtualMachine extends NamedRemoteEntity {
+public class VirtualMachine extends NamedRemoteEntityInLocation {
 
-    private Long cloud;
     private Long image;
     private Long hardware;
-    private Long location;
     private Long templateOptions;
 
-    public VirtualMachine(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name, Long cloud, Long image, Long hardware, Long location, Long templateOptions) {
-        super(links, remoteId, cloudProviderId, name);
-        this.cloud = cloud;
+    public VirtualMachine(@Nullable List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+                String name, Long image, Long hardware, Long templateOptions) {
+            super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name);
         this.image = image;
         this.hardware = hardware;
-        this.location = location;
         this.templateOptions = templateOptions;
     }
 
-    public VirtualMachine(String remoteId, String cloudProviderId, String name, Long cloud, Long image, Long hardware, Long location, Long templateOptions) {
-        this(null, remoteId, cloudProviderId, name, cloud, image, hardware, location, templateOptions);
+    public VirtualMachine(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+                          String name, Long image, Long hardware, Long templateOptions) {
+        this(null, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name, image, hardware, templateOptions);
     }
 
     protected VirtualMachine() {
-    }
-
-    public Long getCloud() {
-        return cloud;
-    }
-
-    public void setCloud(Long cloud) {
-        this.cloud = cloud;
     }
 
     public Long getImage() {
@@ -73,14 +64,6 @@ public class VirtualMachine extends NamedRemoteEntity {
 
     public void setHardware(Long hardware) {
         this.hardware = hardware;
-    }
-
-    public Long getLocation() {
-        return location;
-    }
-
-    public void setLocation(Long location) {
-        this.location = location;
     }
 
     public Long getTemplateOptions() {
@@ -101,15 +84,11 @@ public class VirtualMachine extends NamedRemoteEntity {
 
         VirtualMachine that = (VirtualMachine) o;
 
-        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
-            return false;
         if (hardware != null ? !hardware.equals(that.hardware) : that.hardware != null)
             return false;
         if (image != null ? !image.equals(that.image) : that.image != null)
             return false;
-        if (location != null ? !location.equals(that.location) : that.location != null)
-            return false;
-        if (templateOptions != null ? !templateOptions.equals(that.location) : that.templateOptions != null)
+        if (templateOptions != null ? !templateOptions.equals(that.templateOptions) : that.templateOptions != null)
             return false;
 
         return true;
@@ -117,10 +96,8 @@ public class VirtualMachine extends NamedRemoteEntity {
 
     @Override public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (templateOptions != null ? templateOptions.hashCode() : 0);
         return result;
     }

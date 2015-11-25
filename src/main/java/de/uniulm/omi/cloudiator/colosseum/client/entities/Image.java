@@ -18,8 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedRemoteEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedRemoteEntityInLocation;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,49 +29,25 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("image") public class Image extends NamedRemoteEntity {
+@Path("image") public class Image extends NamedRemoteEntityInLocation {
 
-    private Long cloud;
-    private Long location;
     private Long operatingSystem;
-    private List<Long> cloudCredentials;
     private String defaultLoginUsername;
 
-    public Image(@Nullable List<Link> links, String remoteId, String cloudProviderId, String name,
-        Long cloud, Long location, Long operatingSystem, List<Long> cloudCredentials,
-        String defaultLoginUsername) {
-        super(links, remoteId, cloudProviderId, name);
-        this.cloud = cloud;
-        this.location = location;
+    public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+                 String name, Long operatingSystem, String defaultLoginUsername) {
+        super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name);
         this.operatingSystem = operatingSystem;
-        this.cloudCredentials = cloudCredentials;
         this.defaultLoginUsername = defaultLoginUsername;
     }
 
-    public Image(String remoteId, String cloudProviderId, String name, Long cloud,
-        Long location, Long operatingSystem, List<Long> cloudCredentials,
-        String defaultLoginUsername) {
-        this(null, remoteId, cloudProviderId, name, cloud, location, operatingSystem,
-            cloudCredentials, defaultLoginUsername);
+
+    public Image(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+                 String name, Long operatingSystem, String defaultLoginUsername) {
+        this(null, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name, operatingSystem, defaultLoginUsername);
     }
 
     protected Image() {
-    }
-
-    public Long getCloud() {
-        return cloud;
-    }
-
-    public void setCloud(Long cloud) {
-        this.cloud = cloud;
-    }
-
-    public Long getLocation() {
-        return location;
-    }
-
-    public void setLocation(Long location) {
-        this.location = location;
     }
 
     public Long getOperatingSystem() {
@@ -81,12 +58,12 @@ import java.util.List;
         this.operatingSystem = operatingSystem;
     }
 
-    public List<Long> getCloudCredentials() {
-        return cloudCredentials;
+    public String getDefaultLoginUsername() {
+        return defaultLoginUsername;
     }
 
-    public void setCloudCredentials(List<Long> cloudCredentials) {
-        this.cloudCredentials = cloudCredentials;
+    public void setDefaultLoginUsername(String defaultLoginUsername) {
+        this.defaultLoginUsername = defaultLoginUsername;
     }
 
     @Override public boolean equals(Object o) {
@@ -99,17 +76,9 @@ import java.util.List;
 
         Image image = (Image) o;
 
-        if (cloud != null ? !cloud.equals(image.cloud) : image.cloud != null)
-            return false;
-        if (location != null ? !location.equals(image.location) : image.location != null)
-            return false;
         if (operatingSystem != null ?
             !operatingSystem.equals(image.operatingSystem) :
             image.operatingSystem != null)
-            return false;
-        if (cloudCredentials != null ?
-            !cloudCredentials.equals(image.cloudCredentials) :
-            image.cloudCredentials != null)
             return false;
         return !(defaultLoginUsername != null ?
             !defaultLoginUsername.equals(image.defaultLoginUsername) :
@@ -119,19 +88,8 @@ import java.util.List;
 
     @Override public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
-        result = 31 * result + (cloudCredentials != null ? cloudCredentials.hashCode() : 0);
         result = 31 * result + (defaultLoginUsername != null ? defaultLoginUsername.hashCode() : 0);
         return result;
-    }
-
-    public String getDefaultLoginUsername() {
-        return defaultLoginUsername;
-    }
-
-    public void setDefaultLoginUsername(String defaultLoginUsername) {
-        this.defaultLoginUsername = defaultLoginUsername;
     }
 }
