@@ -34,17 +34,17 @@ import java.util.List;
     private Long operatingSystem;
     private String defaultLoginUsername;
 
-    public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+    public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
                  String name, Long operatingSystem, String defaultLoginUsername) {
-        super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name);
+        super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name);
         this.operatingSystem = operatingSystem;
         this.defaultLoginUsername = defaultLoginUsername;
     }
 
 
-    public Image(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+    public Image(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
                  String name, Long operatingSystem, String defaultLoginUsername) {
-        this(null, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name, operatingSystem, defaultLoginUsername);
+        this(null, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name, operatingSystem, defaultLoginUsername);
     }
 
     protected Image() {

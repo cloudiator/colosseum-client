@@ -29,15 +29,17 @@ public abstract class RemoteEntity extends AbstractEntity {
 
     private String remoteId;
     private RemoteState remoteState;
+    private String cloudProviderId;
 
-    public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState) {
+    public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId) {
         super(links);
         this.remoteId = remoteId;
         this.remoteState = remoteState;
+        this.cloudProviderId = cloudProviderId;
     }
 
-    public RemoteEntity(String remoteId, RemoteState remoteState) {
-        this(null, remoteId, remoteState);
+    public RemoteEntity(String remoteId, RemoteState remoteState, String cloudProviderId) {
+        this(null, remoteId, remoteState, cloudProviderId);
     }
 
     protected RemoteEntity() {
@@ -57,6 +59,14 @@ public abstract class RemoteEntity extends AbstractEntity {
 
     public void setRemoteState(RemoteState remoteState) {
         this.remoteState = remoteState;
+    }
+
+    public String getCloudProviderId() {
+        return cloudProviderId;
+    }
+
+    public void setCloudProviderId(String cloudProviderId) {
+        this.cloudProviderId = cloudProviderId;
     }
 
     @Override public boolean equals(Object o) {

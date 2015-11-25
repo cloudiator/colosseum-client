@@ -34,17 +34,17 @@ public class VirtualMachine extends NamedRemoteEntityInLocation {
     private Long hardware;
     private Long templateOptions;
 
-    public VirtualMachine(@Nullable List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+    public VirtualMachine(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
                 String name, Long image, Long hardware, Long templateOptions) {
-            super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name);
+            super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name);
         this.image = image;
         this.hardware = hardware;
         this.templateOptions = templateOptions;
     }
 
-    public VirtualMachine(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+    public VirtualMachine(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
                           String name, Long image, Long hardware, Long templateOptions) {
-        this(null, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name, image, hardware, templateOptions);
+        this(null, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name, image, hardware, templateOptions);
     }
 
     protected VirtualMachine() {

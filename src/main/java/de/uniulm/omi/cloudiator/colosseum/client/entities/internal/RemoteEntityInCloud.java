@@ -9,22 +9,19 @@ import java.util.List;
  */
 public class RemoteEntityInCloud extends RemoteEntity {
     private Long cloud;
-    private String cloudProviderId;
     private List<Long> cloudCredentials;
     private Long owner;
 
-    public RemoteEntityInCloud(List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner) {
-        super(links, remoteId, remoteState);
+    public RemoteEntityInCloud(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner) {
+        super(links, remoteId, remoteState, cloudProviderId);
         this.cloud = cloud;
-        this.cloudProviderId = cloudProviderId;
         this.cloudCredentials = cloudCredentials;
         this.owner = owner;
     }
 
-    public RemoteEntityInCloud(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner) {
-        super(null, remoteId, remoteState);
+    public RemoteEntityInCloud(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner) {
+        super(null, remoteId, remoteState, cloudProviderId);
         this.cloud = cloud;
-        this.cloudProviderId = cloudProviderId;
         this.cloudCredentials = cloudCredentials;
         this.owner = owner;
     }
@@ -39,14 +36,6 @@ public class RemoteEntityInCloud extends RemoteEntity {
 
     public void setCloud(Long cloud) {
         this.cloud = cloud;
-    }
-
-    public String getCloudProviderId() {
-        return cloudProviderId;
-    }
-
-    public void setCloudProviderId(String cloudProviderId) {
-        this.cloudProviderId = cloudProviderId;
     }
 
     public List<Long> getCloudCredentials() {

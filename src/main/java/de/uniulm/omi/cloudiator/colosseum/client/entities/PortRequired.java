@@ -29,14 +29,26 @@ import java.util.List;
  */
 @Path("portReq")
 public class PortRequired extends Port {
-    public PortRequired(@Nullable List<Link> links, String name, Long applicationComponent) {
+    private String updateAction;
+
+    public PortRequired(@Nullable List<Link> links, String name, Long applicationComponent, String updateAction) {
         super(links, name, applicationComponent);
+
+        this.updateAction = updateAction;
     }
 
-    public PortRequired(String name, Long applicationComponent) {
-        this(null, name, applicationComponent);
+    public PortRequired(String name, Long applicationComponent, String updateAction) {
+        this(null, name, applicationComponent, updateAction);
     }
 
     protected PortRequired() {
+    }
+
+    public String getUpdateAction() {
+        return updateAction;
+    }
+
+    public void setUpdateAction(String updateAction) {
+        this.updateAction = updateAction;
     }
 }

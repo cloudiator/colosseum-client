@@ -32,15 +32,15 @@ public class Hardware extends NamedRemoteEntityInLocation {
 
     private Long hardwareOffer;
 
-    public Hardware(@Nullable List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+    public Hardware(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
                     String name, Long hardwareOffer) {
-        super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name);
+        super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name);
         this.hardwareOffer = hardwareOffer;
     }
 
-    public Hardware(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location,
+    public Hardware(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
                     String name, Long hardwareOffer) {
-        this(null, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location, name, hardwareOffer);
+        this(null, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name, hardwareOffer);
     }
 
     protected Hardware() {

@@ -28,13 +28,13 @@ import java.util.List;
 public abstract class NamedRemoteEntityInLocation extends RemoteEntityInLocation {
     private String name;
 
-    public NamedRemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location, String name) {
-        super(links, remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location);
+    public NamedRemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name) {
+        super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location);
         this.name = name;
     }
 
-    public NamedRemoteEntityInLocation(String remoteId, RemoteState remoteState, Long cloud, String cloudProviderId, List<Long> cloudCredentials, Long owner, Long location, String name) {
-        super(remoteId, remoteState, cloud, cloudProviderId, cloudCredentials, owner, location);
+    public NamedRemoteEntityInLocation(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name) {
+        super(remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location);
         this.name = name;
     }
 
