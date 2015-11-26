@@ -18,9 +18,11 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -29,21 +31,21 @@ import java.util.List;
  * Created by frank on 21.01.15.
  */
 @Path("instance")
-public class Instance extends AbstractEntity {
+public class Instance extends RemoteEntity {
 
     private Long applicationComponent;
     private Long applicationInstance;
     private Long virtualMachine;
 
-    public Instance(@Nullable List<Link> links, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
-        super(links);
+    public Instance(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
+        super(links, remoteId, remoteState, cloudProviderId);
         this.applicationComponent = applicationComponent;
         this.virtualMachine = virtualMachine;
         this.applicationInstance = applicationInstance;
     }
 
-    public Instance(Long applicationComponent, Long applicationInstance, Long virtualMachine) {
-        this(null, applicationComponent, applicationInstance, virtualMachine);
+    public Instance(String remoteId, RemoteState remoteState, String cloudProviderId, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
+        this(null, remoteId, remoteState, cloudProviderId, applicationComponent, applicationInstance, virtualMachine);
     }
 
     protected Instance() {
