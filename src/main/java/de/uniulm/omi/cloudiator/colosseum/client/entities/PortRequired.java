@@ -30,15 +30,23 @@ import java.util.List;
 @Path("portReq")
 public class PortRequired extends Port {
     private String updateAction;
+    private Boolean isMandatory = false;
 
-    public PortRequired(@Nullable List<Link> links, String name, Long applicationComponent, String updateAction) {
+    public PortRequired(@Nullable List<Link> links, String name, Long applicationComponent, String updateAction, @Nullable Boolean isMandatory) {
         super(links, name, applicationComponent);
 
         this.updateAction = updateAction;
+        if(isMandatory != null){
+            this.isMandatory = isMandatory;
+        }
+    }
+
+    public PortRequired(String name, Long applicationComponent, String updateAction, Boolean isMandatory) {
+        this(null, name, applicationComponent, updateAction, isMandatory);
     }
 
     public PortRequired(String name, Long applicationComponent, String updateAction) {
-        this(null, name, applicationComponent, updateAction);
+        this(null, name, applicationComponent, updateAction, null);
     }
 
     protected PortRequired() {
@@ -50,5 +58,13 @@ public class PortRequired extends Port {
 
     public void setUpdateAction(String updateAction) {
         this.updateAction = updateAction;
+    }
+
+    public Boolean getIsMandatory() {
+        return isMandatory;
+    }
+
+    public void setIsMandatory(Boolean mandatory) {
+        isMandatory = mandatory;
     }
 }
