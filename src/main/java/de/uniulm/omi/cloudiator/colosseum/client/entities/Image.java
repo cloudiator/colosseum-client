@@ -33,18 +33,20 @@ import java.util.List;
 
     private Long operatingSystem;
     private String defaultLoginUsername;
+    private String defaultLoginPassword;
 
     public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
-                 String name, Long operatingSystem, String defaultLoginUsername) {
+                 String name, Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
         super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name);
         this.operatingSystem = operatingSystem;
         this.defaultLoginUsername = defaultLoginUsername;
+        this.defaultLoginPassword = defaultLoginPassword;
     }
 
 
     public Image(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
-                 String name, Long operatingSystem, String defaultLoginUsername) {
-        this(null, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name, operatingSystem, defaultLoginUsername);
+                 String name, Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
+        this(null, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner, location, name, operatingSystem, defaultLoginUsername, defaultLoginPassword);
     }
 
     protected Image() {
@@ -66,6 +68,14 @@ import java.util.List;
         this.defaultLoginUsername = defaultLoginUsername;
     }
 
+    public String getDefaultLoginPassword() {
+        return defaultLoginPassword;
+    }
+
+    public void setDefaultLoginPassword(String defaultLoginPassword) {
+        this.defaultLoginPassword = defaultLoginPassword;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -80,6 +90,10 @@ import java.util.List;
             !operatingSystem.equals(image.operatingSystem) :
             image.operatingSystem != null)
             return false;
+        if (defaultLoginPassword != null ?
+                !defaultLoginPassword.equals(image.defaultLoginPassword) :
+                image.defaultLoginPassword != null)
+            return false;
         return !(defaultLoginUsername != null ?
             !defaultLoginUsername.equals(image.defaultLoginUsername) :
             image.defaultLoginUsername != null);
@@ -90,6 +104,7 @@ import java.util.List;
         int result = super.hashCode();
         result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
         result = 31 * result + (defaultLoginUsername != null ? defaultLoginUsername.hashCode() : 0);
+        result = 31 * result + (defaultLoginPassword != null ? defaultLoginPassword.hashCode() : 0);
         return result;
     }
 }
