@@ -22,9 +22,10 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  * Created by Frank on 29.05.2015.
  */
 public enum LocationScope {
-    REGION("Region"),
-    ZONE("Zone"),
-    HOST("Host");
+    PROOVIDER("PROOVIDER"),
+    REGION("REGION"),
+    ZONE("ZONE"),
+    HOST("HOST");
 
     private final String text;
 
