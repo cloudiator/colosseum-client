@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.ContainerType;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -34,16 +35,22 @@ public class ApplicationComponent extends AbstractEntity {
     private Long application;
     private Long component;
     private Long virtualMachineTemplate;
+    private ContainerType containerType;
 
-    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component, Long virtualMachineTemplate) {
+    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component, Long virtualMachineTemplate, @Nullable ContainerType containerType) {
         super(links);
         this.application = application;
         this.component = component;
         this.virtualMachineTemplate = virtualMachineTemplate;
+        this.containerType = containerType;
+    }
+
+    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate, @Nullable ContainerType containerType) {
+        this(null, application, component, virtualMachineTemplate, containerType);
     }
 
     public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate) {
-        this(null, application, component, virtualMachineTemplate);
+        this(null, application, component, virtualMachineTemplate, null);
     }
 
     protected ApplicationComponent() {
@@ -73,6 +80,14 @@ public class ApplicationComponent extends AbstractEntity {
         this.virtualMachineTemplate = virtualMachineTemplate;
     }
 
+    public ContainerType getContainerType() {
+        return containerType;
+    }
+
+    public void setContainerType(ContainerType containerType) {
+        this.containerType = containerType;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -85,6 +100,8 @@ public class ApplicationComponent extends AbstractEntity {
             return false;
         if (component != null ? !component.equals(that.component) : that.component != null)
             return false;
+        if (containerType != null ? !containerType.equals(that.containerType) : that.containerType != null)
+            return false;
         if (virtualMachineTemplate != null ?
             !virtualMachineTemplate.equals(that.virtualMachineTemplate) :
             that.virtualMachineTemplate != null)
@@ -96,6 +113,7 @@ public class ApplicationComponent extends AbstractEntity {
     @Override public int hashCode() {
         int result = application != null ? application.hashCode() : 0;
         result = 31 * result + (component != null ? component.hashCode() : 0);
+        result = 31 * result + (containerType != null ? containerType.hashCode() : 0);
         result =
             31 * result + (virtualMachineTemplate != null ? virtualMachineTemplate.hashCode() : 0);
         return result;
