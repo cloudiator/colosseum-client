@@ -26,6 +26,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by frank on 21.01.15.
@@ -38,11 +39,12 @@ import java.util.List;
     private Long cloud;
     private Long sensorDescription;
     private Long schedule;
+    private Map<String, String> configs;
 
     public RawMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences,
         @Nullable List<Long> monitorInstances,
         Long application, Long component, Long componentInstance,
-        Long cloud, Long sensorDescription, Long schedule) {
+        Long cloud, Long sensorDescription, Long schedule, @Nullable Map<String, String> configs) {
         super(link, externalReferences, monitorInstances);
         this.application = application;
         this.component = component;
@@ -50,21 +52,22 @@ import java.util.List;
         this.cloud = cloud;
         this.sensorDescription = sensorDescription;
         this.schedule = schedule;
+        this.configs = configs;
     }
 
     public RawMonitor(@Nullable List<String> externalReferences, @Nullable List<Long> monitorInstances, Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
-        this(null, externalReferences, monitorInstances, application, component, instance, cloud, sensorDescription, schedule);
+        this(null, externalReferences, monitorInstances, application, component, instance, cloud, sensorDescription, schedule, null);
     }
 
     public RawMonitor(@Nullable List<Long> monitorInstances, Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
-        this(null, null, monitorInstances, application, component, instance, cloud, sensorDescription, schedule);
+        this(null, null, monitorInstances, application, component, instance, cloud, sensorDescription, schedule, null);
     }
 
     public RawMonitor(Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
-        this(null, null, null, application, component, instance, cloud, sensorDescription, schedule);
+        this(null, null, null, application, component, instance, cloud, sensorDescription, schedule, null);
     }
 
     protected RawMonitor() {
@@ -119,6 +122,18 @@ import java.util.List;
         this.schedule = schedule;
     }
 
+    public void setConfigs(Map<String, String> configs){
+        this.configs = configs;
+    }
+
+    public Map<String, String> getConfigs(){
+        return configs;
+    }
+
+    public void addConfig(String key, String value){
+        this.configs.put(key, value);
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -139,6 +154,8 @@ import java.util.List;
             return false;
         if (schedule != null ? !schedule.equals(that.schedule) : that.schedule != null)
             return false;
+        if (configs != null ? !configs.equals(that.configs) : that.configs != null)
+            return false;
         if (sensorDescription != null ?
             !sensorDescription.equals(that.sensorDescription) :
             that.sensorDescription != null)
@@ -154,6 +171,7 @@ import java.util.List;
         result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
         result = 31 * result + (sensorDescription != null ? sensorDescription.hashCode() : 0);
         result = 31 * result + (schedule != null ? schedule.hashCode() : 0);
+        result = 31 * result + (configs != null ? configs.hashCode() : 0);
         return result;
     }
 }
