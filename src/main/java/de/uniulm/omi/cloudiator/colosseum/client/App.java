@@ -22,6 +22,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.*;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -59,6 +60,22 @@ public class App {
 
         //get the controller for the api entity
         final ClientController<Api> apiController = client.controller(Api.class);
+
+        final ClientController<RawMonitor> controller1 = client.controller(RawMonitor.class);
+        final ClientController<SensorConfigurations> controller2 = client.controller(SensorConfigurations.class);
+        final ClientController<TemplateOptions> controller3 = client.controller(TemplateOptions.class);
+
+        TemplateOptions to = new TemplateOptions(new HashMap<>());
+        to.getTags().put("a", "b");
+        to = controller3.create(to);
+
+        SensorConfigurations sensorConfigurations = new SensorConfigurations(new HashMap<>());
+        sensorConfigurations.getConfigs().put("plumps", "klo");
+        sensorConfigurations = controller2.create(sensorConfigurations);
+
+        final RawMonitor rawMonitor = new RawMonitor(1l, 1l, null, null, 1l, 1l, sensorConfigurations.getId());
+        rawMonitor.setSensorConfigurations(1L);
+        controller1.create(rawMonitor);
 
         //create a new API
         Api api = apiController.create(new Api("ApiName-" + random.nextInt(10000),
