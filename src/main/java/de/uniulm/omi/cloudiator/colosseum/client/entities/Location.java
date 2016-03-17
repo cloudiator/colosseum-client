@@ -37,10 +37,10 @@ public class Location extends RemoteEntityInCloud {
     private Long geoLocation;
     private String name;
 
-    public Location(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud,
+    public Location(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud,
                     List<Long> cloudCredentials, Long owner,Long parent, LocationScope locationScope,
                     Boolean isAssignable, Long geoLocation, String name) {
-        super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner);
+        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
         this.parent = parent;
         this.locationScope = locationScope;
         this.isAssignable = isAssignable;
@@ -48,10 +48,10 @@ public class Location extends RemoteEntityInCloud {
         this.name = name;
     }
 
-    public Location(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud,
+    public Location(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud,
                     List<Long> cloudCredentials, Long owner,Long parent, LocationScope locationScope,
                     Boolean isAssignable, Long geoLocation, String name) {
-        this(null, remoteId, remoteState, cloudProviderId, cloud,
+        this(null, remoteId, remoteState, providerId, swordId, cloud,
                 cloudCredentials, owner, parent, locationScope,
                 isAssignable, geoLocation, name);
     }
