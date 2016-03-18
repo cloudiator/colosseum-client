@@ -37,15 +37,15 @@ public class Instance extends RemoteEntity {
     private Long applicationInstance;
     private Long virtualMachine;
 
-    public Instance(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
-        super(links, remoteId, remoteState, cloudProviderId);
+    public Instance(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
+        super(links, remoteId, remoteState, providerId, swordId);
         this.applicationComponent = applicationComponent;
         this.virtualMachine = virtualMachine;
         this.applicationInstance = applicationInstance;
     }
 
-    public Instance(String remoteId, RemoteState remoteState, String cloudProviderId, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
-        this(null, remoteId, remoteState, cloudProviderId, applicationComponent, applicationInstance, virtualMachine);
+    public Instance(String remoteId, RemoteState remoteState, String providerId, String swordId, Long applicationComponent, Long applicationInstance, Long virtualMachine) {
+        this(null, remoteId, remoteState, providerId, swordId, applicationComponent, applicationInstance, virtualMachine);
     }
 
     protected Instance() {

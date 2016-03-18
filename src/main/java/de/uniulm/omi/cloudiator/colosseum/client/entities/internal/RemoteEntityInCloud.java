@@ -12,15 +12,15 @@ public class RemoteEntityInCloud extends RemoteEntity {
     private List<Long> cloudCredentials;
     private Long owner;
 
-    public RemoteEntityInCloud(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner) {
-        super(links, remoteId, remoteState, cloudProviderId);
+    public RemoteEntityInCloud(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner) {
+        super(links, remoteId, remoteState, providerId, swordId);
         this.cloud = cloud;
         this.cloudCredentials = cloudCredentials;
         this.owner = owner;
     }
 
-    public RemoteEntityInCloud(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner) {
-        super(null, remoteId, remoteState, cloudProviderId);
+    public RemoteEntityInCloud(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner) {
+        super(null, remoteId, remoteState, providerId, swordId);
         this.cloud = cloud;
         this.cloudCredentials = cloudCredentials;
         this.owner = owner;

@@ -29,17 +29,19 @@ public abstract class RemoteEntity extends AbstractEntity {
 
     private String remoteId;
     private RemoteState remoteState;
-    private String cloudProviderId;
+    private String providerId;
+    private String swordId;
 
-    public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId) {
+    public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId) {
         super(links);
         this.remoteId = remoteId;
         this.remoteState = remoteState;
-        this.cloudProviderId = cloudProviderId;
+        this.providerId = providerId;
+        this.swordId = swordId;
     }
 
-    public RemoteEntity(String remoteId, RemoteState remoteState, String cloudProviderId) {
-        this(null, remoteId, remoteState, cloudProviderId);
+    public RemoteEntity(String remoteId, RemoteState remoteState, String providerId, String swordId) {
+        this(null, remoteId, remoteState, providerId, swordId);
     }
 
     protected RemoteEntity() {
@@ -61,12 +63,20 @@ public abstract class RemoteEntity extends AbstractEntity {
         this.remoteState = remoteState;
     }
 
-    public String getCloudProviderId() {
-        return cloudProviderId;
+    public String getProviderId() {
+        return providerId;
     }
 
-    public void setCloudProviderId(String cloudProviderId) {
-        this.cloudProviderId = cloudProviderId;
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
+    }
+
+    public String getSwordId() {
+        return swordId;
+    }
+
+    public void setSwordId(String swordId) {
+        this.swordId = swordId;
     }
 
     @Override public boolean equals(Object o) {
