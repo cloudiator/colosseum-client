@@ -10,13 +10,13 @@ import java.util.List;
 public class RemoteEntityInLocation extends RemoteEntityInCloud{
     private Long location;
 
-    public RemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location) {
-        super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner);
+    public RemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location) {
+        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
         this.location = location;
     }
 
-    public RemoteEntityInLocation(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud, List<Long> cloudCredentials, Long owner, Long location) {
-        super(null, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner);
+    public RemoteEntityInLocation(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location) {
+        super(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
         this.location = location;
     }
 

@@ -35,18 +35,18 @@ public class KeyPair extends RemoteEntityInCloud {
     private String publicKey;
     private Long virtualMachine;
 
-    public KeyPair(List<Link> links, String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud,
+    public KeyPair(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud,
                     List<Long> cloudCredentials, Long owner, String privateKey, String publicKey, Long virtualMachine) {
-        super(links, remoteId, remoteState, cloudProviderId, cloud, cloudCredentials, owner);
+        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
         this.privateKey = privateKey;
         this.publicKey = publicKey;
         this.virtualMachine = virtualMachine;
     }
 
-    public KeyPair(String remoteId, RemoteState remoteState, String cloudProviderId, Long cloud,
+    public KeyPair(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud,
                     List<Long> cloudCredentials, Long owner, String privateKey, String publicKey,
                     Long virtualMachine) {
-        this(null, remoteId, remoteState, cloudProviderId, cloud,
+        this(null, remoteId, remoteState, providerId, swordId, cloud,
                 cloudCredentials, owner, privateKey, publicKey, virtualMachine);
     }
 
