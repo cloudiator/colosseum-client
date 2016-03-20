@@ -1,10 +1,12 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,14 +16,14 @@ import java.util.Map;
 @Path("sensorConfigurations")
 public class SensorConfigurations extends AbstractEntity {
 
-    private Map<String, String> configs;
+    private List<KeyValue> configs = new ArrayList<>();
 
-    public SensorConfigurations(@Nullable List<Link> link, Map<String, String> configs){
+    public SensorConfigurations(@Nullable List<Link> link, List<KeyValue> configs){
         super(link);
         this.configs = configs;
     }
 
-    public SensorConfigurations(Map<String, String> configs){
+    public SensorConfigurations(List<KeyValue> configs){
         this(null, configs);
     }
 
@@ -29,12 +31,12 @@ public class SensorConfigurations extends AbstractEntity {
         //
     }
 
-    public Map<String, String> getConfigs() {
+    public List<KeyValue> getConfigs() {
         return configs;
     }
 
-    public void setConfigs(Map<String, String> tags) {
-        this.configs = tags;
+    public void setConfigs(List<KeyValue> configs) {
+        this.configs = configs;
     }
 
     @Override
