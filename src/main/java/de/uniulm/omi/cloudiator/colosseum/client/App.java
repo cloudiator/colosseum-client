@@ -23,6 +23,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.*;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
