@@ -27,6 +27,7 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -82,18 +83,6 @@ public class ClientController<T extends Entity> {
         return this.getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value())
             .get(new GenericType<List<T>>(parameterizedGenericType) {
             });
-    }
-
-    public List<T> getList(Predicate<? super T> filter) {
-        return getList().stream().filter(filter).collect(Collectors.toList());
-    }
-
-    public Optional<T> getSingle(Predicate<? super T> filter) {
-        List<T> collect = getList(filter);
-        if (collect.size() > 1) {
-            throw new NonUniqueResultException("Found multiple results for filter.");
-        }
-        return collect.stream().findAny();
     }
 
     public boolean exists(Predicate<? super T> filter) {
