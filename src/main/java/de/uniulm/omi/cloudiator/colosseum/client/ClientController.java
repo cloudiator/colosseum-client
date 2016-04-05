@@ -85,6 +85,24 @@ public class ClientController<T extends Entity> {
             });
     }
 
+    /*
+
+    This is a part of the interface that is only available in Java > 8
+
+
+    public List<T> getList(Predicate<? super T> filter) {
+        return getList().stream().filter(filter).collect(Collectors.toList());
+    }
+
+    public Optional<T> getSingle(Predicate<? super T> filter) {
+        List<T> collect = getList(filter);
+        if (collect.size() > 1) {
+            throw new NonUniqueResultException("Found multiple results for filter.");
+        }
+        return collect.stream().findAny();
+    }
+    */
+
     public boolean exists(Predicate<? super T> filter) {
         return getList().stream().anyMatch(filter);
     }
