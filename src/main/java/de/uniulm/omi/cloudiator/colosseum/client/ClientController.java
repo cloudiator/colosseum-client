@@ -18,6 +18,10 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
+import com.google.common.base.Optional;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -28,9 +32,6 @@ import javax.ws.rs.core.MediaType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -84,13 +85,9 @@ public class ClientController<T extends Entity> {
             });
     }
 
-    /*
-
-    This is a part of the interface that is only available in Java > 8
-
 
     public List<T> getList(Predicate<? super T> filter) {
-        return getList().stream().filter(filter).collect(Collectors.toList());
+        return Lists.newArrayList(Iterables.filter(getList(), filter));
     }
 
     public Optional<T> getSingle(Predicate<? super T> filter) {
@@ -98,12 +95,12 @@ public class ClientController<T extends Entity> {
         if (collect.size() > 1) {
             throw new NonUniqueResultException("Found multiple results for filter.");
         }
-        return collect.stream().findAny();
+        return Optional.fromNullable(Iterables.getFirst(collect, null));
     }
-    */
+
 
     public boolean exists(Predicate<? super T> filter) {
-        return getList().stream().anyMatch(filter);
+        return Iterables.any(getList(), filter);
     }
 
     public T create(T t) {
