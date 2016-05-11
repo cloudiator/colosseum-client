@@ -19,8 +19,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 /**
  * Created by daniel on 22.01.15.
  */
@@ -73,9 +71,5 @@ public class Token extends AbstractEntity {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    @JsonIgnore boolean isExpired() {
-        return System.currentTimeMillis() > Long.valueOf(this.expiresAt);
     }
 }
