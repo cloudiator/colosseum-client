@@ -44,10 +44,6 @@ public class ClientWrapper {
         return client.controller(Cloud.class);
     }
 
-    public ClientController<CloudApi> CloudApi(){
-        return this.get(CloudApi.class);
-    }
-
     public ClientController<RawMonitor> RawMonitor(){
         return this.get(RawMonitor.class);
     }

@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,15 +28,15 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("cloudCredential")
-public class CloudCredential extends AbstractEntity {
+@Path("cloudCredential") public class CloudCredential extends AbstractEntity {
 
     private String user;
     private String secret;
     private Long cloud;
     private Long tenant;
 
-    public CloudCredential(@Nullable List<Link> links, String user, String secret, Long cloud, Long tenant) {
+    public CloudCredential(@Nullable List<Link> links, String user, String secret, Long cloud,
+        Long tenant) {
         super(links);
         this.user = user;
         this.secret = secret;
@@ -44,8 +44,8 @@ public class CloudCredential extends AbstractEntity {
         this.tenant = tenant;
     }
 
-    public CloudCredential(String user, String secret, Long cloud, Long frontendGroup) {
-        this(null, user, secret, cloud, frontendGroup);
+    public CloudCredential(String user, String secret, Long cloud, Long tenant) {
+        this(null, user, secret, cloud, tenant);
     }
 
     protected CloudCredential() {
@@ -94,9 +94,7 @@ public class CloudCredential extends AbstractEntity {
 
         if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
             return false;
-        if (tenant != null ?
-            !tenant.equals(that.tenant) :
-            that.tenant != null)
+        if (tenant != null ? !tenant.equals(that.tenant) : that.tenant != null)
             return false;
         if (user != null ? !user.equals(that.user) : that.user != null)
             return false;
