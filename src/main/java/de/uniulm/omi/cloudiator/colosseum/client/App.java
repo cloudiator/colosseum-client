@@ -18,7 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.*;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.CloudBuilder;
 
 import java.util.List;
 import java.util.Random;
@@ -62,9 +64,9 @@ public class App {
             "InternalProviderName-" + random.nextInt(100)));
 
         //create a new Cloud
-        controller
-            .create(new CloudBuilder().setName("MyCloud-" + random.nextInt(10000))
-                .setEndpoint("endpointTest.com").setApi(api.getId()).createCloud());
+        controller.create(
+            new CloudBuilder().name("MyCloud-" + random.nextInt(10000)).endpoint("endpointTest.com")
+                .api(api.getId()).build());
 
         //fetch all clouds
         List<Cloud> clouds = controller.getList();
@@ -73,9 +75,9 @@ public class App {
         Cloud cloud = clouds.get(0);
 
         //create a another Cloud
-        cloud = controller
-            .create(new CloudBuilder().setName("MyCloud-" + random.nextInt(1000))
-                .setEndpoint("endpointTest.com").setApi(api.getId()).createCloud());
+        cloud = controller.create(
+            new CloudBuilder().name("MyCloud-" + random.nextInt(1000)).endpoint("endpointTest.com")
+                .api(api.getId()).build());
 
         //update a cloud
         cloud.setName("MyNewName-" + random.nextInt(100));
