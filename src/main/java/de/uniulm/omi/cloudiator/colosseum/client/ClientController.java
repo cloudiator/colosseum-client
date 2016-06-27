@@ -25,6 +25,8 @@ import com.google.common.collect.Lists;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
+import javax.annotation.Nullable;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.GenericType;
@@ -60,10 +62,14 @@ public class ClientController<T extends Entity> {
         return this.client.target(entityLink).request(MediaType.APPLICATION_JSON);
     }
 
-    public T get(long id) {
-        return this
-            .getRequest(this.baseUrl + "/" + this.type.getAnnotation(Path.class).value() + "/" + id)
-            .get(this.type);
+    @Nullable public T get(long id) {
+        try {
+            return this.getRequest(
+                this.baseUrl + "/" + this.type.getAnnotation(Path.class).value() + "/" + id)
+                .get(this.type);
+        } catch (NotFoundException e) {
+            return null;
+        }
     }
 
     public List<T> getList() {
