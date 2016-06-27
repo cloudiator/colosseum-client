@@ -16,8 +16,11 @@
  * under the License.
  */
 
-package de.uniulm.omi.cloudiator.colosseum.client;
+package de.uniulm.omi.cloudiator.colosseum.client.examples;
 
+import de.uniulm.omi.cloudiator.colosseum.client.Client;
+import de.uniulm.omi.cloudiator.colosseum.client.ClientBuilder;
+import de.uniulm.omi.cloudiator.colosseum.client.ClientController;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.CloudBuilder;
@@ -28,7 +31,7 @@ import java.util.Random;
 /**
  * Hello world!
  */
-public class App {
+public class SimpleExample {
 
     public static Random random = new Random();
 
