@@ -25,7 +25,6 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.*;
 
 import javax.annotation.Nullable;
 import java.util.Set;
-import java.util.function.Consumer;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -42,11 +41,9 @@ public class CloudCreator {
     }
 
     public void createCloud(final ConfigurationLoader.CloudConfiguration cloudConfiguration) {
-        visitors.forEach(new Consumer<CloudConfigurationVisitor>() {
-            @Override public void accept(CloudConfigurationVisitor cloudConfigurationVisitor) {
-                cloudConfigurationVisitor.visit(cloudConfiguration);
-            }
-        });
+        for (CloudConfigurationVisitor visitor : visitors) {
+            visitor.visit(cloudConfiguration);
+        }
     }
 
     public interface CloudConfigurationVisitor {

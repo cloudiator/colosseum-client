@@ -1,7 +1,10 @@
 package internal;
 
+import com.google.common.base.Optional;
 import de.uniulm.omi.cloudiator.colosseum.client.Client;
 import de.uniulm.omi.cloudiator.colosseum.client.ClientBuilder;
+
+
 
 import java.util.*;
 
@@ -61,19 +64,19 @@ public class ConfigurationLoader {
         }
 
         @Override public Optional<String> getString(String key) {
-            return Optional.ofNullable(properties.getProperty(key));
+            return Optional.fromNullable(properties.getProperty(key));
         }
 
         @Override public Optional<List<String>> loadList(String key) {
             Optional<String> value = getString(key);
             if (!value.isPresent()) {
-                return Optional.empty();
+                return Optional.absent();
             }
             return Optional.of(Arrays.asList(properties.getProperty("clouds").split(",")));
         }
 
         @Override public Optional<Long> getLong(String key) {
-            return Optional.ofNullable(Long.valueOf(properties.getProperty(key)));
+            return Optional.fromNullable(Long.valueOf(properties.getProperty(key)));
         }
     }
 

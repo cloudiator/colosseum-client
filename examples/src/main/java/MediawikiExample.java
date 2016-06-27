@@ -23,7 +23,6 @@ import internal.ConfigurationLoader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.function.Consumer;
 
 /**
  * Created by daniel on 27.06.16.
@@ -38,14 +37,10 @@ public class MediawikiExample {
         Client client = ConfigurationLoader.createClient(properties);
 
         final CloudCreator cloudCreator = new CloudCreator(client);
-        ConfigurationLoader.load(properties)
-            .forEach(new Consumer<ConfigurationLoader.CloudConfiguration>() {
-                @Override
-                public void accept(ConfigurationLoader.CloudConfiguration cloudConfiguration) {
-                    cloudCreator.createCloud(cloudConfiguration);
-                }
-            });
 
+        for (ConfigurationLoader.CloudConfiguration config : ConfigurationLoader.load(properties)) {
+            cloudCreator.createCloud(config);
+        }
     }
 
 }
