@@ -20,6 +20,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.Client;
 import de.uniulm.omi.cloudiator.colosseum.client.ClientBuilder;
 import de.uniulm.omi.cloudiator.colosseum.client.ClientController;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.ApiBuilder;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.CloudBuilder;
 
@@ -61,8 +62,8 @@ public class SimpleExample {
         final ClientController<Api> apiController = client.controller(Api.class);
 
         //create a new API
-        Api api = apiController.create(new Api("ApiName-" + random.nextInt(10000),
-            "InternalProviderName-" + random.nextInt(100)));
+        Api api = apiController.create(new ApiBuilder().name("ApiName-" + random.nextInt(10000))
+            .internalProviderName("InternalProviderName-" + random.nextInt(100)).build());
 
         //create a new Cloud
         controller.create(

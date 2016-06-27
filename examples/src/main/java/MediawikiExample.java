@@ -17,15 +17,34 @@
  */
 
 import de.uniulm.omi.cloudiator.colosseum.client.Client;
+import internal.CloudCreator;
+import internal.ConfigurationLoader;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.function.Consumer;
 
 /**
  * Created by daniel on 27.06.16.
  */
 public class MediawikiExample {
 
-    private static Client client;
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
+        Properties properties = new Properties();
+        properties.load(new FileInputStream("config/example.properties"));
+
+        Client client = ConfigurationLoader.createClient(properties);
+
+        final CloudCreator cloudCreator = new CloudCreator(client);
+        ConfigurationLoader.load(properties)
+            .forEach(new Consumer<ConfigurationLoader.CloudConfiguration>() {
+                @Override
+                public void accept(ConfigurationLoader.CloudConfiguration cloudConfiguration) {
+                    cloudCreator.createCloud(cloudConfiguration);
+                }
+            });
 
     }
 

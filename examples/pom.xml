@@ -33,7 +33,7 @@
         <dependency>
             <groupId>io.github.cloudiator</groupId>
             <artifactId>colosseum-client</artifactId>
-            <version>${project.version}</version>
+            <version>0.2.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
