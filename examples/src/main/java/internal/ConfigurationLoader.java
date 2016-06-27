@@ -1,6 +1,4 @@
-package de.uniulm.omi.cloudiator.colosseum.client.examples.internal;
-
-import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
+package internal;
 
 import java.util.Map;
 import java.util.Properties;
@@ -11,16 +9,16 @@ import java.util.Set;
  */
 public class ConfigurationLoader {
 
-    public Set<CloudConfiguration> load(Properties properties) {
-
-
-
+    public static Set<CloudConfiguration> load(Properties properties) {
+        throw new UnsupportedOperationException("not implemented yet");
     }
 
     public static class CloudConfiguration {
 
         private final String name;
         private final String endpoint;
+        private final String credentialUsername;
+        private final String credentialPassword;
         private final String apiName;
         private final String apiInternalProvider;
         private final long hardwareId;
@@ -32,11 +30,14 @@ public class ConfigurationLoader {
 
 
 
-        public CloudConfiguration(String name, String endpoint, String apiName,
-            String apiInternalProvider, long hardwareId, long locationId, long imageId,
-            String imageLoginName, String imageOperatingSystem, Map<String, String> properties) {
+        public CloudConfiguration(String name, String endpoint, String credentialUsername,
+            String credentialPassword, String apiName, String apiInternalProvider, long hardwareId,
+            long locationId, long imageId, String imageLoginName, String imageOperatingSystem,
+            Map<String, String> properties) {
             this.name = name;
             this.endpoint = endpoint;
+            this.credentialUsername = credentialUsername;
+            this.credentialPassword = credentialPassword;
             this.apiName = apiName;
             this.apiInternalProvider = apiInternalProvider;
             this.hardwareId = hardwareId;

@@ -1,4 +1,4 @@
-package de.uniulm.omi.cloudiator.colosseum.client.examples.internal;
+package internal;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.LifecycleComponent;
 
