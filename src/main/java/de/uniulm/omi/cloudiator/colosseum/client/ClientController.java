@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
+import com.github.rholder.retry.*;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -34,6 +35,9 @@ import javax.ws.rs.core.MediaType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -104,6 +108,26 @@ public class ClientController<T extends Entity> {
         return Optional.fromNullable(Iterables.getFirst(collect, null));
     }
 
+    public Optional<T> waitAndGetSingle(final Predicate<? super T> filter, long timeout,
+        TimeUnit timeUnit) {
+        Retryer<T> retryer = RetryerBuilder.<T>newBuilder().retryIfResult(new Predicate<T>() {
+            @Override public boolean apply(@Nullable T input) {
+                return input == null;
+            }
+        }).withStopStrategy(StopStrategies.stopAfterDelay(timeout, timeUnit)).withWaitStrategy(
+            WaitStrategies.fixedWait(10, TimeUnit.SECONDS)).build();
+        try {
+            return Optional.fromNullable(retryer.call(new Callable<T>() {
+                @Override public T call() throws Exception {
+                    return getSingle(filter).orNull();
+                }
+            }));
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (RetryException e) {
+            return Optional.absent();
+        }
+    }
 
     public boolean exists(Predicate<? super T> filter) {
         return Iterables.any(getList(), filter);
