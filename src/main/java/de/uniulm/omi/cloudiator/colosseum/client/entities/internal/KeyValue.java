@@ -7,6 +7,10 @@ public class KeyValue {
     private String key;
     private String value;
 
+    public static KeyValue of(String key, String value) {
+        return new KeyValue(key, value);
+    }
+
     public KeyValue(String key, String value) {
         this.key = key;
         this.value = value;
