@@ -2,12 +2,13 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FlowOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ComposedMonitorBuilder {
-    private List<String> externalReferences = new ArrayList<>();
+    private List<KeyValue> externalReferences = new ArrayList<>();
     private List<Long> monitorInstances = new ArrayList<>();
     private FlowOperator flowOperator;
     private FormulaOperator function;
@@ -17,8 +18,13 @@ public class ComposedMonitorBuilder {
     private List<Long> scalingActions = new ArrayList<>();
     private Long schedule;
 
-    public ComposedMonitorBuilder addExternalReference(String externalReference) {
+    public ComposedMonitorBuilder addExternalReference(KeyValue externalReference) {
         this.externalReferences.add(externalReference);
+        return this;
+    }
+
+    public ComposedMonitorBuilder addExternalReference(String key, String value) {
+        this.externalReferences.add(new KeyValue(key, value));
         return this;
     }
 

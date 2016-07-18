@@ -21,6 +21,7 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.MetricMonitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -42,7 +43,7 @@ import java.util.Map;
     private Long schedule;
     private Long sensorConfigurations;
 
-    public RawMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences,
+    public RawMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
         @Nullable List<Long> monitorInstances,
         Long application, Long component, Long componentInstance,
         Long cloud, Long sensorDescription, Long schedule, @Nullable Long sensorConfigurations) {
@@ -56,7 +57,7 @@ import java.util.Map;
         this.sensorConfigurations = sensorConfigurations;
     }
 
-    public RawMonitor(@Nullable List<String> externalReferences, @Nullable List<Long> monitorInstances, Long application, Long component, Long instance, Long cloud,
+    public RawMonitor(@Nullable List<KeyValue> externalReferences, @Nullable List<Long> monitorInstances, Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
         this(null, externalReferences, monitorInstances, application, component, instance, cloud, sensorDescription, schedule, null);
     }

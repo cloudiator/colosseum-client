@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 
 import javax.annotation.Nullable;
@@ -30,14 +31,14 @@ public abstract class ComponentHorizontalScalingAction extends HorizontalScaling
 
     private Long applicationComponent;
 
-    public ComponentHorizontalScalingAction(@Nullable List<Link> link, List<String> externalReferences, Long amount, Long min,
+    public ComponentHorizontalScalingAction(@Nullable List<Link> link, List<KeyValue> externalReferences, Long amount, Long min,
         Long max, Long count, Long applicationComponent) {
         super(link, externalReferences, amount, min, max, count);
         this.applicationComponent = applicationComponent;
     }
 
-    public ComponentHorizontalScalingAction(List<String> externalReferences, Long amount, Long min, Long max, Long count,
-        Long applicationComponent) {
+    public ComponentHorizontalScalingAction(List<KeyValue> externalReferences, Long amount, Long min, Long max, Long count,
+                                            Long applicationComponent) {
         this(null, externalReferences, amount, min, max, count, applicationComponent);
     }
 

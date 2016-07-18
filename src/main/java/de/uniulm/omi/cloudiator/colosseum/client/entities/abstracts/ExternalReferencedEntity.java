@@ -19,6 +19,7 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 
 import javax.annotation.Nullable;
@@ -29,14 +30,30 @@ import java.util.List;
  * Created by Frank on 03.06.2015.
  */
 public abstract class ExternalReferencedEntity extends AbstractEntity {
-    private List<String> externalReferences;
+    private List<KeyValue> externalReferences = new ArrayList<>();
 
-    public ExternalReferencedEntity(@Nullable List<Link> link, List<String> externalReferences) {
+    public List<KeyValue> getEternalReferences() {
+        return externalReferences;
+    }
+
+    public void setEternalReferences(List<KeyValue> tags) {
+        this.externalReferences = tags;
+    }
+
+    public void addEternalReference(KeyValue kv){
+        this.externalReferences.add(kv);
+    }
+
+    public void addEternalReference(String key, String value){
+        this.externalReferences.add(new KeyValue(key, value));
+    }
+
+    public ExternalReferencedEntity(@Nullable List<Link> link, List<KeyValue> externalReferences) {
         super(link);
         this.externalReferences = externalReferences;
     }
 
-    public ExternalReferencedEntity(List<String> externalReferences) {
+    public ExternalReferencedEntity(List<KeyValue> externalReferences) {
         this(null, externalReferences);
     }
 
@@ -44,19 +61,6 @@ public abstract class ExternalReferencedEntity extends AbstractEntity {
         super();
     }
 
-    public List<String> getExternalReferences() {
-        if(externalReferences == null)
-            externalReferences = new ArrayList<String>();
-
-        return externalReferences;
-    }
-
-    public void setExternalReferences(List<String> externalReferences) {
-        if(externalReferences == null)
-            externalReferences = new ArrayList<String>();
-
-        this.externalReferences = externalReferences;
-    }
 
     @Override public boolean equals(Object o) {
         if (this == o)

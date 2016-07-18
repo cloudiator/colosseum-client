@@ -18,6 +18,7 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 
 import javax.annotation.Nullable;
@@ -30,13 +31,13 @@ public abstract class MetricMonitor extends Monitor {
 
     private List<Long> monitorInstances;
 
-    public MetricMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, @Nullable List<Long> monitorInstances) {
+    public MetricMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, @Nullable List<Long> monitorInstances) {
         super(link, externalReferences);
 
         this.monitorInstances = monitorInstances;
     }
 
-    public MetricMonitor(@Nullable List<String> externalReferences, @Nullable List<Long> monitorInstances) {
+    public MetricMonitor(@Nullable List<KeyValue> externalReferences, @Nullable List<Long> monitorInstances) {
         super(externalReferences);
 
         this.monitorInstances = monitorInstances;

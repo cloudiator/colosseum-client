@@ -20,6 +20,7 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -38,8 +39,8 @@ public class MonitorInstance extends Monitor {
     private Long virtualMachine;
     private Long component;
 
-    public MonitorInstance(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
-        Long component) {
+    public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
+                           Long component) {
         super(link, externalReferences);
         this.monitor = monitor;
         this.apiEndpoint = apiEndpoint;
@@ -48,7 +49,7 @@ public class MonitorInstance extends Monitor {
         this.component = component;
     }
 
-    public MonitorInstance(List<String> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component) {
+    public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component) {
         this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component);
     }
 
