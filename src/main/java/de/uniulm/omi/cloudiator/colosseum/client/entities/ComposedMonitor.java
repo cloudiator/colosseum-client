@@ -23,6 +23,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FlowOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -43,7 +44,7 @@ public class ComposedMonitor extends MetricMonitor {
     private List<Long> scalingActions;
     private Long schedule;
 
-    public ComposedMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences,
+    public ComposedMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
         @Nullable List<Long> monitorInstances,
         FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
@@ -58,7 +59,7 @@ public class ComposedMonitor extends MetricMonitor {
         this.schedule = schedule;
     }
 
-    public ComposedMonitor(@Nullable List<String> externalReferences,
+    public ComposedMonitor(@Nullable List<KeyValue> externalReferences,
         @Nullable List<Long> monitorInstances,
         FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,

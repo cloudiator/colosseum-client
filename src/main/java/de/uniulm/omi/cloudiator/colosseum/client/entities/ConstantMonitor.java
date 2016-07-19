@@ -20,6 +20,7 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -34,12 +35,12 @@ public class ConstantMonitor extends Monitor {
 
     private Double value;
 
-    public ConstantMonitor(@Nullable List<Link> link, @Nullable List<String> externalReferences, Double value) {
+    public ConstantMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Double value) {
         super(link, externalReferences);
         this.value = value;
     }
 
-    public ConstantMonitor(List<String> externalReferences, Double value) {
+    public ConstantMonitor(List<KeyValue> externalReferences, Double value) {
         this(null, externalReferences, value);
     }
 

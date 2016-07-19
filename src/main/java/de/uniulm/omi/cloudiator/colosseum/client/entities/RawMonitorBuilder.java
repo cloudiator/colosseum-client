@@ -1,11 +1,13 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class RawMonitorBuilder {
 
-    private List<String> externalReferences = new ArrayList<>();
+    private List<KeyValue> externalReferences = new ArrayList<>();
     private List<Long> monitorInstances = new ArrayList<>();
     private Long application;
     private Long component;
@@ -15,8 +17,13 @@ public class RawMonitorBuilder {
     private Long schedule;
     private Long sensorConfigurations;
 
-    public RawMonitorBuilder addExternalReferences(String externalReference) {
+    public RawMonitorBuilder addExternalReference(KeyValue externalReference) {
         this.externalReferences.add(externalReference);
+        return this;
+    }
+
+    public RawMonitorBuilder addExternalReference(String key, String value) {
+        this.externalReferences.add(new KeyValue(key, value));
         return this;
     }
 

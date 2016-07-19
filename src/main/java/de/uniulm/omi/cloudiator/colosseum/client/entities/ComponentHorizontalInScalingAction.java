@@ -19,6 +19,7 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.ComponentHorizontalScalingAction;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -30,13 +31,13 @@ import java.util.List;
  */
 @Path("componentHorizontalInScalingAction")
 public class ComponentHorizontalInScalingAction extends ComponentHorizontalScalingAction {
-    public ComponentHorizontalInScalingAction(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long amount, Long min,
+    public ComponentHorizontalInScalingAction(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Long amount, Long min,
         Long max, Long count, Long applicationComponent) {
         super(link, externalReferences, amount, min, max, count, applicationComponent);
     }
 
-    public ComponentHorizontalInScalingAction(@Nullable List<String> externalReferences, Long amount, Long min, Long max, Long count,
-        Long applicationComponent) {
+    public ComponentHorizontalInScalingAction(@Nullable List<KeyValue> externalReferences, Long amount, Long min, Long max, Long count,
+                                              Long applicationComponent) {
         this(null, externalReferences, amount, min, max, count, applicationComponent);
     }
 

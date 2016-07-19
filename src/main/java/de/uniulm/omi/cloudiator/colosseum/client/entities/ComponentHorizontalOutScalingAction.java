@@ -22,6 +22,7 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.ComponentHor
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FlowOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -33,13 +34,13 @@ import java.util.List;
  */
 @Path("componentHorizontalOutScalingAction")
 public class ComponentHorizontalOutScalingAction extends ComponentHorizontalScalingAction {
-    public ComponentHorizontalOutScalingAction(@Nullable List<Link> link, @Nullable List<String> externalReferences, Long amount, Long min,
+    public ComponentHorizontalOutScalingAction(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Long amount, Long min,
         Long max, Long count, Long applicationComponent) {
         super(link, externalReferences, amount, min, max, count, applicationComponent);
     }
 
-    public ComponentHorizontalOutScalingAction(@Nullable List<String> externalReferences, Long amount, Long min, Long max, Long count,
-        Long applicationComponent) {
+    public ComponentHorizontalOutScalingAction(@Nullable List<KeyValue> externalReferences, Long amount, Long min, Long max, Long count,
+                                               Long applicationComponent) {
         this(null, externalReferences, amount, min, max, count, applicationComponent);
     }
 

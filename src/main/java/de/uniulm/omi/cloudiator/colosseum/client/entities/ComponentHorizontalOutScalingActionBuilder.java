@@ -1,19 +1,27 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ComponentHorizontalOutScalingActionBuilder {
-    private List<String> externalReferences = new ArrayList<>();
+    private List<KeyValue> externalReferences = new ArrayList<>();
     private Long amount;
     private Long min;
     private Long max;
     private Long count;
     private Long applicationComponent;
 
-    public ComponentHorizontalOutScalingActionBuilder addExternalReferences(
-        String externalReference) {
+    public ComponentHorizontalOutScalingActionBuilder addExternalReference(
+            KeyValue externalReference) {
         this.externalReferences.add(externalReference);
+        return this;
+    }
+
+    public ComponentHorizontalOutScalingActionBuilder addExternalReference(
+            String key, String value) {
+        this.externalReferences.add(new KeyValue(key, value));
         return this;
     }
 

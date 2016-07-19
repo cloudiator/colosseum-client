@@ -19,6 +19,7 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 
 import javax.annotation.Nullable;
@@ -29,11 +30,11 @@ import java.util.List;
  */
 public abstract class ScalingAction extends ExternalReferencedEntity {
 
-    public ScalingAction(@Nullable List<Link> link, @Nullable List<String> externalReferences) {
+    public ScalingAction(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences) {
         super(link, externalReferences);
     }
 
-    public ScalingAction(@Nullable List<String> externalReferences) {
+    public ScalingAction(@Nullable List<KeyValue> externalReferences) {
         this(null, externalReferences);
     }
 
