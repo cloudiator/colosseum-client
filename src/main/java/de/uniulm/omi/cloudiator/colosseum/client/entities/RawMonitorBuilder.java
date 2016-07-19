@@ -17,12 +17,12 @@ public class RawMonitorBuilder {
     private Long schedule;
     private Long sensorConfigurations;
 
-    public RawMonitorBuilder addExternalReferences(KeyValue externalReference) {
+    public RawMonitorBuilder addExternalReference(KeyValue externalReference) {
         this.externalReferences.add(externalReference);
         return this;
     }
 
-    public RawMonitorBuilder addExternalReferences(String key, String value) {
+    public RawMonitorBuilder addExternalReference(String key, String value) {
         this.externalReferences.add(new KeyValue(key, value));
         return this;
     }

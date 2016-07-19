@@ -14,13 +14,13 @@ public class ComponentHorizontalInScalingActionBuilder {
     private Long count;
     private Long applicationComponent;
 
-    public ComponentHorizontalInScalingActionBuilder addExternalReferences(
+    public ComponentHorizontalInScalingActionBuilder addExternalReference(
             KeyValue externalReference) {
         this.externalReferences.add(externalReference);
         return this;
     }
 
-    public ComponentHorizontalInScalingActionBuilder addExternalReferences(
+    public ComponentHorizontalInScalingActionBuilder addExternalReference(
             String key, String value) {
         this.externalReferences.add(new KeyValue(key, value));
         return this;

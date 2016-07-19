@@ -32,19 +32,19 @@ import java.util.List;
 public abstract class ExternalReferencedEntity extends AbstractEntity {
     private List<KeyValue> externalReferences = new ArrayList<>();
 
-    public List<KeyValue> getEternalReferences() {
+    public List<KeyValue> getExternalReferences() {
         return externalReferences;
     }
 
-    public void setEternalReferences(List<KeyValue> tags) {
+    public void setExternalReferences(List<KeyValue> tags) {
         this.externalReferences = tags;
     }
 
-    public void addEternalReference(KeyValue kv){
+    public void addExternalReference(KeyValue kv){
         this.externalReferences.add(kv);
     }
 
-    public void addEternalReference(String key, String value){
+    public void addExternalReference(String key, String value){
         this.externalReferences.add(new KeyValue(key, value));
     }
 

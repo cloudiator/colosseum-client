@@ -13,13 +13,13 @@ public class ComponentHorizontalOutScalingActionBuilder {
     private Long count;
     private Long applicationComponent;
 
-    public ComponentHorizontalOutScalingActionBuilder addExternalReferences(
+    public ComponentHorizontalOutScalingActionBuilder addExternalReference(
             KeyValue externalReference) {
         this.externalReferences.add(externalReference);
         return this;
     }
 
-    public ComponentHorizontalOutScalingActionBuilder addExternalReferences(
+    public ComponentHorizontalOutScalingActionBuilder addExternalReference(
             String key, String value) {
         this.externalReferences.add(new KeyValue(key, value));
         return this;
