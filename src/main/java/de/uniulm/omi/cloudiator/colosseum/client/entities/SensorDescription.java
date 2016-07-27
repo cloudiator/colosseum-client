@@ -35,17 +35,19 @@ public class SensorDescription extends AbstractEntity {
     private String className;
     private String metricName;
     private Boolean isVmSensor;
+    private Boolean isPush;
 
     public SensorDescription(@Nullable List<Link> link, String className, String metricName,
-        Boolean isVmSensor) {
+        Boolean isVmSensor, Boolean isPush) {
         super(link);
         this.className = className;
         this.metricName = metricName;
         this.isVmSensor = isVmSensor;
+        this.isPush = isPush;
     }
 
-    public SensorDescription(String className, String metricName, Boolean isVmSensor) {
-        this(null, className, metricName, isVmSensor);
+    public SensorDescription(String className, String metricName, Boolean isVmSensor, Boolean isPush) {
+        this(null, className, metricName, isVmSensor, isPush);
     }
 
     protected SensorDescription(){
@@ -76,6 +78,14 @@ public class SensorDescription extends AbstractEntity {
         this.isVmSensor = isVmSensor;
     }
 
+    public Boolean getIsPush() {
+        return isPush;
+    }
+
+    public void setIsPush(Boolean isPush) {
+        this.isPush = isPush;
+    }
+
     @Override public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -88,6 +98,8 @@ public class SensorDescription extends AbstractEntity {
             return false;
         if (isVmSensor != null ? !isVmSensor.equals(that.isVmSensor) : that.isVmSensor != null)
             return false;
+        if (isPush != null ? !isPush.equals(that.isPush) : that.isPush != null)
+            return false;
         if (metricName != null ? !metricName.equals(that.metricName) : that.metricName != null)
             return false;
 
@@ -98,6 +110,7 @@ public class SensorDescription extends AbstractEntity {
         int result = className != null ? className.hashCode() : 0;
         result = 31 * result + (metricName != null ? metricName.hashCode() : 0);
         result = 31 * result + (isVmSensor != null ? isVmSensor.hashCode() : 0);
+        result = 31 * result + (isPush != null ? isPush.hashCode() : 0);
         return result;
     }
 }
