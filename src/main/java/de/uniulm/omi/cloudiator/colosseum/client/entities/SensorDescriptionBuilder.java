@@ -5,6 +5,7 @@ public class SensorDescriptionBuilder {
     private String className;
     private String metricName;
     private Boolean isVmSensor;
+    private Boolean isPush = false;
 
     public SensorDescriptionBuilder className(String className) {
         this.className = className;
@@ -21,7 +22,12 @@ public class SensorDescriptionBuilder {
         return this;
     }
 
+    public SensorDescriptionBuilder isPush(Boolean isPush) {
+        this.isPush = isPush;
+        return this;
+    }
+
     public SensorDescription build() {
-        return new SensorDescription(className, metricName, isVmSensor);
+        return new SensorDescription(className, metricName, isVmSensor, isPush);
     }
 }
