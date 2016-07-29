@@ -36,25 +36,31 @@ import java.util.List;
     private Long ipAddress;
     private Long virtualMachine;
     private Long component;
+    private Integer port;
+
 
     public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
-        Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component) {
+        Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component,
+        Integer port) {
         super(link, externalReferences);
         this.monitor = monitor;
         this.apiEndpoint = apiEndpoint;
         this.ipAddress = ipAddress;
         this.virtualMachine = virtualMachine;
         this.component = component;
+        this.port = port;
     }
 
+
     public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint,
-        Long ipAddress, Long virtualMachine, Long component) {
-        this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component);
+        Long ipAddress, Long virtualMachine, Long component, Integer port) {
+        this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component,
+            port);
     }
 
     public MonitorInstance(Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
-        Long component) {
-        this(null, null, monitor, apiEndpoint, ipAddress, virtualMachine, component);
+        Long component, Integer port) {
+        this(null, null, monitor, apiEndpoint, ipAddress, virtualMachine, component, port);
     }
 
     protected MonitorInstance() {
@@ -99,5 +105,13 @@ import java.util.List;
 
     public void setApiEndpoint(String apiEndpoint) {
         this.apiEndpoint = apiEndpoint;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 }

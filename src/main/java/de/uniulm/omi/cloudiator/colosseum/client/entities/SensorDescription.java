@@ -33,17 +33,20 @@ import java.util.List;
     private String className;
     private String metricName;
     private Boolean isVmSensor;
+    private Boolean isPush;
 
     public SensorDescription(@Nullable List<Link> link, String className, String metricName,
-        Boolean isVmSensor) {
+        Boolean isVmSensor, Boolean isPush) {
         super(link);
         this.className = className;
         this.metricName = metricName;
         this.isVmSensor = isVmSensor;
+        this.isPush = isPush;
     }
 
-    public SensorDescription(String className, String metricName, Boolean isVmSensor) {
-        this(null, className, metricName, isVmSensor);
+    public SensorDescription(String className, String metricName, Boolean isVmSensor,
+        Boolean isPush) {
+        this(null, className, metricName, isVmSensor, isPush);
     }
 
     protected SensorDescription() {
@@ -72,5 +75,13 @@ import java.util.List;
 
     public void setIsVmSensor(Boolean isVmSensor) {
         this.isVmSensor = isVmSensor;
+    }
+
+    public Boolean getIsPush() {
+        return isPush;
+    }
+
+    public void setIsPush(Boolean isPush) {
+        this.isPush = isPush;
     }
 }
