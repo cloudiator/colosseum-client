@@ -20,6 +20,7 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Predicate;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -62,5 +63,13 @@ public abstract class AbstractEntity implements Entity {
     @Override public Long getId() {
         String selfLink = this.getSelfLink();
         return Long.parseLong(selfLink.substring(selfLink.lastIndexOf('/') + 1));
+    }
+
+    @Override public Predicate<Entity> exists() {
+        return new Predicate<Entity>() {
+            @Override public boolean apply(@Nullable Entity entity) {
+                return entity instanceof AbstractEntity && entity.getId().equals(getId());
+            }
+        };
     }
 }

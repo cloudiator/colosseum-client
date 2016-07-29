@@ -19,6 +19,7 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Predicate;
 
 /**
  * Created by daniel on 21.01.15.
@@ -28,5 +29,7 @@ public interface Entity {
     @JsonIgnore public String getSelfLink();
 
     @JsonIgnore public Long getId();
+
+    Predicate<? super Entity> exists();
 
 }
