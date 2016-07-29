@@ -18,7 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import com.google.common.base.Predicate;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -62,4 +64,15 @@ import java.util.List;
         this.providedPort = providedPort;
     }
 
+    @Override public Predicate<Entity> exists() {
+        return new Predicate<Entity>() {
+            @Override public boolean apply(@Nullable Entity entity) {
+                if (!(entity instanceof Communication)) {
+                    return false;
+                }
+                return getRequiredPort().equals(((Communication) entity).getRequiredPort())
+                    && getProvidedPort().equals(((Communication) entity).getProvidedPort());
+            }
+        };
+    }
 }

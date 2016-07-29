@@ -136,6 +136,8 @@ public class ClientController<T extends Entity> {
     public T updateOrCreate(T t) {
         boolean exists = Iterables.any(getList(), t.exists());
         if (exists) {
+            T existing = getSingle(t.exists()).get();
+            t.setLink(existing.getLink());
             return update(t);
         }
         return create(t);

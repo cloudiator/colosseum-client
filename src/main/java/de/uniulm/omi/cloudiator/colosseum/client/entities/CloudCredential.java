@@ -18,7 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import com.google.common.base.Predicate;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -81,5 +83,15 @@ import java.util.List;
 
     public void setTenant(Long tenant) {
         this.tenant = tenant;
+    }
+
+    @Override public Predicate<Entity> exists() {
+        return new Predicate<Entity>() {
+            @Override public boolean apply(@Nullable Entity entity) {
+                return entity instanceof CloudCredential && getCloud()
+                    .equals(((CloudCredential) entity).getCloud()) && getTenant()
+                    .equals(((CloudCredential) entity).getTenant());
+            }
+        };
     }
 }
