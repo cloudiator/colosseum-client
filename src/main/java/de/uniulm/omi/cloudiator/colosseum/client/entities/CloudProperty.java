@@ -28,8 +28,7 @@ import java.util.List;
 /**
  * Created by Frank on 10.09.2015.
  */
-@Path("cloudProperty")
-public class CloudProperty extends AbstractEntity {
+@Path("cloudProperty") public class CloudProperty extends AbstractEntity {
 
     private String key;
     private String value;
@@ -48,7 +47,7 @@ public class CloudProperty extends AbstractEntity {
         this.cloud = cloud;
     }
 
-    protected CloudProperty(){
+    protected CloudProperty() {
         //
     }
 
@@ -74,26 +73,5 @@ public class CloudProperty extends AbstractEntity {
 
     public void setCloud(Long cloud) {
         this.cloud = cloud;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CloudProperty)) return false;
-
-        CloudProperty that = (CloudProperty) o;
-
-        if (key != null ? !key.equals(that.key) : that.key != null) return false;
-        if (value != null ? !value.equals(that.value) : that.value != null) return false;
-        return !(cloud != null ? !cloud.equals(that.cloud) : that.cloud != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = key != null ? key.hashCode() : 0;
-        result = 31 * result + (value != null ? value.hashCode() : 0);
-        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
-        return result;
     }
 }

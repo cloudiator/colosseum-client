@@ -19,10 +19,8 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.MetricMonitor;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FlowOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -33,8 +31,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("composedMonitor")
-public class ComposedMonitor extends MetricMonitor {
+@Path("composedMonitor") public class ComposedMonitor extends MetricMonitor {
 
     private FlowOperator flowOperator;
     private FormulaOperator function;
@@ -45,10 +42,9 @@ public class ComposedMonitor extends MetricMonitor {
     private Long schedule;
 
     public ComposedMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
-        @Nullable List<Long> monitorInstances,
-        FlowOperator flowOperator,
-        FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
-        List<Long> scalingActions, Long schedule) {
+        @Nullable List<Long> monitorInstances, FlowOperator flowOperator, FormulaOperator function,
+        Long quantifier, Long window, List<Long> monitors, List<Long> scalingActions,
+        Long schedule) {
         super(link, externalReferences, monitorInstances);
         this.flowOperator = flowOperator;
         this.function = function;
@@ -60,10 +56,9 @@ public class ComposedMonitor extends MetricMonitor {
     }
 
     public ComposedMonitor(@Nullable List<KeyValue> externalReferences,
-        @Nullable List<Long> monitorInstances,
-        FlowOperator flowOperator,
-        FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
-        List<Long> scalingActions, Long schedule) {
+        @Nullable List<Long> monitorInstances, FlowOperator flowOperator, FormulaOperator function,
+        Long quantifier, Long window, List<Long> monitors, List<Long> scalingActions,
+        Long schedule) {
         super(null, externalReferences, monitorInstances);
         this.flowOperator = flowOperator;
         this.function = function;
@@ -74,9 +69,7 @@ public class ComposedMonitor extends MetricMonitor {
         this.schedule = schedule;
     }
 
-    public ComposedMonitor(
-        @Nullable List<Long> monitorInstances,
-        FlowOperator flowOperator,
+    public ComposedMonitor(@Nullable List<Long> monitorInstances, FlowOperator flowOperator,
         FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
         List<Long> scalingActions, Long schedule) {
         super(null, null, monitorInstances);
@@ -89,9 +82,8 @@ public class ComposedMonitor extends MetricMonitor {
         this.schedule = schedule;
     }
 
-    public ComposedMonitor(FlowOperator flowOperator,
-        FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
-        List<Long> scalingActions, Long schedule) {
+    public ComposedMonitor(FlowOperator flowOperator, FormulaOperator function, Long quantifier,
+        Long window, List<Long> monitors, List<Long> scalingActions, Long schedule) {
         super(null, null, null);
         this.flowOperator = flowOperator;
         this.function = function;
@@ -102,7 +94,7 @@ public class ComposedMonitor extends MetricMonitor {
         this.schedule = schedule;
     }
 
-    protected ComposedMonitor(){
+    protected ComposedMonitor() {
 
     }
 
@@ -162,38 +154,4 @@ public class ComposedMonitor extends MetricMonitor {
         this.schedule = schedule;
     }
 
-    @Override public boolean equals(Object o) {
-        //ignore scaling actions for identity, right?
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        ComposedMonitor that = (ComposedMonitor) o;
-
-        if (flowOperator != that.flowOperator)
-            return false;
-        if (function != that.function)
-            return false;
-        if (monitors != null ? !monitors.equals(that.monitors) : that.monitors != null)
-            return false;
-        if (quantifier != null ? !quantifier.equals(that.quantifier) : that.quantifier != null)
-            return false;
-        if (schedule != null ? !schedule.equals(that.schedule) : that.schedule != null)
-            return false;
-        if (window != null ? !window.equals(that.window) : that.window != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = flowOperator != null ? flowOperator.hashCode() : 0;
-        result = 31 * result + (function != null ? function.hashCode() : 0);
-        result = 31 * result + (quantifier != null ? quantifier.hashCode() : 0);
-        result = 31 * result + (window != null ? window.hashCode() : 0);
-        result = 31 * result + (monitors != null ? monitors.hashCode() : 0);
-        result = 31 * result + (schedule != null ? schedule.hashCode() : 0);
-        return result;
-    }
 }

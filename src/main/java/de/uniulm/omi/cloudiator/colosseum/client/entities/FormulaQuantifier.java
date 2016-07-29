@@ -28,8 +28,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("formulaQuantifier")
-public class FormulaQuantifier extends AbstractEntity {
+@Path("formulaQuantifier") public class FormulaQuantifier extends AbstractEntity {
 
     private Boolean relative;
     private Double value;
@@ -44,7 +43,7 @@ public class FormulaQuantifier extends AbstractEntity {
         this(null, relative, value);
     }
 
-    protected FormulaQuantifier(){
+    protected FormulaQuantifier() {
 
     }
 
@@ -64,25 +63,4 @@ public class FormulaQuantifier extends AbstractEntity {
         this.value = value;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        FormulaQuantifier that = (FormulaQuantifier) o;
-
-        if (relative != null ? !relative.equals(that.relative) : that.relative != null)
-            return false;
-        if (value != null ? !value.equals(that.value) : that.value != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = relative != null ? relative.hashCode() : 0;
-        result = 31 * result + (value != null ? value.hashCode() : 0);
-        return result;
-    }
 }

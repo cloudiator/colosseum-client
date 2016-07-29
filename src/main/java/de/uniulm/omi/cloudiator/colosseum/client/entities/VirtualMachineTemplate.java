@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,8 +28,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("vmt")
-public class VirtualMachineTemplate extends AbstractEntity {
+@Path("vmt") public class VirtualMachineTemplate extends AbstractEntity {
 
     private Long cloud;
     private Long image;
@@ -37,7 +36,8 @@ public class VirtualMachineTemplate extends AbstractEntity {
     private Long hardware;
     private Long templateOptions;
 
-    public VirtualMachineTemplate(@Nullable List<Link> links, Long cloud, Long image, Long location, Long hardware, Long templateOptions) {
+    public VirtualMachineTemplate(@Nullable List<Link> links, Long cloud, Long image, Long location,
+        Long hardware, Long templateOptions) {
         super(links);
         this.cloud = cloud;
         this.image = image;
@@ -46,7 +46,8 @@ public class VirtualMachineTemplate extends AbstractEntity {
         this.templateOptions = templateOptions;
     }
 
-    public VirtualMachineTemplate(Long cloud, Long image, Long location, Long hardware, Long templateOptions) {
+    public VirtualMachineTemplate(Long cloud, Long image, Long location, Long hardware,
+        Long templateOptions) {
         this(null, cloud, image, location, hardware, templateOptions);
     }
 
@@ -91,36 +92,5 @@ public class VirtualMachineTemplate extends AbstractEntity {
 
     public void setTemplateOptions(Long templateOptions) {
         this.templateOptions = templateOptions;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        VirtualMachineTemplate that = (VirtualMachineTemplate) o;
-
-        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
-            return false;
-        if (hardware != null ? !hardware.equals(that.hardware) : that.hardware != null)
-            return false;
-        if (image != null ? !image.equals(that.image) : that.image != null)
-            return false;
-        if (location != null ? !location.equals(that.location) : that.location != null)
-            return false;
-        if (templateOptions != null ? !templateOptions.equals(that.templateOptions) : that.templateOptions != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = cloud != null ? cloud.hashCode() : 0;
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (hardware != null ? hardware.hashCode() : 0);
-        result = 31 * result + (templateOptions != null ? templateOptions.hashCode() : 0);
-        return result;
     }
 }

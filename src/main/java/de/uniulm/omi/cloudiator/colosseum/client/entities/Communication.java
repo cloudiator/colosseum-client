@@ -18,8 +18,8 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
@@ -28,8 +28,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("communication")
-public class Communication extends AbstractEntity {
+@Path("communication") public class Communication extends AbstractEntity {
 
     private Long requiredPort;
     private Long providedPort;
@@ -63,27 +62,4 @@ public class Communication extends AbstractEntity {
         this.providedPort = providedPort;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Communication))
-            return false;
-
-        Communication that = (Communication) o;
-
-        if (requiredPort != null ?
-            !requiredPort.equals(that.requiredPort) :
-            that.requiredPort != null)
-            return false;
-        return !(providedPort != null ?
-            !providedPort.equals(that.providedPort) :
-            that.providedPort != null);
-
-    }
-
-    @Override public int hashCode() {
-        int result = requiredPort != null ? requiredPort.hashCode() : 0;
-        result = 31 * result + (providedPort != null ? providedPort.hashCode() : 0);
-        return result;
-    }
 }

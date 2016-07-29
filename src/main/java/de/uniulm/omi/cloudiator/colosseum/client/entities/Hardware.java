@@ -19,7 +19,9 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.*;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedRemoteEntityInLocation;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,20 +29,23 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("hardware")
-public class Hardware extends NamedRemoteEntityInLocation {
+@Path("hardware") public class Hardware extends NamedRemoteEntityInLocation {
 
     private Long hardwareOffer;
 
-    public Hardware(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
-                    String name, Long hardwareOffer) {
-        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location, name);
+    public Hardware(@Nullable List<Link> links, String remoteId, RemoteState remoteState,
+        String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner,
+        Long location, String name, Long hardwareOffer) {
+        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+            location, name);
         this.hardwareOffer = hardwareOffer;
     }
 
-    public Hardware(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
-                    String name, Long hardwareOffer) {
-        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location, name, hardwareOffer);
+    public Hardware(String remoteId, RemoteState remoteState, String providerId, String swordId,
+        Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name,
+        Long hardwareOffer) {
+        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+            location, name, hardwareOffer);
     }
 
     protected Hardware() {
@@ -52,23 +57,5 @@ public class Hardware extends NamedRemoteEntityInLocation {
 
     public void setHardwareOffer(Long hardwareOffer) {
         this.hardwareOffer = hardwareOffer;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Hardware hardware = (Hardware) o;
-
-        return !(hardwareOffer != null ? !hardwareOffer.equals(hardware.hardwareOffer) : hardware.hardwareOffer != null);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (hardwareOffer != null ? hardwareOffer.hashCode() : 0);
-        return result;
     }
 }

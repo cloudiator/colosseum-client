@@ -82,30 +82,4 @@ import java.util.List;
     public void setTenant(Long tenant) {
         this.tenant = tenant;
     }
-
-    @Override public boolean equals(Object o) {
-        //ignore secret, right?
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        CloudCredential that = (CloudCredential) o;
-
-        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
-            return false;
-        if (tenant != null ? !tenant.equals(that.tenant) : that.tenant != null)
-            return false;
-        if (user != null ? !user.equals(that.user) : that.user != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = user != null ? user.hashCode() : 0;
-        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
-        result = 31 * result + (tenant != null ? tenant.hashCode() : 0);
-        return result;
-    }
 }

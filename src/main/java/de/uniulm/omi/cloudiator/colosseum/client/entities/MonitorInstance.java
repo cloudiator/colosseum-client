@@ -19,7 +19,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -30,8 +29,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("monitorInstance")
-public class MonitorInstance extends Monitor {
+@Path("monitorInstance") public class MonitorInstance extends Monitor {
 
     private Long monitor;
     private String apiEndpoint;
@@ -39,8 +37,8 @@ public class MonitorInstance extends Monitor {
     private Long virtualMachine;
     private Long component;
 
-    public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
-                           Long component) {
+    public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
+        Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component) {
         super(link, externalReferences);
         this.monitor = monitor;
         this.apiEndpoint = apiEndpoint;
@@ -49,15 +47,17 @@ public class MonitorInstance extends Monitor {
         this.component = component;
     }
 
-    public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component) {
+    public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint,
+        Long ipAddress, Long virtualMachine, Long component) {
         this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component);
     }
 
-    public MonitorInstance(Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component) {
+    public MonitorInstance(Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
+        Long component) {
         this(null, null, monitor, apiEndpoint, ipAddress, virtualMachine, component);
     }
 
-    protected MonitorInstance(){
+    protected MonitorInstance() {
 
     }
 
@@ -99,36 +99,5 @@ public class MonitorInstance extends Monitor {
 
     public void setApiEndpoint(String apiEndpoint) {
         this.apiEndpoint = apiEndpoint;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        MonitorInstance that = (MonitorInstance) o;
-
-        if (component != null ? !component.equals(that.component) : that.component != null)
-            return false;
-        if (apiEndpoint != null ? !apiEndpoint.equals(that.apiEndpoint) : that.apiEndpoint != null)
-            return false;
-        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null)
-            return false;
-        if (monitor != null ? !monitor.equals(that.monitor) : that.monitor != null)
-            return false;
-        if (virtualMachine != null ? !virtualMachine.equals(that.virtualMachine) : that.virtualMachine != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = monitor != null ? monitor.hashCode() : 0;
-        result = 31 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
-        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
-        result = 31 * result + (component != null ? component.hashCode() : 0);
-        result = 31 * result + (apiEndpoint != null ? apiEndpoint.hashCode() : 0);
-        return result;
     }
 }

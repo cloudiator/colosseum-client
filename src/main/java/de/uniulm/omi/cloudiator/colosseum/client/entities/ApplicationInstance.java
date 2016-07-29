@@ -28,8 +28,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("applicationInstance")
-public class ApplicationInstance extends AbstractEntity {
+@Path("applicationInstance") public class ApplicationInstance extends AbstractEntity {
 
     private Long application;
 
@@ -51,23 +50,5 @@ public class ApplicationInstance extends AbstractEntity {
 
     public void setApplication(Long application) {
         this.application = application;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        ApplicationInstance that = (ApplicationInstance) o;
-
-        if (application != null ? !application.equals(that.application) : that.application != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        return application != null ? application.hashCode() : 0;
     }
 }

@@ -29,15 +29,15 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("ac")
-public class ApplicationComponent extends AbstractEntity {
+@Path("ac") public class ApplicationComponent extends AbstractEntity {
 
     private Long application;
     private Long component;
     private Long virtualMachineTemplate;
     private ContainerType containerType;
 
-    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component, Long virtualMachineTemplate, @Nullable ContainerType containerType) {
+    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component,
+        Long virtualMachineTemplate, @Nullable ContainerType containerType) {
         super(links);
         this.application = application;
         this.component = component;
@@ -45,7 +45,8 @@ public class ApplicationComponent extends AbstractEntity {
         this.containerType = containerType;
     }
 
-    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate, @Nullable ContainerType containerType) {
+    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate,
+        @Nullable ContainerType containerType) {
         this(null, application, component, virtualMachineTemplate, containerType);
     }
 
@@ -86,36 +87,5 @@ public class ApplicationComponent extends AbstractEntity {
 
     public void setContainerType(ContainerType containerType) {
         this.containerType = containerType;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        ApplicationComponent that = (ApplicationComponent) o;
-
-        if (application != null ? !application.equals(that.application) : that.application != null)
-            return false;
-        if (component != null ? !component.equals(that.component) : that.component != null)
-            return false;
-        if (containerType != null ? !containerType.equals(that.containerType) : that.containerType != null)
-            return false;
-        if (virtualMachineTemplate != null ?
-            !virtualMachineTemplate.equals(that.virtualMachineTemplate) :
-            that.virtualMachineTemplate != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = application != null ? application.hashCode() : 0;
-        result = 31 * result + (component != null ? component.hashCode() : 0);
-        result = 31 * result + (containerType != null ? containerType.hashCode() : 0);
-        result =
-            31 * result + (virtualMachineTemplate != null ? virtualMachineTemplate.hashCode() : 0);
-        return result;
     }
 }
