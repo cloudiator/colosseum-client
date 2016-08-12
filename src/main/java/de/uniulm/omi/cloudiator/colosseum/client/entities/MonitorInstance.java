@@ -19,7 +19,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -30,8 +29,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("monitorInstance")
-public class MonitorInstance extends Monitor {
+@Path("monitorInstance") public class MonitorInstance extends Monitor {
 
     private Long monitor;
     private String apiEndpoint;
@@ -40,8 +38,10 @@ public class MonitorInstance extends Monitor {
     private Long component;
     private Integer port;
 
-    public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
-                           Long component, Integer port) {
+
+    public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
+        Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component,
+        Integer port) {
         super(link, externalReferences);
         this.monitor = monitor;
         this.apiEndpoint = apiEndpoint;
@@ -51,15 +51,19 @@ public class MonitorInstance extends Monitor {
         this.port = port;
     }
 
-    public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component, Integer port) {
-        this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component, port);
+
+    public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint,
+        Long ipAddress, Long virtualMachine, Long component, Integer port) {
+        this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component,
+            port);
     }
 
-    public MonitorInstance(Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component, Integer port) {
+    public MonitorInstance(Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
+        Long component, Integer port) {
         this(null, null, monitor, apiEndpoint, ipAddress, virtualMachine, component, port);
     }
 
-    protected MonitorInstance(){
+    protected MonitorInstance() {
 
     }
 
@@ -109,36 +113,5 @@ public class MonitorInstance extends Monitor {
 
     public void setPort(Integer port) {
         this.port = port;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        MonitorInstance that = (MonitorInstance) o;
-
-        if (component != null ? !component.equals(that.component) : that.component != null)
-            return false;
-        if (apiEndpoint != null ? !apiEndpoint.equals(that.apiEndpoint) : that.apiEndpoint != null)
-            return false;
-        if (ipAddress != null ? !ipAddress.equals(that.ipAddress) : that.ipAddress != null)
-            return false;
-        if (monitor != null ? !monitor.equals(that.monitor) : that.monitor != null)
-            return false;
-        if (virtualMachine != null ? !virtualMachine.equals(that.virtualMachine) : that.virtualMachine != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = monitor != null ? monitor.hashCode() : 0;
-        result = 31 * result + (ipAddress != null ? ipAddress.hashCode() : 0);
-        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
-        result = 31 * result + (component != null ? component.hashCode() : 0);
-        result = 31 * result + (apiEndpoint != null ? apiEndpoint.hashCode() : 0);
-        return result;
     }
 }

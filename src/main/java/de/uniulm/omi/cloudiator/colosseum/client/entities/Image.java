@@ -35,18 +35,23 @@ import java.util.List;
     private String defaultLoginUsername;
     private String defaultLoginPassword;
 
-    public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
-                 String name, Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
-        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location, name);
+    public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState,
+        String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner,
+        Long location, String name, Long operatingSystem, String defaultLoginUsername,
+        String defaultLoginPassword) {
+        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+            location, name);
         this.operatingSystem = operatingSystem;
         this.defaultLoginUsername = defaultLoginUsername;
         this.defaultLoginPassword = defaultLoginPassword;
     }
 
 
-    public Image(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
-                 String name, Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
-        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location, name, operatingSystem, defaultLoginUsername, defaultLoginPassword);
+    public Image(String remoteId, RemoteState remoteState, String providerId, String swordId,
+        Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name,
+        Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
+        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+            location, name, operatingSystem, defaultLoginUsername, defaultLoginPassword);
     }
 
     protected Image() {
@@ -74,37 +79,5 @@ import java.util.List;
 
     public void setDefaultLoginPassword(String defaultLoginPassword) {
         this.defaultLoginPassword = defaultLoginPassword;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof Image))
-            return false;
-        if (!super.equals(o))
-            return false;
-
-        Image image = (Image) o;
-
-        if (operatingSystem != null ?
-            !operatingSystem.equals(image.operatingSystem) :
-            image.operatingSystem != null)
-            return false;
-        if (defaultLoginPassword != null ?
-                !defaultLoginPassword.equals(image.defaultLoginPassword) :
-                image.defaultLoginPassword != null)
-            return false;
-        return !(defaultLoginUsername != null ?
-            !defaultLoginUsername.equals(image.defaultLoginUsername) :
-            image.defaultLoginUsername != null);
-
-    }
-
-    @Override public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (operatingSystem != null ? operatingSystem.hashCode() : 0);
-        result = 31 * result + (defaultLoginUsername != null ? defaultLoginUsername.hashCode() : 0);
-        result = 31 * result + (defaultLoginPassword != null ? defaultLoginPassword.hashCode() : 0);
-        return result;
     }
 }

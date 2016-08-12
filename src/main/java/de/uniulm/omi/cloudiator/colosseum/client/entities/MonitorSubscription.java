@@ -30,8 +30,7 @@ import java.util.List;
 /**
  * Created by Frank on 05.08.2015.
  */
-@Path("monitorSubscription")
-public class MonitorSubscription extends AbstractEntity {
+@Path("monitorSubscription") public class MonitorSubscription extends AbstractEntity {
     private Long monitor;
     private String endpoint;
     private SubscriptionType type;
@@ -57,7 +56,7 @@ public class MonitorSubscription extends AbstractEntity {
         this.filterValue = filterValue;
     }
 
-    protected MonitorSubscription(){
+    protected MonitorSubscription() {
 
     }
 
@@ -99,36 +98,5 @@ public class MonitorSubscription extends AbstractEntity {
 
     public void setFilterValue(Double filterValue) {
         this.filterValue = filterValue;
-    }
-
-    @Override public int hashCode() {
-        int result = monitor != null ? monitor.hashCode() : 0;
-        result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (filterType != null ? filterType.hashCode() : 0);
-        result = 31 * result + (filterValue != null ? filterValue.hashCode() : 0);
-        return result;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        MonitorSubscription that = (MonitorSubscription) o;
-
-        if (endpoint != null ? !endpoint.equals(that.endpoint) : that.endpoint != null)
-            return false;
-        if (type != null ? !type.equals(that.type) : that.type != null)
-            return false;
-        if (monitor != null ? !monitor.equals(that.monitor) : that.monitor != null)
-            return false;
-        if (filterType != null ? !filterType.equals(that.filterType) : that.filterType != null)
-            return false;
-        if (filterValue != null ? !filterValue.equals(that.filterValue) : that.filterValue != null)
-            return false;
-
-        return true;
     }
 }

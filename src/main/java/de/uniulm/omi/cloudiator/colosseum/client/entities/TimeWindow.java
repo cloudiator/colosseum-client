@@ -19,7 +19,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Window;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -30,8 +29,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("timeWindow")
-public class TimeWindow extends Window {
+@Path("timeWindow") public class TimeWindow extends Window {
 
     private TimeUnit timeUnit;
     private Long interval;
@@ -47,7 +45,7 @@ public class TimeWindow extends Window {
         this(null, interval, timeUnit);
     }
 
-    protected TimeWindow(){
+    protected TimeWindow() {
 
     }
 
@@ -65,27 +63,5 @@ public class TimeWindow extends Window {
 
     public void setInterval(Long interval) {
         this.interval = interval;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof TimeWindow))
-            return false;
-
-        TimeWindow that = (TimeWindow) o;
-
-        if (interval != null ? !interval.equals(that.interval) : that.interval != null)
-            return false;
-        if (timeUnit != that.timeUnit)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = timeUnit != null ? timeUnit.hashCode() : 0;
-        result = 31 * result + (interval != null ? interval.hashCode() : 0);
-        return result;
     }
 }

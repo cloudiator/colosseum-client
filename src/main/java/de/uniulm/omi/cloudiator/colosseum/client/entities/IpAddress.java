@@ -31,10 +31,10 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("ip")
-public class IpAddress extends AbstractEntity {
+@Path("ip") public class IpAddress extends AbstractEntity {
 
-    private final ArrayList<String> allowed = new ArrayList<String>(Arrays.asList("PRIVATE", "PUBLIC"));
+    private final ArrayList<String> allowed =
+        new ArrayList<String>(Arrays.asList("PRIVATE", "PUBLIC"));
 
     private String ip;
     private Long virtualMachine;
@@ -79,35 +79,5 @@ public class IpAddress extends AbstractEntity {
             throw new InvalidParameterException("Wrong IP-Type!");
         }
         this.ipType = ipType;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        IpAddress ipAddress = (IpAddress) o;
-
-        if (allowed != null ? !allowed.equals(ipAddress.allowed) : ipAddress.allowed != null)
-            return false;
-        if (ip != null ? !ip.equals(ipAddress.ip) : ipAddress.ip != null)
-            return false;
-        if (ipType != null ? !ipType.equals(ipAddress.ipType) : ipAddress.ipType != null)
-            return false;
-        if (virtualMachine != null ?
-            !virtualMachine.equals(ipAddress.virtualMachine) :
-            ipAddress.virtualMachine != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = allowed != null ? allowed.hashCode() : 0;
-        result = 31 * result + (ip != null ? ip.hashCode() : 0);
-        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
-        result = 31 * result + (ipType != null ? ipType.hashCode() : 0);
-        return result;
     }
 }

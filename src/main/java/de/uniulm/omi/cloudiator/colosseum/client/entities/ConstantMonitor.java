@@ -19,7 +19,6 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
@@ -30,12 +29,12 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("constantMonitor")
-public class ConstantMonitor extends Monitor {
+@Path("constantMonitor") public class ConstantMonitor extends Monitor {
 
     private Double value;
 
-    public ConstantMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences, Double value) {
+    public ConstantMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
+        Double value) {
         super(link, externalReferences);
         this.value = value;
     }
@@ -48,7 +47,7 @@ public class ConstantMonitor extends Monitor {
         this(null, null, value);
     }
 
-    protected ConstantMonitor(){
+    protected ConstantMonitor() {
 
     }
 
@@ -60,21 +59,4 @@ public class ConstantMonitor extends Monitor {
         this.value = value;
     }
 
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        ConstantMonitor that = (ConstantMonitor) o;
-
-        if (value != null ? !value.equals(that.value) : that.value != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        return value != null ? value.hashCode() : 0;
-    }
 }

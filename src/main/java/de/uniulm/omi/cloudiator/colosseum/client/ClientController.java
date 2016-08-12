@@ -114,8 +114,8 @@ public class ClientController<T extends Entity> {
             @Override public boolean apply(@Nullable T input) {
                 return input == null;
             }
-        }).withStopStrategy(StopStrategies.stopAfterDelay(timeout, timeUnit)).withWaitStrategy(
-            WaitStrategies.fixedWait(10, TimeUnit.SECONDS)).build();
+        }).withStopStrategy(StopStrategies.stopAfterDelay(timeout, timeUnit))
+            .withWaitStrategy(WaitStrategies.fixedWait(10, TimeUnit.SECONDS)).build();
         try {
             return Optional.fromNullable(retryer.call(new Callable<T>() {
                 @Override public T call() throws Exception {
@@ -131,6 +131,16 @@ public class ClientController<T extends Entity> {
 
     public boolean exists(Predicate<? super T> filter) {
         return Iterables.any(getList(), filter);
+    }
+
+    public T updateOrCreate(T t) {
+        boolean exists = Iterables.any(getList(), t.exists());
+        if (exists) {
+            T existing = getSingle(t.exists()).get();
+            t.setLink(existing.getLink());
+            return update(t);
+        }
+        return create(t);
     }
 
     public T create(T t) {

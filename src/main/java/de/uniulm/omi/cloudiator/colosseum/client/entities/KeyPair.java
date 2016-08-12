@@ -28,26 +28,26 @@ import java.util.List;
 /**
  * Created by Frank on 17.02.2016.
  */
-@Path("keyPair")
-public class KeyPair extends RemoteEntityInCloud {
+@Path("keyPair") public class KeyPair extends RemoteEntityInCloud {
 
     private String privateKey;
     private String publicKey;
     private Long virtualMachine;
 
-    public KeyPair(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud,
-                    List<Long> cloudCredentials, Long owner, String privateKey, String publicKey, Long virtualMachine) {
+    public KeyPair(List<Link> links, String remoteId, RemoteState remoteState, String providerId,
+        String swordId, Long cloud, List<Long> cloudCredentials, Long owner, String privateKey,
+        String publicKey, Long virtualMachine) {
         super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
         this.privateKey = privateKey;
         this.publicKey = publicKey;
         this.virtualMachine = virtualMachine;
     }
 
-    public KeyPair(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud,
-                    List<Long> cloudCredentials, Long owner, String privateKey, String publicKey,
-                    Long virtualMachine) {
-        this(null, remoteId, remoteState, providerId, swordId, cloud,
-                cloudCredentials, owner, privateKey, publicKey, virtualMachine);
+    public KeyPair(String remoteId, RemoteState remoteState, String providerId, String swordId,
+        Long cloud, List<Long> cloudCredentials, Long owner, String privateKey, String publicKey,
+        Long virtualMachine) {
+        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+            privateKey, publicKey, virtualMachine);
     }
 
     protected KeyPair() {
@@ -75,24 +75,5 @@ public class KeyPair extends RemoteEntityInCloud {
 
     public void setVirtualMachine(Long virtualMachine) {
         this.virtualMachine = virtualMachine;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof KeyPair)) return false;
-        if (!super.equals(o)) return false;
-
-        KeyPair keyPair = (KeyPair) o;
-
-        return !(virtualMachine != null ? !virtualMachine.equals(keyPair.virtualMachine) : keyPair.virtualMachine != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (virtualMachine != null ? virtualMachine.hashCode() : 0);
-        return result;
     }
 }

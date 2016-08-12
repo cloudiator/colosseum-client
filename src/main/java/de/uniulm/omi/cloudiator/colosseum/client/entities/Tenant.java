@@ -27,8 +27,7 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("tenant")
-public class Tenant extends NamedEntity {
+@Path("tenant") public class Tenant extends NamedEntity {
 
     private List<Long> frontendUsers;
 
@@ -51,29 +50,4 @@ public class Tenant extends NamedEntity {
     public void setFrontendUsers(List<Long> frontendUsers) {
         this.frontendUsers = frontendUsers;
     }
-
-    // Identity by name, only?
-/*    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        if (!super.equals(o))
-            return false;
-
-        FrontendGroup that = (FrontendGroup) o;
-
-        if (frontendUsers != null ?
-            !frontendUsers.equals(that.frontendUsers) :
-            that.frontendUsers != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (frontendUsers != null ? frontendUsers.hashCode() : 0);
-        return result;
-    }*/
 }

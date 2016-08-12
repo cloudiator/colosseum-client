@@ -18,6 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
+import com.google.common.base.Predicate;
+
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -65,5 +68,14 @@ public abstract class NamedEntity extends AbstractEntity {
 
     @Override public int hashCode() {
         return name != null ? name.hashCode() : 0;
+    }
+
+    public Predicate<Entity> exists() {
+        return new Predicate<Entity>() {
+            @Override public boolean apply(@Nullable Entity entity) {
+                return entity instanceof NamedEntity && ((NamedEntity) entity).getName()
+                    .equals(getName());
+            }
+        };
     }
 }

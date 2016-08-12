@@ -28,14 +28,14 @@ import java.util.List;
 /**
  * Created by frank on 21.01.15.
  */
-@Path("hardwareOffer")
-public class HardwareOffer extends AbstractEntity {
+@Path("hardwareOffer") public class HardwareOffer extends AbstractEntity {
 
     private Integer numberOfCores;
     private Long mbOfRam;
     private Long localDiskSpace;
 
-    public HardwareOffer(@Nullable List<Link> links, Integer numberOfCores, Long mbOfRam, Long localDiskSpace) {
+    public HardwareOffer(@Nullable List<Link> links, Integer numberOfCores, Long mbOfRam,
+        Long localDiskSpace) {
         super(links);
         this.numberOfCores = numberOfCores;
         this.mbOfRam = mbOfRam;
@@ -71,34 +71,5 @@ public class HardwareOffer extends AbstractEntity {
 
     public void setLocalDiskSpace(Long localDiskSpace) {
         this.localDiskSpace = localDiskSpace;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        HardwareOffer that = (HardwareOffer) o;
-
-        if (localDiskSpace != null ?
-            !localDiskSpace.equals(that.localDiskSpace) :
-            that.localDiskSpace != null)
-            return false;
-        if (mbOfRam != null ? !mbOfRam.equals(that.mbOfRam) : that.mbOfRam != null)
-            return false;
-        if (numberOfCores != null ?
-            !numberOfCores.equals(that.numberOfCores) :
-            that.numberOfCores != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = numberOfCores != null ? numberOfCores.hashCode() : 0;
-        result = 31 * result + (mbOfRam != null ? mbOfRam.hashCode() : 0);
-        result = 31 * result + (localDiskSpace != null ? localDiskSpace.hashCode() : 0);
-        return result;
     }
 }

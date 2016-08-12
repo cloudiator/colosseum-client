@@ -24,13 +24,11 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("sensorDescription")
-public class SensorDescription extends AbstractEntity {
+@Path("sensorDescription") public class SensorDescription extends AbstractEntity {
 
     private String className;
     private String metricName;
@@ -46,11 +44,12 @@ public class SensorDescription extends AbstractEntity {
         this.isPush = isPush;
     }
 
-    public SensorDescription(String className, String metricName, Boolean isVmSensor, Boolean isPush) {
+    public SensorDescription(String className, String metricName, Boolean isVmSensor,
+        Boolean isPush) {
         this(null, className, metricName, isVmSensor, isPush);
     }
 
-    protected SensorDescription(){
+    protected SensorDescription() {
 
     }
 
@@ -84,33 +83,5 @@ public class SensorDescription extends AbstractEntity {
 
     public void setIsPush(Boolean isPush) {
         this.isPush = isPush;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        SensorDescription that = (SensorDescription) o;
-
-        if (className != null ? !className.equals(that.className) : that.className != null)
-            return false;
-        if (isVmSensor != null ? !isVmSensor.equals(that.isVmSensor) : that.isVmSensor != null)
-            return false;
-        if (isPush != null ? !isPush.equals(that.isPush) : that.isPush != null)
-            return false;
-        if (metricName != null ? !metricName.equals(that.metricName) : that.metricName != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = className != null ? className.hashCode() : 0;
-        result = 31 * result + (metricName != null ? metricName.hashCode() : 0);
-        result = 31 * result + (isVmSensor != null ? isVmSensor.hashCode() : 0);
-        result = 31 * result + (isPush != null ? isPush.hashCode() : 0);
-        return result;
     }
 }

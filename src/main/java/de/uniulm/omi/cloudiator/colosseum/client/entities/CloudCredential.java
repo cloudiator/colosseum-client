@@ -18,7 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import com.google.common.base.Predicate;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -83,29 +85,13 @@ import java.util.List;
         this.tenant = tenant;
     }
 
-    @Override public boolean equals(Object o) {
-        //ignore secret, right?
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        CloudCredential that = (CloudCredential) o;
-
-        if (cloud != null ? !cloud.equals(that.cloud) : that.cloud != null)
-            return false;
-        if (tenant != null ? !tenant.equals(that.tenant) : that.tenant != null)
-            return false;
-        if (user != null ? !user.equals(that.user) : that.user != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = user != null ? user.hashCode() : 0;
-        result = 31 * result + (cloud != null ? cloud.hashCode() : 0);
-        result = 31 * result + (tenant != null ? tenant.hashCode() : 0);
-        return result;
+    @Override public Predicate<Entity> exists() {
+        return new Predicate<Entity>() {
+            @Override public boolean apply(@Nullable Entity entity) {
+                return entity instanceof CloudCredential && getCloud()
+                    .equals(((CloudCredential) entity).getCloud()) && getTenant()
+                    .equals(((CloudCredential) entity).getTenant());
+            }
+        };
     }
 }
