@@ -15,14 +15,16 @@ import java.util.List;
 @Path("templateOptions") public class TemplateOptions extends AbstractEntity {
 
     private List<KeyValue> tags = new ArrayList<>();
+    private String userData;
 
-    public TemplateOptions(@Nullable List<Link> link, List<KeyValue> tags) {
+    public TemplateOptions(@Nullable List<Link> link, List<KeyValue> tags, String userData) {
         super(link);
         this.tags = tags;
+        this.userData = userData;
     }
 
-    public TemplateOptions(List<KeyValue> tags) {
-        this(null, tags);
+    public TemplateOptions(List<KeyValue> tags, String userData) {
+        this(null, tags, userData);
     }
 
     protected TemplateOptions() {
@@ -43,5 +45,13 @@ import java.util.List;
 
     public void addTag(String key, String value) {
         this.tags.add(new KeyValue(key, value));
+    }
+
+    public String getUserData() {
+        return userData;
+    }
+
+    public void setUserData(String userData) {
+        this.userData = userData;
     }
 }
