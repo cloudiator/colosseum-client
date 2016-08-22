@@ -18,13 +18,12 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
-import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 
 /**
  * Created by Frank on 29.05.2015.
  */
-public class SingletonFactory {
+@Deprecated public class SingletonFactory {
 
     public final Client client;
 
@@ -32,13 +31,7 @@ public class SingletonFactory {
         this.client = client;
     }
 
-    public <T extends AbstractEntity> T singleton(T obj){
-        for(T onlineObj : client.controller((Class<T>)obj.getClass()).getList()){
-            if(onlineObj.equals(obj)){
-                return onlineObj;
-            }
-        }
-
-        return client.controller((Class<T>)obj.getClass()).create(obj);
+    public <T extends Entity> T singleton(T obj) {
+        return client.controller((Class<T>) obj.getClass()).updateOrCreate(obj);
     }
 }
