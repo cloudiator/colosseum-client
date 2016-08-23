@@ -18,7 +18,9 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import com.google.common.base.Predicate;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 
@@ -92,5 +94,44 @@ import java.util.List;
 
     public void setTemplateOptions(Long templateOptions) {
         this.templateOptions = templateOptions;
+    }
+
+    @Override public Predicate<Entity> exists() {
+        return new Predicate<Entity>() {
+            @Override public boolean apply(@Nullable Entity input) {
+                return VirtualMachineTemplate.this.equals(input);
+            }
+        };
+    }
+
+    @Override public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof VirtualMachineTemplate))
+            return false;
+
+        VirtualMachineTemplate that = (VirtualMachineTemplate) o;
+
+        if (!cloud.equals(that.cloud))
+            return false;
+        if (!image.equals(that.image))
+            return false;
+        if (!location.equals(that.location))
+            return false;
+        if (!hardware.equals(that.hardware))
+            return false;
+        return templateOptions != null ?
+            templateOptions.equals(that.templateOptions) :
+            that.templateOptions == null;
+
+    }
+
+    @Override public int hashCode() {
+        int result = cloud.hashCode();
+        result = 31 * result + image.hashCode();
+        result = 31 * result + location.hashCode();
+        result = 31 * result + hardware.hashCode();
+        result = 31 * result + (templateOptions != null ? templateOptions.hashCode() : 0);
+        return result;
     }
 }
