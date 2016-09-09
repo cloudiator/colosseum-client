@@ -7,7 +7,6 @@ public class MonitorInstanceBuilder {
 
     private Long monitor;
     private String apiEndpoint;
-    private Long ipAddress;
     private Long virtualMachine;
     private Long component;
     private Integer port;
@@ -19,11 +18,6 @@ public class MonitorInstanceBuilder {
 
     public MonitorInstanceBuilder apiEndpoint(String apiEndpoint){
         this.apiEndpoint = apiEndpoint;
-        return this;
-    }
-
-    public MonitorInstanceBuilder ipAddress(Long ipAddress){
-        this.ipAddress = ipAddress;
         return this;
     }
 
@@ -43,6 +37,6 @@ public class MonitorInstanceBuilder {
     }
 
     public MonitorInstance build(){
-        return new MonitorInstance(monitor, apiEndpoint, ipAddress, virtualMachine, component, port);
+        return new MonitorInstance(monitor, apiEndpoint, virtualMachine, component, port);
     }
 }
