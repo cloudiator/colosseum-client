@@ -33,19 +33,17 @@ import java.util.List;
 
     private Long monitor;
     private String apiEndpoint;
-    private Long ipAddress;
     private Long virtualMachine;
     private Long component;
     private Integer port;
 
 
     public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
-        Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine, Long component,
+        Long monitor, String apiEndpoint, Long virtualMachine, Long component,
         Integer port) {
         super(link, externalReferences);
         this.monitor = monitor;
         this.apiEndpoint = apiEndpoint;
-        this.ipAddress = ipAddress;
         this.virtualMachine = virtualMachine;
         this.component = component;
         this.port = port;
@@ -53,14 +51,14 @@ import java.util.List;
 
 
     public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint,
-        Long ipAddress, Long virtualMachine, Long component, Integer port) {
-        this(null, externalReferences, monitor, apiEndpoint, ipAddress, virtualMachine, component,
+        Long virtualMachine, Long component, Integer port) {
+        this(null, externalReferences, monitor, apiEndpoint, virtualMachine, component,
             port);
     }
 
-    public MonitorInstance(Long monitor, String apiEndpoint, Long ipAddress, Long virtualMachine,
+    public MonitorInstance(Long monitor, String apiEndpoint, Long virtualMachine,
         Long component, Integer port) {
-        this(null, null, monitor, apiEndpoint, ipAddress, virtualMachine, component, port);
+        this(null, null, monitor, apiEndpoint, virtualMachine, component, port);
     }
 
     protected MonitorInstance() {
@@ -73,14 +71,6 @@ import java.util.List;
 
     public void setMonitor(Long monitor) {
         this.monitor = monitor;
-    }
-
-    public Long getIpAddress() {
-        return ipAddress;
-    }
-
-    public void setIpAddress(Long ipAddress) {
-        this.ipAddress = ipAddress;
     }
 
     public Long getVirtualMachine() {
