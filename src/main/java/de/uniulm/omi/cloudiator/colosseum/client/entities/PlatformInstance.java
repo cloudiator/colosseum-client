@@ -1,8 +1,10 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
+import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
 
 import java.util.List;
 
@@ -11,14 +13,15 @@ import javax.annotation.Nullable;
 /**
  * Created by Frank on 05.12.2016.
  */
-@Path("platformInstance") public class PlatformInstance extends AbstractEntity {
+@Path("platformInstance") public class PlatformInstance extends RemoteEntity {
     private Long applicationComponent;
     private Long applicationInstance;
     private Long platformEnvironment;
     private String endpoint;
 
-    public PlatformInstance(@Nullable List<Link> link, Long applicationComponent, Long applicationInstance, Long platformEnvironment, String endpoint) {
-        super(link);
+    public PlatformInstance(@Nullable List<Link> link, String remoteId, RemoteState remoteState,
+                            String providerId, String swordId, Long applicationComponent, Long applicationInstance, Long platformEnvironment, String endpoint) {
+        super(link, remoteId, remoteState, providerId, swordId);
         this.applicationComponent = applicationComponent;
         this.applicationInstance = applicationInstance;
         this.platformEnvironment = platformEnvironment;
