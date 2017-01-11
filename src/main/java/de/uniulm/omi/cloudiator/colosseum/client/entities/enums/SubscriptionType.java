@@ -25,8 +25,9 @@ public enum SubscriptionType {
 
     CDO("CDO"),
     CDO_EVENT("CDO"),
-    SCALING("SCALING"),
-    JSON_CS("JSON_CS");
+    JSON_CS("JSON_CS"),
+    ADAPTATION_ACTIVATION("ADAPTATION_ACTIVATION"),
+    SCALING("SCALING");
 
     private final String text;
 
