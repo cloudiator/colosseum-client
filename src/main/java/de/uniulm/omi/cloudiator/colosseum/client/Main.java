@@ -38,6 +38,6 @@ public class Main {
         PlatformEnvironmentTemplate platformEnvironmentTemplate = client.controller(PlatformEnvironmentTemplate.class).updateOrCreate(new PlatformEnvironmentTemplate(null, platform.getId(), platformHardware.getId(), platformRuntime.getId()));
         //TODO what is the template good for?
         ApplicationInstance applicationInstance = client.controller(ApplicationInstance.class).updateOrCreate(new ApplicationInstance(application.getId()));
-        PlatformInstance platformInstance = client.controller(PlatformInstance.class).updateOrCreate(new PlatformInstance(null, applicationComponent.getId(), applicationInstance.getId(), platformEnvironment.getId(), null));
+        PlatformInstance platformInstance = client.controller(PlatformInstance.class).updateOrCreate(new PlatformInstance(null, null, null, null, null, applicationComponent.getId(), applicationInstance.getId(), platformEnvironment.getId(), null));
     }
 }
