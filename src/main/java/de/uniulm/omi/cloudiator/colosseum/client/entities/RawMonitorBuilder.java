@@ -16,6 +16,7 @@ public class RawMonitorBuilder {
     private Long sensorDescription;
     private Long schedule;
     private Long sensorConfigurations;
+    private Boolean isExternal;
 
     public RawMonitorBuilder addExternalReference(KeyValue externalReference) {
         this.externalReferences.add(externalReference);
@@ -67,8 +68,13 @@ public class RawMonitorBuilder {
         return this;
     }
 
+    public RawMonitorBuilder isExternal(Boolean isExternal) {
+        this.isExternal = isExternal;
+        return this;
+    }
+
     public RawMonitor build() {
         return new RawMonitor(null, externalReferences, monitorInstances, application, component,
-            componentInstance, cloud, sensorDescription, schedule, sensorConfigurations);
+            componentInstance, cloud, sensorDescription, schedule, sensorConfigurations, isExternal);
     }
 }

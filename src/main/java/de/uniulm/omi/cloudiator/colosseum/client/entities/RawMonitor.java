@@ -38,11 +38,12 @@ import java.util.List;
     private Long sensorDescription;
     private Long schedule;
     private Long sensorConfigurations;
+    private Boolean isExternal;
 
     public RawMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
         @Nullable List<Long> monitorInstances, Long application, Long component,
         Long componentInstance, Long cloud, Long sensorDescription, Long schedule,
-        @Nullable Long sensorConfigurations) {
+        @Nullable Long sensorConfigurations, Boolean isExternal) {
         super(link, externalReferences, monitorInstances);
         this.application = application;
         this.component = component;
@@ -51,31 +52,32 @@ import java.util.List;
         this.sensorDescription = sensorDescription;
         this.schedule = schedule;
         this.sensorConfigurations = sensorConfigurations;
+        this.isExternal = isExternal;
     }
 
     public RawMonitor(@Nullable List<KeyValue> externalReferences,
         @Nullable List<Long> monitorInstances, Long application, Long component, Long instance,
         Long cloud, Long sensorDescription, Long schedule) {
         this(null, externalReferences, monitorInstances, application, component, instance, cloud,
-            sensorDescription, schedule, null);
+            sensorDescription, schedule, null, false);
     }
 
     public RawMonitor(@Nullable List<Long> monitorInstances, Long application, Long component,
         Long instance, Long cloud, Long sensorDescription, Long schedule) {
         this(null, null, monitorInstances, application, component, instance, cloud,
-            sensorDescription, schedule, null);
+            sensorDescription, schedule, null, false);
     }
 
     public RawMonitor(Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule) {
         this(null, null, null, application, component, instance, cloud, sensorDescription, schedule,
-            null);
+            null, false);
     }
 
     public RawMonitor(Long application, Long component, Long instance, Long cloud,
         Long sensorDescription, Long schedule, Long sensorConfigurations) {
         this(null, null, null, application, component, instance, cloud, sensorDescription, schedule,
-            sensorConfigurations);
+            sensorConfigurations, false);
     }
 
     protected RawMonitor() {
@@ -136,5 +138,13 @@ import java.util.List;
 
     public void setSensorConfigurations(Long sensorConfigurations) {
         this.sensorConfigurations = sensorConfigurations;
+    }
+
+    public Boolean getIsExternal() {
+        return isExternal;
+    }
+
+    public void setIsExternal(Boolean external) {
+        isExternal = external;
     }
 }
