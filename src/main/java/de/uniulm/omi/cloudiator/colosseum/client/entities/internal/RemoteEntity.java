@@ -19,73 +19,81 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
-
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Frank on 18.08.2015.
  */
 public abstract class RemoteEntity extends AbstractEntity {
 
-    private String remoteId;
-    private RemoteState remoteState;
-    private String providerId;
-    private String swordId;
+  private String remoteId;
+  private RemoteState remoteState;
+  private String providerId;
+  private String swordId;
 
-    public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId) {
-        super(links);
-        this.remoteId = remoteId;
-        this.remoteState = remoteState;
-        this.providerId = providerId;
-        this.swordId = swordId;
-    }
+  public RemoteEntity(List<Link> links, String remoteId, RemoteState remoteState, String providerId,
+      String swordId) {
+    super(links);
+    this.remoteId = remoteId;
+    this.remoteState = remoteState;
+    this.providerId = providerId;
+    this.swordId = swordId;
+  }
 
-    public RemoteEntity(String remoteId, RemoteState remoteState, String providerId, String swordId) {
-        this(null, remoteId, remoteState, providerId, swordId);
-    }
+  public RemoteEntity(String remoteId, RemoteState remoteState, String providerId, String swordId) {
+    this(null, remoteId, remoteState, providerId, swordId);
+  }
 
-    protected RemoteEntity() {
-    }
+  protected RemoteEntity() {
+  }
 
-    public String getRemoteId() {
-        return remoteId;
-    }
+  public String getRemoteId() {
+    return remoteId;
+  }
 
-    public void setRemoteId(String remoteId) {
-        this.remoteId = remoteId;
-    }
+  public void setRemoteId(String remoteId) {
+    this.remoteId = remoteId;
+  }
 
-    public RemoteState getRemoteState() {
-        return remoteState;
-    }
+  public RemoteState getRemoteState() {
+    return remoteState;
+  }
 
-    public void setRemoteState(RemoteState remoteState) {
-        this.remoteState = remoteState;
-    }
+  public void setRemoteState(RemoteState remoteState) {
+    this.remoteState = remoteState;
+  }
 
-    public String getProviderId() {
-        return providerId;
-    }
+  public String getProviderId() {
+    return providerId;
+  }
 
-    public void setProviderId(String providerId) {
-        this.providerId = providerId;
-    }
+  public void setProviderId(String providerId) {
+    this.providerId = providerId;
+  }
 
-    public String getSwordId() {
-        return swordId;
-    }
+  public String getSwordId() {
+    return swordId;
+  }
 
-    public void setSwordId(String swordId) {
-        this.swordId = swordId;
-    }
+  public void setSwordId(String swordId) {
+    this.swordId = swordId;
+  }
 
-    @Override public boolean equals(Object o) {
-        // ignoring all the fields here
-        return true;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (!(o instanceof RemoteEntity)) {
+      return false;
+    }
+    RemoteEntity that = (RemoteEntity) o;
+    return Objects.equals(remoteId, that.remoteId);
+  }
 
-    @Override public int hashCode() {
-        // ignoring all the fields here
-        return 0;
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(remoteId);
+  }
 }

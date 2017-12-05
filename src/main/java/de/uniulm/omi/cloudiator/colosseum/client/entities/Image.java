@@ -22,62 +22,62 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedRemoteEntityInLocation;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("image") public class Image extends NamedRemoteEntityInLocation {
+@Path("image")
+public class Image extends NamedRemoteEntityInLocation {
 
-    private Long operatingSystem;
-    private String defaultLoginUsername;
-    private String defaultLoginPassword;
+  private Long operatingSystem;
+  private String defaultLoginUsername;
+  private String defaultLoginPassword;
 
-    public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState,
-        String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner,
-        Long location, String name, Long operatingSystem, String defaultLoginUsername,
-        String defaultLoginPassword) {
-        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
-            location, name);
-        this.operatingSystem = operatingSystem;
-        this.defaultLoginUsername = defaultLoginUsername;
-        this.defaultLoginPassword = defaultLoginPassword;
-    }
+  public Image(@Nullable List<Link> links, String remoteId, RemoteState remoteState,
+      String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner,
+      Long location, String name, Long operatingSystem, String defaultLoginUsername,
+      String defaultLoginPassword) {
+    super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+        location, name);
+    this.operatingSystem = operatingSystem;
+    this.defaultLoginUsername = defaultLoginUsername;
+    this.defaultLoginPassword = defaultLoginPassword;
+  }
 
 
-    public Image(String remoteId, RemoteState remoteState, String providerId, String swordId,
-        Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name,
-        Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
-        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
-            location, name, operatingSystem, defaultLoginUsername, defaultLoginPassword);
-    }
+  public Image(String remoteId, RemoteState remoteState, String providerId, String swordId,
+      Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name,
+      Long operatingSystem, String defaultLoginUsername, String defaultLoginPassword) {
+    this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+        location, name, operatingSystem, defaultLoginUsername, defaultLoginPassword);
+  }
 
-    protected Image() {
-    }
+  protected Image() {
+  }
 
-    public Long getOperatingSystem() {
-        return operatingSystem;
-    }
+  public Long getOperatingSystem() {
+    return operatingSystem;
+  }
 
-    public void setOperatingSystem(Long operatingSystem) {
-        this.operatingSystem = operatingSystem;
-    }
+  public void setOperatingSystem(Long operatingSystem) {
+    this.operatingSystem = operatingSystem;
+  }
 
-    public String getDefaultLoginUsername() {
-        return defaultLoginUsername;
-    }
+  public String getDefaultLoginUsername() {
+    return defaultLoginUsername;
+  }
 
-    public void setDefaultLoginUsername(String defaultLoginUsername) {
-        this.defaultLoginUsername = defaultLoginUsername;
-    }
+  public void setDefaultLoginUsername(String defaultLoginUsername) {
+    this.defaultLoginUsername = defaultLoginUsername;
+  }
 
-    public String getDefaultLoginPassword() {
-        return defaultLoginPassword;
-    }
+  public String getDefaultLoginPassword() {
+    return defaultLoginPassword;
+  }
 
-    public void setDefaultLoginPassword(String defaultLoginPassword) {
-        this.defaultLoginPassword = defaultLoginPassword;
-    }
+  public void setDefaultLoginPassword(String defaultLoginPassword) {
+    this.defaultLoginPassword = defaultLoginPassword;
+  }
 }

@@ -21,9 +21,8 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
@@ -31,15 +30,15 @@ import java.util.List;
 @Path("application")
 public class Application extends NamedEntity {
 
-    public Application(@Nullable List<Link> links, String name) {
-        super(links, name);
-    }
+  public Application(@Nullable List<Link> links, String name) {
+    super(links, name);
+  }
 
-    public Application(String name) {
-        this(null, name);
-    }
+  public Application(String name) {
+    this(null, name);
+  }
 
-    protected Application() {
-    }
+  protected Application() {
+  }
 
 }

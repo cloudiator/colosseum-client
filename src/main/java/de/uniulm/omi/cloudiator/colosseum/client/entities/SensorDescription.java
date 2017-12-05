@@ -21,67 +21,67 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("sensorDescription") public class SensorDescription extends AbstractEntity {
+@Path("sensorDescription")
+public class SensorDescription extends AbstractEntity {
 
-    private String className;
-    private String metricName;
-    private Boolean isVmSensor;
-    private Boolean isPush;
+  private String className;
+  private String metricName;
+  private Boolean isVmSensor;
+  private Boolean isPush;
 
-    public SensorDescription(@Nullable List<Link> link, String className, String metricName,
-        Boolean isVmSensor, Boolean isPush) {
-        super(link);
-        this.className = className;
-        this.metricName = metricName;
-        this.isVmSensor = isVmSensor;
-        this.isPush = isPush;
-    }
+  public SensorDescription(@Nullable List<Link> link, String className, String metricName,
+      Boolean isVmSensor, Boolean isPush) {
+    super(link);
+    this.className = className;
+    this.metricName = metricName;
+    this.isVmSensor = isVmSensor;
+    this.isPush = isPush;
+  }
 
-    public SensorDescription(String className, String metricName, Boolean isVmSensor,
-        Boolean isPush) {
-        this(null, className, metricName, isVmSensor, isPush);
-    }
+  public SensorDescription(String className, String metricName, Boolean isVmSensor,
+      Boolean isPush) {
+    this(null, className, metricName, isVmSensor, isPush);
+  }
 
-    protected SensorDescription() {
+  protected SensorDescription() {
 
-    }
+  }
 
-    public String getClassName() {
-        return className;
-    }
+  public String getClassName() {
+    return className;
+  }
 
-    public void setClassName(String className) {
-        this.className = className;
-    }
+  public void setClassName(String className) {
+    this.className = className;
+  }
 
-    public String getMetricName() {
-        return metricName;
-    }
+  public String getMetricName() {
+    return metricName;
+  }
 
-    public void setMetricName(String metricName) {
-        this.metricName = metricName;
-    }
+  public void setMetricName(String metricName) {
+    this.metricName = metricName;
+  }
 
-    public Boolean getIsVmSensor() {
-        return isVmSensor;
-    }
+  public Boolean getIsVmSensor() {
+    return isVmSensor;
+  }
 
-    public void setIsVmSensor(Boolean isVmSensor) {
-        this.isVmSensor = isVmSensor;
-    }
+  public void setIsVmSensor(Boolean isVmSensor) {
+    this.isVmSensor = isVmSensor;
+  }
 
-    public Boolean getIsPush() {
-        return isPush;
-    }
+  public Boolean getIsPush() {
+    return isPush;
+  }
 
-    public void setIsPush(Boolean isPush) {
-        this.isPush = isPush;
-    }
+  public void setIsPush(Boolean isPush) {
+    this.isPush = isPush;
+  }
 }

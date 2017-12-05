@@ -23,78 +23,78 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntityInCloud;
-
 import java.util.List;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("location") public class Location extends RemoteEntityInCloud {
+@Path("location")
+public class Location extends RemoteEntityInCloud {
 
-    private Long parent;
-    private LocationScope locationScope;
-    private Boolean isAssignable;
-    private Long geoLocation;
-    private String name;
+  private Long parent;
+  private LocationScope locationScope;
+  private Boolean isAssignable;
+  private Long geoLocation;
+  private String name;
 
-    public Location(List<Link> links, String remoteId, RemoteState remoteState, String providerId,
-        String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long parent,
-        LocationScope locationScope, Boolean isAssignable, Long geoLocation, String name) {
-        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
-        this.parent = parent;
-        this.locationScope = locationScope;
-        this.isAssignable = isAssignable;
-        this.geoLocation = geoLocation;
-        this.name = name;
-    }
+  public Location(List<Link> links, String remoteId, RemoteState remoteState, String providerId,
+      String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long parent,
+      LocationScope locationScope, Boolean isAssignable, Long geoLocation, String name) {
+    super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
+    this.parent = parent;
+    this.locationScope = locationScope;
+    this.isAssignable = isAssignable;
+    this.geoLocation = geoLocation;
+    this.name = name;
+  }
 
-    public Location(String remoteId, RemoteState remoteState, String providerId, String swordId,
-        Long cloud, List<Long> cloudCredentials, Long owner, Long parent,
-        LocationScope locationScope, Boolean isAssignable, Long geoLocation, String name) {
-        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
-            parent, locationScope, isAssignable, geoLocation, name);
-    }
+  public Location(String remoteId, RemoteState remoteState, String providerId, String swordId,
+      Long cloud, List<Long> cloudCredentials, Long owner, Long parent,
+      LocationScope locationScope, Boolean isAssignable, Long geoLocation, String name) {
+    this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+        parent, locationScope, isAssignable, geoLocation, name);
+  }
 
-    protected Location() {
-    }
+  protected Location() {
+  }
 
-    public Long getParent() {
-        return parent;
-    }
+  public Long getParent() {
+    return parent;
+  }
 
-    public void setParent(Long parent) {
-        this.parent = parent;
-    }
+  public void setParent(Long parent) {
+    this.parent = parent;
+  }
 
-    public LocationScope getLocationScope() {
-        return locationScope;
-    }
+  public LocationScope getLocationScope() {
+    return locationScope;
+  }
 
-    public void setLocationScope(LocationScope locationScope) {
-        this.locationScope = locationScope;
-    }
+  public void setLocationScope(LocationScope locationScope) {
+    this.locationScope = locationScope;
+  }
 
-    public Boolean getIsAssignable() {
-        return isAssignable;
-    }
+  public Boolean getIsAssignable() {
+    return isAssignable;
+  }
 
-    public void setIsAssignable(Boolean isAssignable) {
-        this.isAssignable = isAssignable;
-    }
+  public void setIsAssignable(Boolean isAssignable) {
+    this.isAssignable = isAssignable;
+  }
 
-    public Long getGeoLocation() {
-        return geoLocation;
-    }
+  public Long getGeoLocation() {
+    return geoLocation;
+  }
 
-    public void setGeoLocation(Long geoLocation) {
-        this.geoLocation = geoLocation;
-    }
+  public void setGeoLocation(Long geoLocation) {
+    this.geoLocation = geoLocation;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 }

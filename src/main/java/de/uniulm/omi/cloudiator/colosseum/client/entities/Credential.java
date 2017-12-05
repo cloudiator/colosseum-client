@@ -21,44 +21,44 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("credential") public class Credential extends AbstractEntity {
+@Path("credential")
+public class Credential extends AbstractEntity {
 
-    private String user;
-    private String secret;
+  private String user;
+  private String secret;
 
-    public Credential(@Nullable List<Link> links, String user, String secret) {
-        super(links);
-        this.user = user;
-        this.secret = secret;
-    }
+  public Credential(@Nullable List<Link> links, String user, String secret) {
+    super(links);
+    this.user = user;
+    this.secret = secret;
+  }
 
-    public Credential(String user, String secret) {
-        this(null, user, secret);
-    }
+  public Credential(String user, String secret) {
+    this(null, user, secret);
+  }
 
-    protected Credential() {
-    }
+  protected Credential() {
+  }
 
-    public String getUser() {
-        return user;
-    }
+  public String getUser() {
+    return user;
+  }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+  public void setUser(String user) {
+    this.user = user;
+  }
 
-    public String getSecret() {
-        return secret;
-    }
+  public String getSecret() {
+    return secret;
+  }
 
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
+  public void setSecret(String secret) {
+    this.secret = secret;
+  }
 }

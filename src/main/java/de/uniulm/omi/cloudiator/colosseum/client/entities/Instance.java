@@ -22,58 +22,58 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntity;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("instance") public class Instance extends RemoteEntity {
+@Path("instance")
+public class Instance extends RemoteEntity {
 
-    private Long applicationComponent;
-    private Long applicationInstance;
-    private Long virtualMachine;
+  private Long applicationComponent;
+  private Long applicationInstance;
+  private Long virtualMachine;
 
-    public Instance(@Nullable List<Link> links, String remoteId, RemoteState remoteState,
-        String providerId, String swordId, Long applicationComponent, Long applicationInstance,
-        Long virtualMachine) {
-        super(links, remoteId, remoteState, providerId, swordId);
-        this.applicationComponent = applicationComponent;
-        this.virtualMachine = virtualMachine;
-        this.applicationInstance = applicationInstance;
-    }
+  public Instance(@Nullable List<Link> links, String remoteId, RemoteState remoteState,
+      String providerId, String swordId, Long applicationComponent, Long applicationInstance,
+      Long virtualMachine) {
+    super(links, remoteId, remoteState, providerId, swordId);
+    this.applicationComponent = applicationComponent;
+    this.virtualMachine = virtualMachine;
+    this.applicationInstance = applicationInstance;
+  }
 
-    public Instance(String remoteId, RemoteState remoteState, String providerId, String swordId,
-        Long applicationComponent, Long applicationInstance, Long virtualMachine) {
-        this(null, remoteId, remoteState, providerId, swordId, applicationComponent,
-            applicationInstance, virtualMachine);
-    }
+  public Instance(String remoteId, RemoteState remoteState, String providerId, String swordId,
+      Long applicationComponent, Long applicationInstance, Long virtualMachine) {
+    this(null, remoteId, remoteState, providerId, swordId, applicationComponent,
+        applicationInstance, virtualMachine);
+  }
 
-    protected Instance() {
-    }
+  protected Instance() {
+  }
 
-    public Long getApplicationComponent() {
-        return applicationComponent;
-    }
+  public Long getApplicationComponent() {
+    return applicationComponent;
+  }
 
-    public void setApplicationComponent(Long applicationComponent) {
-        this.applicationComponent = applicationComponent;
-    }
+  public void setApplicationComponent(Long applicationComponent) {
+    this.applicationComponent = applicationComponent;
+  }
 
-    public Long getVirtualMachine() {
-        return virtualMachine;
-    }
+  public Long getVirtualMachine() {
+    return virtualMachine;
+  }
 
-    public void setVirtualMachine(Long virtualMachine) {
-        this.virtualMachine = virtualMachine;
-    }
+  public void setVirtualMachine(Long virtualMachine) {
+    this.virtualMachine = virtualMachine;
+  }
 
-    public Long getApplicationInstance() {
-        return applicationInstance;
-    }
+  public Long getApplicationInstance() {
+    return applicationInstance;
+  }
 
-    public void setApplicationInstance(Long applicationInstance) {
-        this.applicationInstance = applicationInstance;
-    }
+  public void setApplicationInstance(Long applicationInstance) {
+    this.applicationInstance = applicationInstance;
+  }
 }

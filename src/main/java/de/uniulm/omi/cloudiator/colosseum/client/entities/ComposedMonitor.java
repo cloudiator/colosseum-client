@@ -24,134 +24,134 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.FormulaOperator;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("composedMonitor") public class ComposedMonitor extends MetricMonitor {
+@Path("composedMonitor")
+public class ComposedMonitor extends MetricMonitor {
 
-    private FlowOperator flowOperator;
-    private FormulaOperator function;
-    private Long quantifier;
-    private Long window;
-    private List<Long> monitors;
-    private List<Long> scalingActions;
-    private Long schedule;
+  private FlowOperator flowOperator;
+  private FormulaOperator function;
+  private Long quantifier;
+  private Long window;
+  private List<Long> monitors;
+  private List<Long> scalingActions;
+  private Long schedule;
 
-    public ComposedMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
-        @Nullable List<Long> monitorInstances, FlowOperator flowOperator, FormulaOperator function,
-        Long quantifier, Long window, List<Long> monitors, List<Long> scalingActions,
-        Long schedule) {
-        super(link, externalReferences, monitorInstances);
-        this.flowOperator = flowOperator;
-        this.function = function;
-        this.quantifier = quantifier;
-        this.window = window;
-        this.monitors = monitors;
-        this.scalingActions = scalingActions;
-        this.schedule = schedule;
-    }
+  public ComposedMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
+      @Nullable List<Long> monitorInstances, FlowOperator flowOperator, FormulaOperator function,
+      Long quantifier, Long window, List<Long> monitors, List<Long> scalingActions,
+      Long schedule) {
+    super(link, externalReferences, monitorInstances);
+    this.flowOperator = flowOperator;
+    this.function = function;
+    this.quantifier = quantifier;
+    this.window = window;
+    this.monitors = monitors;
+    this.scalingActions = scalingActions;
+    this.schedule = schedule;
+  }
 
-    public ComposedMonitor(@Nullable List<KeyValue> externalReferences,
-        @Nullable List<Long> monitorInstances, FlowOperator flowOperator, FormulaOperator function,
-        Long quantifier, Long window, List<Long> monitors, List<Long> scalingActions,
-        Long schedule) {
-        super(null, externalReferences, monitorInstances);
-        this.flowOperator = flowOperator;
-        this.function = function;
-        this.quantifier = quantifier;
-        this.window = window;
-        this.monitors = monitors;
-        this.scalingActions = scalingActions;
-        this.schedule = schedule;
-    }
+  public ComposedMonitor(@Nullable List<KeyValue> externalReferences,
+      @Nullable List<Long> monitorInstances, FlowOperator flowOperator, FormulaOperator function,
+      Long quantifier, Long window, List<Long> monitors, List<Long> scalingActions,
+      Long schedule) {
+    super(null, externalReferences, monitorInstances);
+    this.flowOperator = flowOperator;
+    this.function = function;
+    this.quantifier = quantifier;
+    this.window = window;
+    this.monitors = monitors;
+    this.scalingActions = scalingActions;
+    this.schedule = schedule;
+  }
 
-    public ComposedMonitor(@Nullable List<Long> monitorInstances, FlowOperator flowOperator,
-        FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
-        List<Long> scalingActions, Long schedule) {
-        super(null, null, monitorInstances);
-        this.flowOperator = flowOperator;
-        this.function = function;
-        this.quantifier = quantifier;
-        this.window = window;
-        this.monitors = monitors;
-        this.scalingActions = scalingActions;
-        this.schedule = schedule;
-    }
+  public ComposedMonitor(@Nullable List<Long> monitorInstances, FlowOperator flowOperator,
+      FormulaOperator function, Long quantifier, Long window, List<Long> monitors,
+      List<Long> scalingActions, Long schedule) {
+    super(null, null, monitorInstances);
+    this.flowOperator = flowOperator;
+    this.function = function;
+    this.quantifier = quantifier;
+    this.window = window;
+    this.monitors = monitors;
+    this.scalingActions = scalingActions;
+    this.schedule = schedule;
+  }
 
-    public ComposedMonitor(FlowOperator flowOperator, FormulaOperator function, Long quantifier,
-        Long window, List<Long> monitors, List<Long> scalingActions, Long schedule) {
-        super(null, null, null);
-        this.flowOperator = flowOperator;
-        this.function = function;
-        this.quantifier = quantifier;
-        this.window = window;
-        this.monitors = monitors;
-        this.scalingActions = scalingActions;
-        this.schedule = schedule;
-    }
+  public ComposedMonitor(FlowOperator flowOperator, FormulaOperator function, Long quantifier,
+      Long window, List<Long> monitors, List<Long> scalingActions, Long schedule) {
+    super(null, null, null);
+    this.flowOperator = flowOperator;
+    this.function = function;
+    this.quantifier = quantifier;
+    this.window = window;
+    this.monitors = monitors;
+    this.scalingActions = scalingActions;
+    this.schedule = schedule;
+  }
 
-    protected ComposedMonitor() {
+  protected ComposedMonitor() {
 
-    }
+  }
 
-    public FlowOperator getFlowOperator() {
-        return flowOperator;
-    }
+  public FlowOperator getFlowOperator() {
+    return flowOperator;
+  }
 
-    public void setFlowOperator(FlowOperator flowOperator) {
-        this.flowOperator = flowOperator;
-    }
+  public void setFlowOperator(FlowOperator flowOperator) {
+    this.flowOperator = flowOperator;
+  }
 
-    public FormulaOperator getFunction() {
-        return function;
-    }
+  public FormulaOperator getFunction() {
+    return function;
+  }
 
-    public void setFunction(FormulaOperator function) {
-        this.function = function;
-    }
+  public void setFunction(FormulaOperator function) {
+    this.function = function;
+  }
 
-    public Long getQuantifier() {
-        return quantifier;
-    }
+  public Long getQuantifier() {
+    return quantifier;
+  }
 
-    public void setQuantifier(Long quantifier) {
-        this.quantifier = quantifier;
-    }
+  public void setQuantifier(Long quantifier) {
+    this.quantifier = quantifier;
+  }
 
-    public Long getWindow() {
-        return window;
-    }
+  public Long getWindow() {
+    return window;
+  }
 
-    public void setWindow(Long window) {
-        this.window = window;
-    }
+  public void setWindow(Long window) {
+    this.window = window;
+  }
 
-    public List<Long> getMonitors() {
-        return monitors;
-    }
+  public List<Long> getMonitors() {
+    return monitors;
+  }
 
-    public void setMonitors(List<Long> monitors) {
-        this.monitors = monitors;
-    }
+  public void setMonitors(List<Long> monitors) {
+    this.monitors = monitors;
+  }
 
-    public List<Long> getScalingActions() {
-        return scalingActions;
-    }
+  public List<Long> getScalingActions() {
+    return scalingActions;
+  }
 
-    public void setScalingActions(List<Long> scalingActions) {
-        this.scalingActions = scalingActions;
-    }
+  public void setScalingActions(List<Long> scalingActions) {
+    this.scalingActions = scalingActions;
+  }
 
-    public Long getSchedule() {
-        return schedule;
-    }
+  public Long getSchedule() {
+    return schedule;
+  }
 
-    public void setSchedule(Long schedule) {
-        this.schedule = schedule;
-    }
+  public void setSchedule(Long schedule) {
+    this.schedule = schedule;
+  }
 
 }

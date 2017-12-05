@@ -23,56 +23,58 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntit
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("communication") public class Communication extends AbstractEntity {
+@Path("communication")
+public class Communication extends AbstractEntity {
 
-    private Long requiredPort;
-    private Long providedPort;
+  private Long requiredPort;
+  private Long providedPort;
 
-    public Communication(@Nullable List<Link> links, Long requiredPort, Long providedPort) {
-        super(links);
-        this.requiredPort = requiredPort;
-        this.providedPort = providedPort;
-    }
+  public Communication(@Nullable List<Link> links, Long requiredPort, Long providedPort) {
+    super(links);
+    this.requiredPort = requiredPort;
+    this.providedPort = providedPort;
+  }
 
-    public Communication(Long requiredPort, Long providedPort) {
-        this(null, requiredPort, providedPort);
-    }
+  public Communication(Long requiredPort, Long providedPort) {
+    this(null, requiredPort, providedPort);
+  }
 
-    protected Communication() {
-    }
+  protected Communication() {
+  }
 
-    public Long getRequiredPort() {
-        return requiredPort;
-    }
+  public Long getRequiredPort() {
+    return requiredPort;
+  }
 
-    public void setRequiredPort(Long requiredPort) {
-        this.requiredPort = requiredPort;
-    }
+  public void setRequiredPort(Long requiredPort) {
+    this.requiredPort = requiredPort;
+  }
 
-    public Long getProvidedPort() {
-        return providedPort;
-    }
+  public Long getProvidedPort() {
+    return providedPort;
+  }
 
-    public void setProvidedPort(Long providedPort) {
-        this.providedPort = providedPort;
-    }
+  public void setProvidedPort(Long providedPort) {
+    this.providedPort = providedPort;
+  }
 
-    @Override public Predicate<Entity> exists() {
-        return new Predicate<Entity>() {
-            @Override public boolean apply(@Nullable Entity entity) {
-                if (!(entity instanceof Communication)) {
-                    return false;
-                }
-                return getRequiredPort().equals(((Communication) entity).getRequiredPort())
-                    && getProvidedPort().equals(((Communication) entity).getProvidedPort());
-            }
-        };
-    }
+  @Override
+  public Predicate<Entity> exists() {
+    return new Predicate<Entity>() {
+      @Override
+      public boolean apply(@Nullable Entity entity) {
+        if (!(entity instanceof Communication)) {
+          return false;
+        }
+        return getRequiredPort().equals(((Communication) entity).getRequiredPort())
+            && getProvidedPort().equals(((Communication) entity).getProvidedPort());
+      }
+    };
+  }
 }

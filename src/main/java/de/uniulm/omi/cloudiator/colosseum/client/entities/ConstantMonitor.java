@@ -22,41 +22,41 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("constantMonitor") public class ConstantMonitor extends Monitor {
+@Path("constantMonitor")
+public class ConstantMonitor extends Monitor {
 
-    private Double value;
+  private Double value;
 
-    public ConstantMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
-        Double value) {
-        super(link, externalReferences);
-        this.value = value;
-    }
+  public ConstantMonitor(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
+      Double value) {
+    super(link, externalReferences);
+    this.value = value;
+  }
 
-    public ConstantMonitor(List<KeyValue> externalReferences, Double value) {
-        this(null, externalReferences, value);
-    }
+  public ConstantMonitor(List<KeyValue> externalReferences, Double value) {
+    this(null, externalReferences, value);
+  }
 
-    public ConstantMonitor(Double value) {
-        this(null, null, value);
-    }
+  public ConstantMonitor(Double value) {
+    this(null, null, value);
+  }
 
-    protected ConstantMonitor() {
+  protected ConstantMonitor() {
 
-    }
+  }
 
-    public Double getValue() {
-        return value;
-    }
+  public Double getValue() {
+    return value;
+  }
 
-    public void setValue(Double value) {
-        this.value = value;
-    }
+  public void setValue(Double value) {
+    this.value = value;
+  }
 
 }

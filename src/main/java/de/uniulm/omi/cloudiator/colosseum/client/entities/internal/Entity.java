@@ -21,23 +21,27 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Predicate;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by daniel on 21.01.15.
  */
 public interface Entity {
 
-    @JsonIgnore public String getSelfLink();
+  @JsonIgnore
+  public String getSelfLink();
 
-    @Nullable @JsonIgnore public Long getId();
+  @Nullable
+  @JsonIgnore
+  public Long getId();
 
-    @JsonIgnore public List<Link> getLink();
+  @JsonIgnore
+  public List<Link> getLink();
 
-    @JsonProperty public void setLink(@Nullable List<Link> link);
+  @JsonProperty
+  public void setLink(@Nullable List<Link> link);
 
-    Predicate<? super Entity> exists();
+  Predicate<? super Entity> exists();
 
 }

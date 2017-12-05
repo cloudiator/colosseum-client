@@ -26,6 +26,9 @@ import java.lang.annotation.Target;
 /**
  * Created by daniel on 21.01.15.
  */
-@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.TYPE) public @interface Path {
-    String value();
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface Path {
+
+  String value();
 }

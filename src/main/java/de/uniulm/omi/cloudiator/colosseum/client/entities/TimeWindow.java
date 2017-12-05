@@ -21,47 +21,47 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Window;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("timeWindow") public class TimeWindow extends Window {
+@Path("timeWindow")
+public class TimeWindow extends Window {
 
-    private TimeUnit timeUnit;
-    private Long interval;
+  private TimeUnit timeUnit;
+  private Long interval;
 
 
-    public TimeWindow(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
-        super(link);
-        this.timeUnit = timeUnit;
-        this.interval = interval;
-    }
+  public TimeWindow(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
+    super(link);
+    this.timeUnit = timeUnit;
+    this.interval = interval;
+  }
 
-    public TimeWindow(Long interval, TimeUnit timeUnit) {
-        this(null, interval, timeUnit);
-    }
+  public TimeWindow(Long interval, TimeUnit timeUnit) {
+    this(null, interval, timeUnit);
+  }
 
-    protected TimeWindow() {
+  protected TimeWindow() {
 
-    }
+  }
 
-    public TimeUnit getTimeUnit() {
-        return timeUnit;
-    }
+  public TimeUnit getTimeUnit() {
+    return timeUnit;
+  }
 
-    public void setTimeUnit(TimeUnit timeUnit) {
-        this.timeUnit = timeUnit;
-    }
+  public void setTimeUnit(TimeUnit timeUnit) {
+    this.timeUnit = timeUnit;
+  }
 
-    public Long getInterval() {
-        return interval;
-    }
+  public Long getInterval() {
+    return interval;
+  }
 
-    public void setInterval(Long interval) {
-        this.interval = interval;
-    }
+  public void setInterval(Long interval) {
+    this.interval = interval;
+  }
 }

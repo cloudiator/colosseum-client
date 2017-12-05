@@ -22,86 +22,86 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Monitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("monitorInstance") public class MonitorInstance extends Monitor {
+@Path("monitorInstance")
+public class MonitorInstance extends Monitor {
 
-    private Long monitor;
-    private String apiEndpoint;
-    private Long virtualMachine;
-    private Long component;
-    private Integer port;
-
-
-    public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
-        Long monitor, String apiEndpoint, Long virtualMachine, Long component,
-        Integer port) {
-        super(link, externalReferences);
-        this.monitor = monitor;
-        this.apiEndpoint = apiEndpoint;
-        this.virtualMachine = virtualMachine;
-        this.component = component;
-        this.port = port;
-    }
+  private Long monitor;
+  private String apiEndpoint;
+  private Long virtualMachine;
+  private Long component;
+  private Integer port;
 
 
-    public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint,
-        Long virtualMachine, Long component, Integer port) {
-        this(null, externalReferences, monitor, apiEndpoint, virtualMachine, component,
-            port);
-    }
+  public MonitorInstance(@Nullable List<Link> link, @Nullable List<KeyValue> externalReferences,
+      Long monitor, String apiEndpoint, Long virtualMachine, Long component,
+      Integer port) {
+    super(link, externalReferences);
+    this.monitor = monitor;
+    this.apiEndpoint = apiEndpoint;
+    this.virtualMachine = virtualMachine;
+    this.component = component;
+    this.port = port;
+  }
 
-    public MonitorInstance(Long monitor, String apiEndpoint, Long virtualMachine,
-        Long component, Integer port) {
-        this(null, null, monitor, apiEndpoint, virtualMachine, component, port);
-    }
 
-    protected MonitorInstance() {
+  public MonitorInstance(List<KeyValue> externalReferences, Long monitor, String apiEndpoint,
+      Long virtualMachine, Long component, Integer port) {
+    this(null, externalReferences, monitor, apiEndpoint, virtualMachine, component,
+        port);
+  }
 
-    }
+  public MonitorInstance(Long monitor, String apiEndpoint, Long virtualMachine,
+      Long component, Integer port) {
+    this(null, null, monitor, apiEndpoint, virtualMachine, component, port);
+  }
 
-    public Long getMonitor() {
-        return monitor;
-    }
+  protected MonitorInstance() {
 
-    public void setMonitor(Long monitor) {
-        this.monitor = monitor;
-    }
+  }
 
-    public Long getVirtualMachine() {
-        return virtualMachine;
-    }
+  public Long getMonitor() {
+    return monitor;
+  }
 
-    public void setVirtualMachine(Long virtualMachine) {
-        this.virtualMachine = virtualMachine;
-    }
+  public void setMonitor(Long monitor) {
+    this.monitor = monitor;
+  }
 
-    public Long getComponent() {
-        return component;
-    }
+  public Long getVirtualMachine() {
+    return virtualMachine;
+  }
 
-    public void setComponent(Long component) {
-        this.component = component;
-    }
+  public void setVirtualMachine(Long virtualMachine) {
+    this.virtualMachine = virtualMachine;
+  }
 
-    public String getApiEndpoint() {
-        return apiEndpoint;
-    }
+  public Long getComponent() {
+    return component;
+  }
 
-    public void setApiEndpoint(String apiEndpoint) {
-        this.apiEndpoint = apiEndpoint;
-    }
+  public void setComponent(Long component) {
+    this.component = component;
+  }
 
-    public Integer getPort() {
-        return port;
-    }
+  public String getApiEndpoint() {
+    return apiEndpoint;
+  }
 
-    public void setPort(Integer port) {
-        this.port = port;
-    }
+  public void setApiEndpoint(String apiEndpoint) {
+    this.apiEndpoint = apiEndpoint;
+  }
+
+  public Integer getPort() {
+    return port;
+  }
+
+  public void setPort(Integer port) {
+    this.port = port;
+  }
 }

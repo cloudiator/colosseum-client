@@ -21,63 +21,63 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("ip") public class IpAddress extends AbstractEntity {
+@Path("ip")
+public class IpAddress extends AbstractEntity {
 
-    private final ArrayList<String> allowed =
-        new ArrayList<String>(Arrays.asList("PRIVATE", "PUBLIC"));
+  private final ArrayList<String> allowed =
+      new ArrayList<String>(Arrays.asList("PRIVATE", "PUBLIC"));
 
-    private String ip;
-    private Long virtualMachine;
-    private String ipType;
+  private String ip;
+  private Long virtualMachine;
+  private String ipType;
 
-    public IpAddress(@Nullable List<Link> links, String ip, Long virtualMachine, String ipType) {
-        super(links);
-        this.ip = ip;
-        this.virtualMachine = virtualMachine;
-        this.setIpType(ipType);
+  public IpAddress(@Nullable List<Link> links, String ip, Long virtualMachine, String ipType) {
+    super(links);
+    this.ip = ip;
+    this.virtualMachine = virtualMachine;
+    this.setIpType(ipType);
+  }
+
+  public IpAddress(String ip, Long virtualMachine, String ipType) {
+    this(null, ip, virtualMachine, ipType);
+  }
+
+  protected IpAddress() {
+  }
+
+  public Long getVirtualMachine() {
+    return virtualMachine;
+  }
+
+  public void setVirtualMachine(Long virtualMachine) {
+    this.virtualMachine = virtualMachine;
+  }
+
+  public String getIp() {
+    return ip;
+  }
+
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
+
+  public String getIpType() {
+    return ipType;
+  }
+
+  public void setIpType(String ipType) {
+    if (!allowed.contains(ipType)) {
+      throw new InvalidParameterException("Wrong IP-Type!");
     }
-
-    public IpAddress(String ip, Long virtualMachine, String ipType) {
-        this(null, ip, virtualMachine, ipType);
-    }
-
-    protected IpAddress() {
-    }
-
-    public Long getVirtualMachine() {
-        return virtualMachine;
-    }
-
-    public void setVirtualMachine(Long virtualMachine) {
-        this.virtualMachine = virtualMachine;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getIpType() {
-        return ipType;
-    }
-
-    public void setIpType(String ipType) {
-        if (!allowed.contains(ipType)) {
-            throw new InvalidParameterException("Wrong IP-Type!");
-        }
-        this.ipType = ipType;
-    }
+    this.ipType = ipType;
+  }
 }

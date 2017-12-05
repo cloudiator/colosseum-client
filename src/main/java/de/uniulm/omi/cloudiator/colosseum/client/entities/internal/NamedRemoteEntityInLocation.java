@@ -19,55 +19,66 @@
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
-
 import java.util.List;
 
 /**
  * Created by Frank on 18.08.2015.
  */
 public abstract class NamedRemoteEntityInLocation extends RemoteEntityInLocation {
-    private String name;
 
-    public NamedRemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name) {
-        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location);
-        this.name = name;
+  private String name;
+
+  public NamedRemoteEntityInLocation(List<Link> links, String remoteId, RemoteState remoteState,
+      String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner,
+      Long location, String name) {
+    super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+        location);
+    this.name = name;
+  }
+
+  public NamedRemoteEntityInLocation(String remoteId, RemoteState remoteState, String providerId,
+      String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location,
+      String name) {
+    super(remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location);
+    this.name = name;
+  }
+
+  protected NamedRemoteEntityInLocation() {
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof NamedRemoteEntityInLocation)) {
+      return false;
+    }
+    if (!super.equals(o)) {
+      return false;
     }
 
-    public NamedRemoteEntityInLocation(String remoteId, RemoteState remoteState, String providerId, String swordId, Long cloud, List<Long> cloudCredentials, Long owner, Long location, String name) {
-        super(remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner, location);
-        this.name = name;
+    NamedRemoteEntityInLocation that = (NamedRemoteEntityInLocation) o;
+
+    if (name != null ? !name.equals(that.name) : that.name != null) {
+      return false;
     }
 
-    protected NamedRemoteEntityInLocation() {
-    }
+    return true;
+  }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (!(o instanceof NamedRemoteEntityInLocation))
-            return false;
-        if (!super.equals(o))
-            return false;
-
-        NamedRemoteEntityInLocation that = (NamedRemoteEntityInLocation) o;
-
-        if (name != null ? !name.equals(that.name) : that.name != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
+  @Override
+  public int hashCode() {
+    int result = super.hashCode();
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
+  }
 }

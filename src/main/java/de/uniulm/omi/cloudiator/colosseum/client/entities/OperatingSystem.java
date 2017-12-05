@@ -23,57 +23,57 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 import de.uniulm.omi.cloudiator.common.os.OperatingSystemArchitecture;
 import de.uniulm.omi.cloudiator.common.os.OperatingSystemFamily;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("os") public class OperatingSystem extends AbstractEntity {
+@Path("os")
+public class OperatingSystem extends AbstractEntity {
 
-    private OperatingSystemFamily operatingSystemFamily;
-    private OperatingSystemArchitecture operatingSystemArchitecture;
-    private String version;
+  private OperatingSystemFamily operatingSystemFamily;
+  private OperatingSystemArchitecture operatingSystemArchitecture;
+  private String version;
 
-    public OperatingSystem(@Nullable List<Link> links, OperatingSystemFamily operatingSystemFamily,
-        OperatingSystemArchitecture operatingSystemArchitecture, String version) {
-        super(links);
-        this.operatingSystemFamily = operatingSystemFamily;
-        this.operatingSystemArchitecture = operatingSystemArchitecture;
-        this.version = version;
-    }
+  public OperatingSystem(@Nullable List<Link> links, OperatingSystemFamily operatingSystemFamily,
+      OperatingSystemArchitecture operatingSystemArchitecture, String version) {
+    super(links);
+    this.operatingSystemFamily = operatingSystemFamily;
+    this.operatingSystemArchitecture = operatingSystemArchitecture;
+    this.version = version;
+  }
 
-    public OperatingSystem(OperatingSystemFamily operatingSystemFamily,
-        OperatingSystemArchitecture operatingSystemArchitecture, String version) {
-        this(null, operatingSystemFamily, operatingSystemArchitecture, version);
-    }
+  public OperatingSystem(OperatingSystemFamily operatingSystemFamily,
+      OperatingSystemArchitecture operatingSystemArchitecture, String version) {
+    this(null, operatingSystemFamily, operatingSystemArchitecture, version);
+  }
 
-    protected OperatingSystem() {
-    }
+  protected OperatingSystem() {
+  }
 
-    public OperatingSystemFamily getOperatingSystemFamily() {
-        return operatingSystemFamily;
-    }
+  public OperatingSystemFamily getOperatingSystemFamily() {
+    return operatingSystemFamily;
+  }
 
-    public void setOperatingSystemFamily(OperatingSystemFamily operatingSystemFamily) {
-        this.operatingSystemFamily = operatingSystemFamily;
-    }
+  public void setOperatingSystemFamily(OperatingSystemFamily operatingSystemFamily) {
+    this.operatingSystemFamily = operatingSystemFamily;
+  }
 
-    public OperatingSystemArchitecture getOperatingSystemArchitecture() {
-        return operatingSystemArchitecture;
-    }
+  public OperatingSystemArchitecture getOperatingSystemArchitecture() {
+    return operatingSystemArchitecture;
+  }
 
-    public void setOperatingSystemArchitecture(
-        OperatingSystemArchitecture operatingSystemArchitecture) {
-        this.operatingSystemArchitecture = operatingSystemArchitecture;
-    }
+  public void setOperatingSystemArchitecture(
+      OperatingSystemArchitecture operatingSystemArchitecture) {
+    this.operatingSystemArchitecture = operatingSystemArchitecture;
+  }
 
-    public String getVersion() {
-        return version;
-    }
+  public String getVersion() {
+    return version;
+  }
 
-    public void setVersion(String version) {
-        this.version = version;
-    }
+  public void setVersion(String version) {
+    this.version = version;
+  }
 }

@@ -21,43 +21,43 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
 import java.util.List;
 
 /**
  * Created by daniel on 21.01.15.
  */
-@Path("cloud") public class Cloud extends NamedEntity {
+@Path("cloud")
+public class Cloud extends NamedEntity {
 
-    private String endpoint;
-    private Long api;
+  private String endpoint;
+  private Long api;
 
-    public Cloud(List<Link> links, String name, String endpoint, Long api) {
-        super(links, name);
-        this.endpoint = endpoint;
-        this.api = api;
-    }
+  public Cloud(List<Link> links, String name, String endpoint, Long api) {
+    super(links, name);
+    this.endpoint = endpoint;
+    this.api = api;
+  }
 
-    public Cloud(String name, String endpoint, Long api) {
-        this(null, name, endpoint, api);
-    }
+  public Cloud(String name, String endpoint, Long api) {
+    this(null, name, endpoint, api);
+  }
 
-    protected Cloud() {
-    }
+  protected Cloud() {
+  }
 
-    public String getEndpoint() {
-        return endpoint;
-    }
+  public String getEndpoint() {
+    return endpoint;
+  }
 
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
+  public void setEndpoint(String endpoint) {
+    this.endpoint = endpoint;
+  }
 
-    public Long getApi() {
-        return api;
-    }
+  public Long getApi() {
+    return api;
+  }
 
-    public void setApi(Long api) {
-        this.api = api;
-    }
+  public void setApi(Long api) {
+    this.api = api;
+  }
 }

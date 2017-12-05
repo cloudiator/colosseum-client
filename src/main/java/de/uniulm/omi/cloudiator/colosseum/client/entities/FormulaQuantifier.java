@@ -21,46 +21,46 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("formulaQuantifier") public class FormulaQuantifier extends AbstractEntity {
+@Path("formulaQuantifier")
+public class FormulaQuantifier extends AbstractEntity {
 
-    private Boolean relative;
-    private Double value;
+  private Boolean relative;
+  private Double value;
 
-    public FormulaQuantifier(@Nullable List<Link> link, Boolean relative, Double value) {
-        super(link);
-        this.relative = relative;
-        this.value = value;
-    }
+  public FormulaQuantifier(@Nullable List<Link> link, Boolean relative, Double value) {
+    super(link);
+    this.relative = relative;
+    this.value = value;
+  }
 
-    public FormulaQuantifier(Boolean relative, Double value) {
-        this(null, relative, value);
-    }
+  public FormulaQuantifier(Boolean relative, Double value) {
+    this(null, relative, value);
+  }
 
-    protected FormulaQuantifier() {
+  protected FormulaQuantifier() {
 
-    }
+  }
 
-    public Boolean getRelative() {
-        return relative;
-    }
+  public Boolean getRelative() {
+    return relative;
+  }
 
-    public void setRelative(Boolean relative) {
-        this.relative = relative;
-    }
+  public void setRelative(Boolean relative) {
+    this.relative = relative;
+  }
 
-    public Double getValue() {
-        return value;
-    }
+  public Double getValue() {
+    return value;
+  }
 
-    public void setValue(Double value) {
-        this.value = value;
-    }
+  public void setValue(Double value) {
+    this.value = value;
+  }
 
 }

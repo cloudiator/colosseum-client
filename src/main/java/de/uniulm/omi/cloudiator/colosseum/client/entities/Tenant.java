@@ -21,33 +21,33 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.NamedEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
 import java.util.List;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("tenant") public class Tenant extends NamedEntity {
+@Path("tenant")
+public class Tenant extends NamedEntity {
 
-    private List<Long> frontendUsers;
+  private List<Long> frontendUsers;
 
-    public Tenant(List<Link> links, String name, List<Long> frontendUsers) {
-        super(links, name);
-        this.frontendUsers = frontendUsers;
-    }
+  public Tenant(List<Link> links, String name, List<Long> frontendUsers) {
+    super(links, name);
+    this.frontendUsers = frontendUsers;
+  }
 
-    public Tenant(String name, List<Long> frontendUsers) {
-        this(null, name, frontendUsers);
-    }
+  public Tenant(String name, List<Long> frontendUsers) {
+    this(null, name, frontendUsers);
+  }
 
-    protected Tenant() {
-    }
+  protected Tenant() {
+  }
 
-    public List<Long> getFrontendUsers() {
-        return frontendUsers;
-    }
+  public List<Long> getFrontendUsers() {
+    return frontendUsers;
+  }
 
-    public void setFrontendUsers(List<Long> frontendUsers) {
-        this.frontendUsers = frontendUsers;
-    }
+  public void setFrontendUsers(List<Long> frontendUsers) {
+    this.frontendUsers = frontendUsers;
+  }
 }

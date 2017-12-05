@@ -24,82 +24,84 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntit
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("ac") public class ApplicationComponent extends AbstractEntity {
+@Path("ac")
+public class ApplicationComponent extends AbstractEntity {
 
-    private Long application;
-    private Long component;
-    private Long virtualMachineTemplate;
-    private ContainerType containerType;
+  private Long application;
+  private Long component;
+  private Long virtualMachineTemplate;
+  private ContainerType containerType;
 
-    public ApplicationComponent(@Nullable List<Link> links, Long application, Long component,
-        Long virtualMachineTemplate, @Nullable ContainerType containerType) {
-        super(links);
-        this.application = application;
-        this.component = component;
-        this.virtualMachineTemplate = virtualMachineTemplate;
-        this.containerType = containerType;
-    }
+  public ApplicationComponent(@Nullable List<Link> links, Long application, Long component,
+      Long virtualMachineTemplate, @Nullable ContainerType containerType) {
+    super(links);
+    this.application = application;
+    this.component = component;
+    this.virtualMachineTemplate = virtualMachineTemplate;
+    this.containerType = containerType;
+  }
 
-    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate,
-        @Nullable ContainerType containerType) {
-        this(null, application, component, virtualMachineTemplate, containerType);
-    }
+  public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate,
+      @Nullable ContainerType containerType) {
+    this(null, application, component, virtualMachineTemplate, containerType);
+  }
 
-    public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate) {
-        this(null, application, component, virtualMachineTemplate, null);
-    }
+  public ApplicationComponent(Long application, Long component, Long virtualMachineTemplate) {
+    this(null, application, component, virtualMachineTemplate, null);
+  }
 
-    protected ApplicationComponent() {
-    }
+  protected ApplicationComponent() {
+  }
 
-    public Long getApplication() {
-        return application;
-    }
+  public Long getApplication() {
+    return application;
+  }
 
-    public void setApplication(Long application) {
-        this.application = application;
-    }
+  public void setApplication(Long application) {
+    this.application = application;
+  }
 
-    public Long getComponent() {
-        return component;
-    }
+  public Long getComponent() {
+    return component;
+  }
 
-    public void setComponent(Long component) {
-        this.component = component;
-    }
+  public void setComponent(Long component) {
+    this.component = component;
+  }
 
-    public Long getVirtualMachineTemplate() {
-        return virtualMachineTemplate;
-    }
+  public Long getVirtualMachineTemplate() {
+    return virtualMachineTemplate;
+  }
 
-    public void setVirtualMachineTemplate(Long virtualMachineTemplate) {
-        this.virtualMachineTemplate = virtualMachineTemplate;
-    }
+  public void setVirtualMachineTemplate(Long virtualMachineTemplate) {
+    this.virtualMachineTemplate = virtualMachineTemplate;
+  }
 
-    public ContainerType getContainerType() {
-        return containerType;
-    }
+  public ContainerType getContainerType() {
+    return containerType;
+  }
 
-    public void setContainerType(ContainerType containerType) {
-        this.containerType = containerType;
-    }
+  public void setContainerType(ContainerType containerType) {
+    this.containerType = containerType;
+  }
 
-    @Override public Predicate<Entity> exists() {
-        return new Predicate<Entity>() {
-            @Override public boolean apply(@Nullable Entity input) {
-                return input instanceof ApplicationComponent && component
-                    .equals(((ApplicationComponent) input).getComponent()) && application
-                    .equals(((ApplicationComponent) input).getApplication());
-            }
-        };
-    }
+  @Override
+  public Predicate<Entity> exists() {
+    return new Predicate<Entity>() {
+      @Override
+      public boolean apply(@Nullable Entity input) {
+        return input instanceof ApplicationComponent && component
+            .equals(((ApplicationComponent) input).getComponent()) && application
+            .equals(((ApplicationComponent) input).getApplication());
+      }
+    };
+  }
 
 
 }

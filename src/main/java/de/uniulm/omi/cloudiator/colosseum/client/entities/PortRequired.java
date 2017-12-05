@@ -20,51 +20,53 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by Frank on 02.09.2015.
  */
 @Path("portReq")
 public class PortRequired extends Port {
-    private String updateAction;
-    private Boolean isMandatory = false;
 
-    public PortRequired(@Nullable List<Link> links, String name, Long applicationComponent, String updateAction, @Nullable Boolean isMandatory) {
-        super(links, name, applicationComponent);
+  private String updateAction;
+  private Boolean isMandatory = false;
 
-        this.updateAction = updateAction;
-        if(isMandatory != null){
-            this.isMandatory = isMandatory;
-        }
+  public PortRequired(@Nullable List<Link> links, String name, Long applicationComponent,
+      String updateAction, @Nullable Boolean isMandatory) {
+    super(links, name, applicationComponent);
+
+    this.updateAction = updateAction;
+    if (isMandatory != null) {
+      this.isMandatory = isMandatory;
     }
+  }
 
-    public PortRequired(String name, Long applicationComponent, String updateAction, Boolean isMandatory) {
-        this(null, name, applicationComponent, updateAction, isMandatory);
-    }
+  public PortRequired(String name, Long applicationComponent, String updateAction,
+      Boolean isMandatory) {
+    this(null, name, applicationComponent, updateAction, isMandatory);
+  }
 
-    public PortRequired(String name, Long applicationComponent, String updateAction) {
-        this(null, name, applicationComponent, updateAction, null);
-    }
+  public PortRequired(String name, Long applicationComponent, String updateAction) {
+    this(null, name, applicationComponent, updateAction, null);
+  }
 
-    protected PortRequired() {
-    }
+  protected PortRequired() {
+  }
 
-    public String getUpdateAction() {
-        return updateAction;
-    }
+  public String getUpdateAction() {
+    return updateAction;
+  }
 
-    public void setUpdateAction(String updateAction) {
-        this.updateAction = updateAction;
-    }
+  public void setUpdateAction(String updateAction) {
+    this.updateAction = updateAction;
+  }
 
-    public Boolean getIsMandatory() {
-        return isMandatory;
-    }
+  public Boolean getIsMandatory() {
+    return isMandatory;
+  }
 
-    public void setIsMandatory(Boolean mandatory) {
-        isMandatory = mandatory;
-    }
+  public void setIsMandatory(Boolean mandatory) {
+    isMandatory = mandatory;
+  }
 }

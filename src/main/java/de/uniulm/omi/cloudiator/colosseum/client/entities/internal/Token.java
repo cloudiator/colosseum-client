@@ -24,52 +24,52 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
  */
 public class Token extends AbstractEntity {
 
-    private String createdOn;
-    private String expiresAt;
-    private String token;
-    private String userId;
+  private String createdOn;
+  private String expiresAt;
+  private String token;
+  private String userId;
 
-    public Token(String createdOn, String expiresAt, String token, String userId) {
-        super(null);
-        this.createdOn = createdOn;
-        this.expiresAt = expiresAt;
-        this.token = token;
-        this.userId = userId;
-    }
+  public Token(String createdOn, String expiresAt, String token, String userId) {
+    super(null);
+    this.createdOn = createdOn;
+    this.expiresAt = expiresAt;
+    this.token = token;
+    this.userId = userId;
+  }
 
-    protected Token() {
+  protected Token() {
 
-    }
+  }
 
-    public String getCreatedOn() {
-        return createdOn;
-    }
+  public String getCreatedOn() {
+    return createdOn;
+  }
 
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
-    }
+  public void setCreatedOn(String createdOn) {
+    this.createdOn = createdOn;
+  }
 
-    public String getExpiresAt() {
-        return expiresAt;
-    }
+  public String getExpiresAt() {
+    return expiresAt;
+  }
 
-    public void setExpiresAt(String expiresAt) {
-        this.expiresAt = expiresAt;
-    }
+  public void setExpiresAt(String expiresAt) {
+    this.expiresAt = expiresAt;
+  }
 
-    public String getToken() {
-        return token;
-    }
+  public String getToken() {
+    return token;
+  }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+  public void setToken(String token) {
+    this.token = token;
+  }
 
-    public String getUserId() {
-        return userId;
-    }
+  public String getUserId() {
+    return userId;
+  }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
 }

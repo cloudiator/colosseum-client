@@ -21,34 +21,34 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("applicationInstance") public class ApplicationInstance extends AbstractEntity {
+@Path("applicationInstance")
+public class ApplicationInstance extends AbstractEntity {
 
-    private Long application;
+  private Long application;
 
-    public ApplicationInstance(@Nullable List<Link> links, Long application) {
-        super(links);
-        this.application = application;
-    }
+  public ApplicationInstance(@Nullable List<Link> links, Long application) {
+    super(links);
+    this.application = application;
+  }
 
-    public ApplicationInstance(Long application) {
-        this(null, application);
-    }
+  public ApplicationInstance(Long application) {
+    this(null, application);
+  }
 
-    protected ApplicationInstance() {
-    }
+  protected ApplicationInstance() {
+  }
 
-    public Long getApplication() {
-        return application;
-    }
+  public Long getApplication() {
+    return application;
+  }
 
-    public void setApplication(Long application) {
-        this.application = application;
-    }
+  public void setApplication(Long application) {
+    this.application = application;
+  }
 }

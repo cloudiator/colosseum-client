@@ -23,15 +23,16 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Entity;
 /**
  * Created by Frank on 29.05.2015.
  */
-@Deprecated public class SingletonFactory {
+@Deprecated
+public class SingletonFactory {
 
-    public final Client client;
+  public final Client client;
 
-    public SingletonFactory(Client client) {
-        this.client = client;
-    }
+  public SingletonFactory(Client client) {
+    this.client = client;
+  }
 
-    public <T extends Entity> T singleton(T obj) {
-        return client.controller((Class<T>) obj.getClass()).updateOrCreate(obj);
-    }
+  public <T extends Entity> T singleton(T obj) {
+    return client.controller((Class<T>) obj.getClass()).updateOrCreate(obj);
+  }
 }

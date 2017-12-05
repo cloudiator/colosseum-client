@@ -23,80 +23,81 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.SubscriptionType
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by Frank on 05.08.2015.
  */
-@Path("monitorSubscription") public class MonitorSubscription extends AbstractEntity {
-    private Long monitor;
-    private String endpoint;
-    private SubscriptionType type;
-    private FilterType filterType;
-    private Double filterValue;
+@Path("monitorSubscription")
+public class MonitorSubscription extends AbstractEntity {
 
-    public MonitorSubscription(@Nullable List<Link> link, Long monitor, String endpoint,
-        SubscriptionType type, FilterType filterType, Double filterValue) {
-        super(link);
-        this.monitor = monitor;
-        this.endpoint = endpoint;
-        this.type = type;
-        this.filterType = filterType;
-        this.filterValue = filterValue;
-    }
+  private Long monitor;
+  private String endpoint;
+  private SubscriptionType type;
+  private FilterType filterType;
+  private Double filterValue;
 
-    public MonitorSubscription(Long monitor, String endpoint, SubscriptionType type,
-        FilterType filterType, Double filterValue) {
-        this.monitor = monitor;
-        this.endpoint = endpoint;
-        this.type = type;
-        this.filterType = filterType;
-        this.filterValue = filterValue;
-    }
+  public MonitorSubscription(@Nullable List<Link> link, Long monitor, String endpoint,
+      SubscriptionType type, FilterType filterType, Double filterValue) {
+    super(link);
+    this.monitor = monitor;
+    this.endpoint = endpoint;
+    this.type = type;
+    this.filterType = filterType;
+    this.filterValue = filterValue;
+  }
 
-    protected MonitorSubscription() {
+  public MonitorSubscription(Long monitor, String endpoint, SubscriptionType type,
+      FilterType filterType, Double filterValue) {
+    this.monitor = monitor;
+    this.endpoint = endpoint;
+    this.type = type;
+    this.filterType = filterType;
+    this.filterValue = filterValue;
+  }
 
-    }
+  protected MonitorSubscription() {
 
-    public Long getMonitor() {
-        return monitor;
-    }
+  }
 
-    public void setMonitor(Long monitor) {
-        this.monitor = monitor;
-    }
+  public Long getMonitor() {
+    return monitor;
+  }
 
-    public String getEndpoint() {
-        return endpoint;
-    }
+  public void setMonitor(Long monitor) {
+    this.monitor = monitor;
+  }
 
-    public void setEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-    }
+  public String getEndpoint() {
+    return endpoint;
+  }
 
-    public SubscriptionType getType() {
-        return type;
-    }
+  public void setEndpoint(String endpoint) {
+    this.endpoint = endpoint;
+  }
 
-    public void setType(SubscriptionType type) {
-        this.type = type;
-    }
+  public SubscriptionType getType() {
+    return type;
+  }
 
-    public FilterType getFilterType() {
-        return filterType;
-    }
+  public void setType(SubscriptionType type) {
+    this.type = type;
+  }
 
-    public void setFilterType(FilterType filterType) {
-        this.filterType = filterType;
-    }
+  public FilterType getFilterType() {
+    return filterType;
+  }
 
-    public Double getFilterValue() {
-        return filterValue;
-    }
+  public void setFilterType(FilterType filterType) {
+    this.filterType = filterType;
+  }
 
-    public void setFilterValue(Double filterValue) {
-        this.filterValue = filterValue;
-    }
+  public Double getFilterValue() {
+    return filterValue;
+  }
+
+  public void setFilterValue(Double filterValue) {
+    this.filterValue = filterValue;
+  }
 }

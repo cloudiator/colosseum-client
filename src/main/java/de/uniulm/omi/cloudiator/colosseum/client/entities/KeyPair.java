@@ -22,58 +22,58 @@ import de.uniulm.omi.cloudiator.colosseum.client.entities.enums.RemoteState;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.RemoteEntityInCloud;
-
 import java.util.List;
 
 /**
  * Created by Frank on 17.02.2016.
  */
-@Path("keyPair") public class KeyPair extends RemoteEntityInCloud {
+@Path("keyPair")
+public class KeyPair extends RemoteEntityInCloud {
 
-    private String privateKey;
-    private String publicKey;
-    private Long virtualMachine;
+  private String privateKey;
+  private String publicKey;
+  private Long virtualMachine;
 
-    public KeyPair(List<Link> links, String remoteId, RemoteState remoteState, String providerId,
-        String swordId, Long cloud, List<Long> cloudCredentials, Long owner, String privateKey,
-        String publicKey, Long virtualMachine) {
-        super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
-        this.privateKey = privateKey;
-        this.publicKey = publicKey;
-        this.virtualMachine = virtualMachine;
-    }
+  public KeyPair(List<Link> links, String remoteId, RemoteState remoteState, String providerId,
+      String swordId, Long cloud, List<Long> cloudCredentials, Long owner, String privateKey,
+      String publicKey, Long virtualMachine) {
+    super(links, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner);
+    this.privateKey = privateKey;
+    this.publicKey = publicKey;
+    this.virtualMachine = virtualMachine;
+  }
 
-    public KeyPair(String remoteId, RemoteState remoteState, String providerId, String swordId,
-        Long cloud, List<Long> cloudCredentials, Long owner, String privateKey, String publicKey,
-        Long virtualMachine) {
-        this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
-            privateKey, publicKey, virtualMachine);
-    }
+  public KeyPair(String remoteId, RemoteState remoteState, String providerId, String swordId,
+      Long cloud, List<Long> cloudCredentials, Long owner, String privateKey, String publicKey,
+      Long virtualMachine) {
+    this(null, remoteId, remoteState, providerId, swordId, cloud, cloudCredentials, owner,
+        privateKey, publicKey, virtualMachine);
+  }
 
-    protected KeyPair() {
-    }
+  protected KeyPair() {
+  }
 
-    public String getPrivateKey() {
-        return privateKey;
-    }
+  public String getPrivateKey() {
+    return privateKey;
+  }
 
-    public void setPrivateKey(String privateKey) {
-        this.privateKey = privateKey;
-    }
+  public void setPrivateKey(String privateKey) {
+    this.privateKey = privateKey;
+  }
 
-    public String getPublicKey() {
-        return publicKey;
-    }
+  public String getPublicKey() {
+    return publicKey;
+  }
 
-    public void setPublicKey(String publicKey) {
-        this.publicKey = publicKey;
-    }
+  public void setPublicKey(String publicKey) {
+    this.publicKey = publicKey;
+  }
 
-    public Long getVirtualMachine() {
-        return virtualMachine;
-    }
+  public Long getVirtualMachine() {
+    return virtualMachine;
+  }
 
-    public void setVirtualMachine(Long virtualMachine) {
-        this.virtualMachine = virtualMachine;
-    }
+  public void setVirtualMachine(Long virtualMachine) {
+    this.virtualMachine = virtualMachine;
+  }
 }

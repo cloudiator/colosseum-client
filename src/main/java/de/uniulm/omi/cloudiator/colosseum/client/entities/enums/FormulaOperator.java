@@ -23,60 +23,70 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  */
 public enum FormulaOperator {
 
-    /** Kairos aggregators */
-    SUM("SUM"), // ADD, PLUS
-    MINUS("MINUS"),
-    AVG("AVG"),
-    MEDIAN("MEDIAN"),
-    DEV("DEV"),
-    STD("STD"),
-    DERIVATIVE("DERIVATIVE"),
-    DIV("DIV"),
-    MULTIPLY("MULTIPLAY"),
-    MIN("MIN"),
-    MAX("MAX"),
-    RATE("RATE"),
-    SAMPLER("SAMPLER"),
-    SCALE("SCALE"),
-    COUNT("COUNT"),
-    LEAST_SQUARES("LEAST_SQUARES"),
-    PERCENTILE("PERCENTILE"),
-    MODE("MODE"),
-    MODULO("MODULO"),
-    FIRST("FIRST"),
-    LAST("LAST"),
+  /**
+   * Kairos aggregators
+   */
+  SUM("SUM"), // ADD, PLUS
+  MINUS("MINUS"),
+  AVG("AVG"),
+  MEDIAN("MEDIAN"),
+  DEV("DEV"),
+  STD("STD"),
+  DERIVATIVE("DERIVATIVE"),
+  DIV("DIV"),
+  MULTIPLY("MULTIPLAY"),
+  MIN("MIN"),
+  MAX("MAX"),
+  RATE("RATE"),
+  SAMPLER("SAMPLER"),
+  SCALE("SCALE"),
+  COUNT("COUNT"),
+  LEAST_SQUARES("LEAST_SQUARES"),
+  PERCENTILE("PERCENTILE"),
+  MODE("MODE"),
+  MODULO("MODULO"),
+  FIRST("FIRST"),
+  LAST("LAST"),
 
-    /** condition aggregators */
-    LT("LT"),
-    LTE("LTE"),
-    GT("GT"),
-    GTE("GTE"),
-    EQ("EQ"),
-    NEQ("NEQ"),
-
-
-    /** event aggregators / binary */
-    OR("OR"),
-    AND("AND"),
-    XOR("XOR"),
-
-    /** reading information */
-    IDENTITY("IDENTITY");
+  /**
+   * condition aggregators
+   */
+  LT("LT"),
+  LTE("LTE"),
+  GT("GT"),
+  GTE("GTE"),
+  EQ("EQ"),
+  NEQ("NEQ"),
 
 
-    private final String text;
+  /**
+   * event aggregators / binary
+   */
+  OR("OR"),
+  AND("AND"),
+  XOR("XOR"),
 
-    private FormulaOperator(final String text) {
-        this.text = text;
+  /**
+   * reading information
+   */
+  IDENTITY("IDENTITY");
+
+
+  private final String text;
+
+  private FormulaOperator(final String text) {
+    this.text = text;
+  }
+
+  private FormulaOperator() {
+    this.text = this.toString();
+  }
+
+  @Override
+  public String toString() {
+    if (text == null) {
+      return super.toString();
     }
-
-    private FormulaOperator(){
-        this.text = this.toString();
-    }
-
-    @Override public String toString() {
-        if(text == null)
-            return super.toString();
-        return text;
-    }
+    return text;
+  }
 }

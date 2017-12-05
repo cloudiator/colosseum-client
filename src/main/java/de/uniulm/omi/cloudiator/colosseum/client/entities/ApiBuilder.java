@@ -20,20 +20,20 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 
 public class ApiBuilder {
 
-    private String name;
-    private String internalProviderName;
+  private String name;
+  private String internalProviderName;
 
-    public ApiBuilder name(String name) {
-        this.name = name;
-        return this;
-    }
+  public ApiBuilder name(String name) {
+    this.name = name;
+    return this;
+  }
 
-    public ApiBuilder internalProviderName(String internalProviderName) {
-        this.internalProviderName = internalProviderName;
-        return this;
-    }
+  public ApiBuilder internalProviderName(String internalProviderName) {
+    this.internalProviderName = internalProviderName;
+    return this;
+  }
 
-    public Api build() {
-        return new Api(name, internalProviderName);
-    }
+  public Api build() {
+    return new Api(name, internalProviderName);
+  }
 }

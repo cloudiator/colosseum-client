@@ -4,20 +4,20 @@ import java.util.concurrent.TimeUnit;
 
 public class TimeWindowBuilder {
 
-    private Long interval;
-    private TimeUnit timeUnit;
+  private Long interval;
+  private TimeUnit timeUnit;
 
-    public TimeWindowBuilder interval(Long interval) {
-        this.interval = interval;
-        return this;
-    }
+  public TimeWindowBuilder interval(Long interval) {
+    this.interval = interval;
+    return this;
+  }
 
-    public TimeWindowBuilder timeUnit(TimeUnit timeUnit) {
-        this.timeUnit = timeUnit;
-        return this;
-    }
+  public TimeWindowBuilder timeUnit(TimeUnit timeUnit) {
+    this.timeUnit = timeUnit;
+    return this;
+  }
 
-    public TimeWindow build() {
-        return new TimeWindow(interval, timeUnit);
-    }
+  public TimeWindow build() {
+    return new TimeWindow(interval, timeUnit);
+  }
 }

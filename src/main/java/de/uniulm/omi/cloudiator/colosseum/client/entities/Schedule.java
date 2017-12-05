@@ -21,46 +21,46 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("schedule") public class Schedule extends AbstractEntity {
+@Path("schedule")
+public class Schedule extends AbstractEntity {
 
-    private Long interval;
-    private TimeUnit timeUnit;
+  private Long interval;
+  private TimeUnit timeUnit;
 
-    public Schedule(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
-        super(link);
-        this.interval = interval;
-        this.timeUnit = timeUnit;
-    }
+  public Schedule(@Nullable List<Link> link, Long interval, TimeUnit timeUnit) {
+    super(link);
+    this.interval = interval;
+    this.timeUnit = timeUnit;
+  }
 
-    public Schedule(Long interval, TimeUnit timeUnit) {
-        this(null, interval, timeUnit);
-    }
+  public Schedule(Long interval, TimeUnit timeUnit) {
+    this(null, interval, timeUnit);
+  }
 
-    protected Schedule() {
+  protected Schedule() {
 
-    }
+  }
 
-    public Long getInterval() {
-        return interval;
-    }
+  public Long getInterval() {
+    return interval;
+  }
 
-    public void setInterval(Long interval) {
-        this.interval = interval;
-    }
+  public void setInterval(Long interval) {
+    this.interval = interval;
+  }
 
-    public TimeUnit getTimeUnit() {
-        return timeUnit;
-    }
+  public TimeUnit getTimeUnit() {
+    return timeUnit;
+  }
 
-    public void setTimeUnit(TimeUnit timeUnit) {
-        this.timeUnit = timeUnit;
-    }
+  public void setTimeUnit(TimeUnit timeUnit) {
+    this.timeUnit = timeUnit;
+  }
 }

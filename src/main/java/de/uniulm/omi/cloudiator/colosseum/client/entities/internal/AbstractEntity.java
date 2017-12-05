@@ -21,61 +21,71 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Predicate;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by daniel on 21.01.15.
  */
 public abstract class AbstractEntity implements Entity {
 
-    @JsonIgnore @Nullable private List<Link> link;
+  @JsonIgnore
+  @Nullable
+  private List<Link> link;
 
-    @JsonIgnore @Override public List<Link> getLink() {
-        return link;
+  public AbstractEntity(@Nullable List<Link> link) {
+    this.link = link;
+  }
+
+  public AbstractEntity() {
+
+  }
+
+  @JsonIgnore
+  @Override
+  public List<Link> getLink() {
+    return link;
+  }
+
+  @JsonProperty
+  @Override
+  public void setLink(@Nullable List<Link> link) {
+    this.link = link;
+  }
+
+  @Nullable
+  @Override
+  public String getSelfLink() {
+    if (this.link == null) {
+      return null;
     }
-
-    @JsonProperty @Override public void setLink(@Nullable List<Link> link) {
-        this.link = link;
+    for (Link link : this.link) {
+      if (link.getRel().equals("self")) {
+        return link.getHref();
+      }
     }
+    throw new IllegalStateException("self link not present in entity");
+  }
 
-    public AbstractEntity(@Nullable List<Link> link) {
-        this.link = link;
+  @Override
+  public Long getId() {
+    String selfLink = this.getSelfLink();
+    if (selfLink == null) {
+      return null;
     }
+    return Long.parseLong(selfLink.substring(selfLink.lastIndexOf('/') + 1));
+  }
 
-    public AbstractEntity() {
-
-    }
-
-    @Nullable @Override public String getSelfLink() {
-        if (this.link == null) {
-            return null;
-        }
-        for (Link link : this.link) {
-            if (link.getRel().equals("self")) {
-                return link.getHref();
-            }
-        }
-        throw new IllegalStateException("self link not present in entity");
-    }
-
-    @Override public Long getId() {
-        String selfLink = this.getSelfLink();
-        if (selfLink == null) {
-            return null;
-        }
-        return Long.parseLong(selfLink.substring(selfLink.lastIndexOf('/') + 1));
-    }
-
-    @Override public Predicate<Entity> exists() {
-        return new Predicate<Entity>() {
-            @Override public boolean apply(@Nullable Entity entity) {
-                return getId() != null && entity.getId() != null && entity instanceof AbstractEntity
-                    && entity.getId().equals(getId());
-            }
-        };
-    }
+  @Override
+  public Predicate<Entity> exists() {
+    return new Predicate<Entity>() {
+      @Override
+      public boolean apply(@Nullable Entity entity) {
+        return getId() != null && entity.getId() != null && entity instanceof AbstractEntity
+            && entity.getId().equals(getId());
+      }
+    };
+  }
 
 
 }

@@ -23,20 +23,21 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  */
 public enum FilterType {
 
-    ANY("ANY"),
-    GTE("GTE"),
-    GT("GT"),
-    E("E"),
-    LT("LT"),
-    LTE("LTE");
+  ANY("ANY"),
+  GTE("GTE"),
+  GT("GT"),
+  E("E"),
+  LT("LT"),
+  LTE("LTE");
 
-    private final String text;
+  private final String text;
 
-    private FilterType(final String text) {
-        this.text = text;
-    }
+  private FilterType(final String text) {
+    this.text = text;
+  }
 
-    @Override public String toString() {
-        return text;
-    }
+  @Override
+  public String toString() {
+    return text;
+  }
 }

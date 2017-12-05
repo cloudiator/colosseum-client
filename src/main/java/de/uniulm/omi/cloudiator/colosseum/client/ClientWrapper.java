@@ -18,46 +18,52 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client;
 
-import de.uniulm.omi.cloudiator.colosseum.client.entities.*;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.Api;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.Cloud;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.ComposedMonitor;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.MonitorInstance;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.MonitorSubscription;
+import de.uniulm.omi.cloudiator.colosseum.client.entities.RawMonitor;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 
 /**
  * Created by Frank on 29.05.2015.
  */
 public class ClientWrapper {
-    private final Client client;
 
-    public ClientWrapper(Client client){
+  private final Client client;
 
-        this.client = client;
-    }
+  public ClientWrapper(Client client) {
 
-    public <T extends AbstractEntity> ClientController<T> get (Class<T> type){
-        return client.controller(type);
-    }
+    this.client = client;
+  }
 
-    public ClientController<Api> Api(){
-        return client.controller(Api.class);
-    }
+  public <T extends AbstractEntity> ClientController<T> get(Class<T> type) {
+    return client.controller(type);
+  }
 
-    public ClientController<Cloud> Cloud(){
-        return client.controller(Cloud.class);
-    }
+  public ClientController<Api> Api() {
+    return client.controller(Api.class);
+  }
 
-    public ClientController<RawMonitor> RawMonitor(){
-        return this.get(RawMonitor.class);
-    }
+  public ClientController<Cloud> Cloud() {
+    return client.controller(Cloud.class);
+  }
 
-    public ClientController<ComposedMonitor> ComposedMonitor(){
-        return this.get(ComposedMonitor.class);
-    }
+  public ClientController<RawMonitor> RawMonitor() {
+    return this.get(RawMonitor.class);
+  }
 
-    public ClientController<MonitorInstance> MonitorInstance(){
-        return this.get(MonitorInstance.class);
-    }
+  public ClientController<ComposedMonitor> ComposedMonitor() {
+    return this.get(ComposedMonitor.class);
+  }
 
-    public ClientController<MonitorSubscription> MonitorSubscription(){
-        return this.get(MonitorSubscription.class);
-    }
+  public ClientController<MonitorInstance> MonitorInstance() {
+    return this.get(MonitorInstance.class);
+  }
+
+  public ClientController<MonitorSubscription> MonitorSubscription() {
+    return this.get(MonitorSubscription.class);
+  }
 
 }

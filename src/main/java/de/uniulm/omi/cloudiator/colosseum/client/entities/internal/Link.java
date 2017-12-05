@@ -23,30 +23,30 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
  */
 public class Link {
 
-    private String href;
-    private String rel;
+  private String href;
+  private String rel;
 
-    public Link() {
-    }
+  public Link() {
+  }
 
-    public Link(String href, String rel) {
-        this.href = href;
-        this.rel = rel;
-    }
+  public Link(String href, String rel) {
+    this.href = href;
+    this.rel = rel;
+  }
 
-    public String getHref() {
-        return href;
-    }
+  public String getHref() {
+    return href;
+  }
 
-    public void setHref(String href) {
-        this.href = href;
-    }
+  public void setHref(String href) {
+    this.href = href;
+  }
 
-    public String getRel() {
-        return rel;
-    }
+  public String getRel() {
+    return rel;
+  }
 
-    public void setRel(String rel) {
-        this.rel = rel;
-    }
+  public void setRel(String rel) {
+    this.rel = rel;
+  }
 }

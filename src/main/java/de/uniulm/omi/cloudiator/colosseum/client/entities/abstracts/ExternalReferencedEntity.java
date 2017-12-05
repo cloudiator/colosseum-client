@@ -21,64 +21,68 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.KeyValue;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
-
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by Frank on 03.06.2015.
  */
 public abstract class ExternalReferencedEntity extends AbstractEntity {
-    private List<KeyValue> externalReferences = new ArrayList<>();
 
-    public List<KeyValue> getExternalReferences() {
-        return externalReferences;
+  private List<KeyValue> externalReferences = new ArrayList<>();
+
+  public ExternalReferencedEntity(@Nullable List<Link> link, List<KeyValue> externalReferences) {
+    super(link);
+    this.externalReferences = externalReferences;
+  }
+
+  public ExternalReferencedEntity(List<KeyValue> externalReferences) {
+    this(null, externalReferences);
+  }
+
+  protected ExternalReferencedEntity() {
+    super();
+  }
+
+  public List<KeyValue> getExternalReferences() {
+    return externalReferences;
+  }
+
+  public void setExternalReferences(List<KeyValue> tags) {
+    this.externalReferences = tags;
+  }
+
+  public void addExternalReference(KeyValue kv) {
+    this.externalReferences.add(kv);
+  }
+
+  public void addExternalReference(String key, String value) {
+    this.externalReferences.add(new KeyValue(key, value));
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
 
-    public void setExternalReferences(List<KeyValue> tags) {
-        this.externalReferences = tags;
+    ExternalReferencedEntity that = (ExternalReferencedEntity) o;
+
+    if (externalReferences != null ?
+        !externalReferences.equals(that.externalReferences) :
+        that.externalReferences != null) {
+      return false;
     }
 
-    public void addExternalReference(KeyValue kv){
-        this.externalReferences.add(kv);
-    }
+    return true;
+  }
 
-    public void addExternalReference(String key, String value){
-        this.externalReferences.add(new KeyValue(key, value));
-    }
-
-    public ExternalReferencedEntity(@Nullable List<Link> link, List<KeyValue> externalReferences) {
-        super(link);
-        this.externalReferences = externalReferences;
-    }
-
-    public ExternalReferencedEntity(List<KeyValue> externalReferences) {
-        this(null, externalReferences);
-    }
-
-    protected ExternalReferencedEntity() {
-        super();
-    }
-
-
-    @Override public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        ExternalReferencedEntity that = (ExternalReferencedEntity) o;
-
-        if (externalReferences != null ?
-            !externalReferences.equals(that.externalReferences) :
-            that.externalReferences != null)
-            return false;
-
-        return true;
-    }
-
-    @Override public int hashCode() {
-        return externalReferences != null ? externalReferences.hashCode() : 0;
-    }
+  @Override
+  public int hashCode() {
+    return externalReferences != null ? externalReferences.hashCode() : 0;
+  }
 }

@@ -21,161 +21,161 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.abstracts.Component;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("lifecycleComponent") public class LifecycleComponent extends Component {
+@Path("lifecycleComponent")
+public class LifecycleComponent extends Component {
 
-    private String init;
-    private String preInstall;
-    private String install;
-    private String postInstall;
-    private String start;
-    private String startDetection;
-    private String stopDetection;
-    private String preStart;
-    private String postStart;
-    private String preStop;
-    private String stop;
-    private String postStop;
-    private String shutdown;
+  private String init;
+  private String preInstall;
+  private String install;
+  private String postInstall;
+  private String start;
+  private String startDetection;
+  private String stopDetection;
+  private String preStart;
+  private String postStart;
+  private String preStop;
+  private String stop;
+  private String postStop;
+  private String shutdown;
 
-    public LifecycleComponent(@Nullable List<Link> links, String name, String init,
-        String preInstall, String install, String postInstall, String start, String startDetection,
-        String stopDetection, String preStart, String postStart, String preStop, String stop,
-        String postStop, String shutdown) {
-        super(links, name);
-        this.init = init;
-        this.preInstall = preInstall;
-        this.install = install;
-        this.postInstall = postInstall;
-        this.start = start;
-        this.startDetection = startDetection;
-        this.stopDetection = stopDetection;
-        this.preStart = preStart;
-        this.postStart = postStart;
-        this.preStop = preStop;
-        this.stop = stop;
-        this.postStop = postStop;
-        this.shutdown = shutdown;
-    }
+  public LifecycleComponent(@Nullable List<Link> links, String name, String init,
+      String preInstall, String install, String postInstall, String start, String startDetection,
+      String stopDetection, String preStart, String postStart, String preStop, String stop,
+      String postStop, String shutdown) {
+    super(links, name);
+    this.init = init;
+    this.preInstall = preInstall;
+    this.install = install;
+    this.postInstall = postInstall;
+    this.start = start;
+    this.startDetection = startDetection;
+    this.stopDetection = stopDetection;
+    this.preStart = preStart;
+    this.postStart = postStart;
+    this.preStop = preStop;
+    this.stop = stop;
+    this.postStop = postStop;
+    this.shutdown = shutdown;
+  }
 
-    public LifecycleComponent(String name, String init, String preInstall, String install,
-        String postInstall, String start, String startDetection, String stopDetection,
-        String preStart, String postStart, String preStop, String stop, String postStop,
-        String shutdown) {
-        this(null, name, init, preInstall, install, postInstall, start, startDetection,
-            stopDetection, preStart, postStart, preStop, stop, postStop, shutdown);
-    }
+  public LifecycleComponent(String name, String init, String preInstall, String install,
+      String postInstall, String start, String startDetection, String stopDetection,
+      String preStart, String postStart, String preStop, String stop, String postStop,
+      String shutdown) {
+    this(null, name, init, preInstall, install, postInstall, start, startDetection,
+        stopDetection, preStart, postStart, preStop, stop, postStop, shutdown);
+  }
 
-    protected LifecycleComponent() {
-    }
+  protected LifecycleComponent() {
+  }
 
-    public String getInit() {
-        return init;
-    }
+  public String getInit() {
+    return init;
+  }
 
-    public void setInit(String init) {
-        this.init = init;
-    }
+  public void setInit(String init) {
+    this.init = init;
+  }
 
-    public String getPreInstall() {
-        return preInstall;
-    }
+  public String getPreInstall() {
+    return preInstall;
+  }
 
-    public void setPreInstall(String preInstall) {
-        this.preInstall = preInstall;
-    }
+  public void setPreInstall(String preInstall) {
+    this.preInstall = preInstall;
+  }
 
-    public String getInstall() {
-        return install;
-    }
+  public String getInstall() {
+    return install;
+  }
 
-    public void setInstall(String install) {
-        this.install = install;
-    }
+  public void setInstall(String install) {
+    this.install = install;
+  }
 
-    public String getPostInstall() {
-        return postInstall;
-    }
+  public String getPostInstall() {
+    return postInstall;
+  }
 
-    public void setPostInstall(String postInstall) {
-        this.postInstall = postInstall;
-    }
+  public void setPostInstall(String postInstall) {
+    this.postInstall = postInstall;
+  }
 
-    public String getStart() {
-        return start;
-    }
+  public String getStart() {
+    return start;
+  }
 
-    public void setStart(String start) {
-        this.start = start;
-    }
+  public void setStart(String start) {
+    this.start = start;
+  }
 
-    public String getStartDetection() {
-        return startDetection;
-    }
+  public String getStartDetection() {
+    return startDetection;
+  }
 
-    public void setStartDetection(String startDetection) {
-        this.startDetection = startDetection;
-    }
+  public void setStartDetection(String startDetection) {
+    this.startDetection = startDetection;
+  }
 
-    public String getStopDetection() {
-        return stopDetection;
-    }
+  public String getStopDetection() {
+    return stopDetection;
+  }
 
-    public void setStopDetection(String stopDetection) {
-        this.stopDetection = stopDetection;
-    }
+  public void setStopDetection(String stopDetection) {
+    this.stopDetection = stopDetection;
+  }
 
-    public String getPostStart() {
-        return postStart;
-    }
+  public String getPostStart() {
+    return postStart;
+  }
 
-    public void setPostStart(String postStart) {
-        this.postStart = postStart;
-    }
+  public void setPostStart(String postStart) {
+    this.postStart = postStart;
+  }
 
-    public String getPreStop() {
-        return preStop;
-    }
+  public String getPreStop() {
+    return preStop;
+  }
 
-    public void setPreStop(String preStop) {
-        this.preStop = preStop;
-    }
+  public void setPreStop(String preStop) {
+    this.preStop = preStop;
+  }
 
-    public String getStop() {
-        return stop;
-    }
+  public String getStop() {
+    return stop;
+  }
 
-    public void setStop(String stop) {
-        this.stop = stop;
-    }
+  public void setStop(String stop) {
+    this.stop = stop;
+  }
 
-    public String getPostStop() {
-        return postStop;
-    }
+  public String getPostStop() {
+    return postStop;
+  }
 
-    public void setPostStop(String postStop) {
-        this.postStop = postStop;
-    }
+  public void setPostStop(String postStop) {
+    this.postStop = postStop;
+  }
 
-    public String getShutdown() {
-        return shutdown;
-    }
+  public String getShutdown() {
+    return shutdown;
+  }
 
-    public void setShutdown(String shutdown) {
-        this.shutdown = shutdown;
-    }
+  public void setShutdown(String shutdown) {
+    this.shutdown = shutdown;
+  }
 
-    public String getPreStart() {
-        return preStart;
-    }
+  public String getPreStart() {
+    return preStart;
+  }
 
-    public void setPreStart(String preStart) {
-        this.preStart = preStart;
-    }
+  public void setPreStart(String preStart) {
+    this.preStart = preStart;
+  }
 }

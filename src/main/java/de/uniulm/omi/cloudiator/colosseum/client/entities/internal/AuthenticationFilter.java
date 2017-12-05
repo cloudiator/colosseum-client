@@ -18,16 +18,15 @@
 
 package de.uniulm.omi.cloudiator.colosseum.client.entities.internal;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import static com.google.common.base.Preconditions.checkState;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import java.io.IOException;
 import javax.annotation.Nullable;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.core.MediaType;
-import java.io.IOException;
-
-import static com.google.common.base.Preconditions.checkState;
 
 /**
  * @todo The authentication should be probably rewritten, that
@@ -39,70 +38,72 @@ import static com.google.common.base.Preconditions.checkState;
  */
 public class AuthenticationFilter implements ClientRequestFilter {
 
-    @Nullable private TokenStore token;
-    private final Credential credential;
-    private final String baseUrl;
+  private final Credential credential;
+  private final String baseUrl;
+  @Nullable
+  private TokenStore token;
 
-    public AuthenticationFilter(final Credential credential, final String baseUrl) {
-        this.credential = credential;
-        this.baseUrl = baseUrl;
-    }
+  public AuthenticationFilter(final Credential credential, final String baseUrl) {
+    this.credential = credential;
+    this.baseUrl = baseUrl;
+  }
 
-    protected Token getToken() {
-        if (this.token == null || this.token.isTokenExpired()) {
-            this.authenticate();
-        }
-        return this.token.getToken();
+  protected Token getToken() {
+    if (this.token == null || this.token.isTokenExpired()) {
+      this.authenticate();
     }
+    return this.token.getToken();
+  }
 
-    private void authenticate() {
-        long timeBeforeRequest = System.currentTimeMillis();
-        Token token = ClientBuilder.newBuilder().register(JacksonJsonProvider.class).build()
-            .target(this.baseUrl + "/login").request(MediaType.APPLICATION_JSON_TYPE).post(
-                javax.ws.rs.client.Entity.entity(this.credential, MediaType.APPLICATION_JSON_TYPE))
-            .readEntity(Token.class);
-        this.token = new TokenStore(token, timeBeforeRequest);
-    }
+  private void authenticate() {
+    long timeBeforeRequest = System.currentTimeMillis();
+    Token token = ClientBuilder.newBuilder().register(JacksonJsonProvider.class).build()
+        .target(this.baseUrl + "/login").request(MediaType.APPLICATION_JSON_TYPE).post(
+            javax.ws.rs.client.Entity.entity(this.credential, MediaType.APPLICATION_JSON_TYPE))
+        .readEntity(Token.class);
+    this.token = new TokenStore(token, timeBeforeRequest);
+  }
 
-    @Override public void filter(ClientRequestContext requestContext) throws IOException {
-        requestContext.getHeaders().add("X-Auth-Token", this.getToken().getToken());
-        requestContext.getHeaders().add("X-Auth-UserId", this.getToken().getUserId());
-        requestContext.getHeaders().add("X-Tenant", this.credential.getTenant());
-    }
+  @Override
+  public void filter(ClientRequestContext requestContext) throws IOException {
+    requestContext.getHeaders().add("X-Auth-Token", this.getToken().getToken());
+    requestContext.getHeaders().add("X-Auth-UserId", this.getToken().getUserId());
+    requestContext.getHeaders().add("X-Tenant", this.credential.getTenant());
+  }
+
+  /**
+   * This class stores the token and a timestamp
+   * to work around time synchronization on server
+   * and client.
+   */
+  private static class TokenStore {
 
     /**
-     * This class stores the token and a timestamp
-     * to work around time synchronization on server
-     * and client.
+     * A buffer avoiding short time failures
      */
-    private static class TokenStore {
+    private static final double TOKEN_PERCENTAGE = 0.7;
 
-        /**
-         * A buffer avoiding short time failures
-         */
-        private static final double TOKEN_PERCENTAGE = 0.7;
+    private final Token token;
+    private final long timestamp;
 
-        private final Token token;
-        private final long timestamp;
-
-        private TokenStore(Token token, long timestamp) {
-            this.token = token;
-            this.timestamp = timestamp;
-        }
-
-        private boolean isTokenExpired() {
-            //timespan that token is valid
-            final double tokenTimespan =
-                (Long.valueOf(token.getExpiresAt()) - Long.valueOf(token.getCreatedOn()))
-                    * TOKEN_PERCENTAGE;
-            checkState(tokenTimespan > 0, "Illegal token validity.");
-            //timespan expired on system since token creation
-            double systemTimespan = System.currentTimeMillis() - timestamp;
-            return systemTimespan >= tokenTimespan;
-        }
-
-        private Token getToken() {
-            return token;
-        }
+    private TokenStore(Token token, long timestamp) {
+      this.token = token;
+      this.timestamp = timestamp;
     }
+
+    private boolean isTokenExpired() {
+      //timespan that token is valid
+      final double tokenTimespan =
+          (Long.valueOf(token.getExpiresAt()) - Long.valueOf(token.getCreatedOn()))
+              * TOKEN_PERCENTAGE;
+      checkState(tokenTimespan > 0, "Illegal token validity.");
+      //timespan expired on system since token creation
+      double systemTimespan = System.currentTimeMillis() - timestamp;
+      return systemTimespan >= tokenTimespan;
+    }
+
+    private Token getToken() {
+      return token;
+    }
+  }
 }

@@ -21,55 +21,55 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("hardwareOffer") public class HardwareOffer extends AbstractEntity {
+@Path("hardwareOffer")
+public class HardwareOffer extends AbstractEntity {
 
-    private Integer numberOfCores;
-    private Long mbOfRam;
-    private Long localDiskSpace;
+  private Integer numberOfCores;
+  private Long mbOfRam;
+  private Long localDiskSpace;
 
-    public HardwareOffer(@Nullable List<Link> links, Integer numberOfCores, Long mbOfRam,
-        Long localDiskSpace) {
-        super(links);
-        this.numberOfCores = numberOfCores;
-        this.mbOfRam = mbOfRam;
-        this.localDiskSpace = localDiskSpace;
-    }
+  public HardwareOffer(@Nullable List<Link> links, Integer numberOfCores, Long mbOfRam,
+      Long localDiskSpace) {
+    super(links);
+    this.numberOfCores = numberOfCores;
+    this.mbOfRam = mbOfRam;
+    this.localDiskSpace = localDiskSpace;
+  }
 
-    public HardwareOffer(Integer numberOfCores, Long mbOfRam, Long localDiskSpace) {
-        this(null, numberOfCores, mbOfRam, localDiskSpace);
-    }
+  public HardwareOffer(Integer numberOfCores, Long mbOfRam, Long localDiskSpace) {
+    this(null, numberOfCores, mbOfRam, localDiskSpace);
+  }
 
-    protected HardwareOffer() {
-    }
+  protected HardwareOffer() {
+  }
 
-    public Integer getNumberOfCores() {
-        return numberOfCores;
-    }
+  public Integer getNumberOfCores() {
+    return numberOfCores;
+  }
 
-    public void setNumberOfCores(Integer numberOfCores) {
-        this.numberOfCores = numberOfCores;
-    }
+  public void setNumberOfCores(Integer numberOfCores) {
+    this.numberOfCores = numberOfCores;
+  }
 
-    public Long getMbOfRam() {
-        return mbOfRam;
-    }
+  public Long getMbOfRam() {
+    return mbOfRam;
+  }
 
-    public void setMbOfRam(Long mbOfRam) {
-        this.mbOfRam = mbOfRam;
-    }
+  public void setMbOfRam(Long mbOfRam) {
+    this.mbOfRam = mbOfRam;
+  }
 
-    public Long getLocalDiskSpace() {
-        return localDiskSpace;
-    }
+  public Long getLocalDiskSpace() {
+    return localDiskSpace;
+  }
 
-    public void setLocalDiskSpace(Long localDiskSpace) {
-        this.localDiskSpace = localDiskSpace;
-    }
+  public void setLocalDiskSpace(Long localDiskSpace) {
+    this.localDiskSpace = localDiskSpace;
+  }
 }

@@ -26,51 +26,51 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class Credential {
 
-    private String email;
-    private String tenant;
-    private String password;
+  private String email;
+  private String tenant;
+  private String password;
 
-    public Credential(String email, String password, String tenant) {
-        checkNotNull(email);
-        checkArgument(!email.isEmpty());
-        checkNotNull(password);
-        checkArgument(!password.isEmpty());
-        checkNotNull(tenant);
-        checkArgument(!tenant.isEmpty());
-        this.email = email;
-        this.password = password;
-        this.tenant = tenant;
-    }
+  public Credential(String email, String password, String tenant) {
+    checkNotNull(email);
+    checkArgument(!email.isEmpty());
+    checkNotNull(password);
+    checkArgument(!password.isEmpty());
+    checkNotNull(tenant);
+    checkArgument(!tenant.isEmpty());
+    this.email = email;
+    this.password = password;
+    this.tenant = tenant;
+  }
 
-    protected Credential() {
+  protected Credential() {
 
-    }
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        checkNotNull(email);
-        checkArgument(!email.isEmpty());
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    checkNotNull(email);
+    checkArgument(!email.isEmpty());
+    this.email = email;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        checkNotNull(password);
-        checkArgument(!password.isEmpty());
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    checkNotNull(password);
+    checkArgument(!password.isEmpty());
+    this.password = password;
+  }
 
-    public String getTenant() {
-        return tenant;
-    }
+  public String getTenant() {
+    return tenant;
+  }
 
-    public void setTenant(String tenant) {
-        this.tenant = tenant;
-    }
+  public void setTenant(String tenant) {
+    this.tenant = tenant;
+  }
 }

@@ -5,30 +5,29 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  */
 public enum ContainerType {
 
-    DOCKER("dockering"),
-    PLAIN("plain");
+  DOCKER("dockering"),
+  PLAIN("plain");
 
-    private final String myName;
+  private final String myName;
 
-    ContainerType(String myNameParam) {
-        myName = myNameParam;
+  ContainerType(String myNameParam) {
+    myName = myNameParam;
+  }
+
+  /**
+   * @return returns the ContainerType matching the parameter. Null otherwise.
+   */
+  public static ContainerType fromString(String containername) {
+    for (ContainerType t : ContainerType.values()) {
+      if (t.myName.equalsIgnoreCase(containername)) {
+        return t;
+      }
     }
+    return null;
+  }
 
-    /**
-     * @param containername
-     * @return returns the ContainerType matching the parameter. Null otherwise.
-     */
-    public static ContainerType fromString(String containername) {
-        for(ContainerType t : ContainerType.values()) {
-            if(t.myName.equalsIgnoreCase(containername)) {
-                return t;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        return myName;
-    }
+  @Override
+  public String toString() {
+    return myName;
+  }
 }

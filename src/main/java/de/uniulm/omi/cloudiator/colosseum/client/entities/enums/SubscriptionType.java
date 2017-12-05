@@ -23,18 +23,19 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  */
 public enum SubscriptionType {
 
-    CDO("CDO"),
-    CDO_EVENT("CDO"),
-    SCALING("SCALING"),
-    JSON_CS("JSON_CS");
+  CDO("CDO"),
+  CDO_EVENT("CDO"),
+  SCALING("SCALING"),
+  JSON_CS("JSON_CS");
 
-    private final String text;
+  private final String text;
 
-    private SubscriptionType(final String text) {
-        this.text = text;
-    }
+  private SubscriptionType(final String text) {
+    this.text = text;
+  }
 
-    @Override public String toString() {
-        return text;
-    }
+  @Override
+  public String toString() {
+    return text;
+  }
 }

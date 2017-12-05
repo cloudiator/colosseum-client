@@ -21,76 +21,76 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.AbstractEntity;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Link;
 import de.uniulm.omi.cloudiator.colosseum.client.entities.internal.Path;
-
-import javax.annotation.Nullable;
 import java.util.List;
+import javax.annotation.Nullable;
 
 /**
  * Created by frank on 21.01.15.
  */
-@Path("frontendUser") public class FrontendUser extends AbstractEntity {
+@Path("frontendUser")
+public class FrontendUser extends AbstractEntity {
 
-    private String firstName;
-    private String lastName;
-    private String mail;
-    private String password;
-    private String repeat;
+  private String firstName;
+  private String lastName;
+  private String mail;
+  private String password;
+  private String repeat;
 
-    public FrontendUser(@Nullable List<Link> links, String firstName, String lastName, String mail,
-        String password, String repeat) {
-        super(links);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.mail = mail;
-        this.password = password;
-        this.repeat = repeat;
-    }
+  public FrontendUser(@Nullable List<Link> links, String firstName, String lastName, String mail,
+      String password, String repeat) {
+    super(links);
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.mail = mail;
+    this.password = password;
+    this.repeat = repeat;
+  }
 
-    public FrontendUser(String firstName, String lastName, String mail, String password,
-        String repeat) {
-        this(null, firstName, lastName, mail, password, repeat);
-    }
+  public FrontendUser(String firstName, String lastName, String mail, String password,
+      String repeat) {
+    this(null, firstName, lastName, mail, password, repeat);
+  }
 
-    protected FrontendUser() {
-    }
+  protected FrontendUser() {
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public String getMail() {
-        return mail;
-    }
+  public String getMail() {
+    return mail;
+  }
 
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getRepeat() {
-        return repeat;
-    }
+  public String getRepeat() {
+    return repeat;
+  }
 
-    public void setRepeat(String repeat) {
-        this.repeat = repeat;
-    }
+  public void setRepeat(String repeat) {
+    this.repeat = repeat;
+  }
 }

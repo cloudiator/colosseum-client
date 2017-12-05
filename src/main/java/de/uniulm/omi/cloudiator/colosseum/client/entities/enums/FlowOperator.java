@@ -23,16 +23,17 @@ package de.uniulm.omi.cloudiator.colosseum.client.entities.enums;
  */
 public enum FlowOperator {
 
-    MAP("MAP"),
-    REDUCE("REDUCE");
+  MAP("MAP"),
+  REDUCE("REDUCE");
 
-    private final String text;
+  private final String text;
 
-    private FlowOperator(final String text) {
-        this.text = text;
-    }
+  private FlowOperator(final String text) {
+    this.text = text;
+  }
 
-    @Override public String toString() {
-        return text;
-    }
+  @Override
+  public String toString() {
+    return text;
+  }
 }
